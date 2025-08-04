@@ -7,7 +7,6 @@ import Lenis from "@studio-freight/lenis"
 import {
   Lightbulb,
   Cable,
-  Monitor,
   Shield,
   Sun,
   Camera,
@@ -24,6 +23,9 @@ import {
   MapPin,
   CheckCircle,
   Award,
+  Droplets,
+  Factory,
+  Wrench,
 } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -47,11 +49,9 @@ const Products = () => {
 
     // Connect Lenis with GSAP ScrollTrigger
     lenisRef.current.on("scroll", ScrollTrigger.update)
-
     gsap.ticker.add((time) => {
       lenisRef.current?.raf(time * 1000)
     })
-
     gsap.ticker.lagSmoothing(0)
 
     const ctx = gsap.context(() => {
@@ -109,7 +109,18 @@ const Products = () => {
     }
   }, [activeFilter])
 
-  const categories = ["All", "Electrical", "Cables", "Safety", "Solar", "Monitoring", "Mechanical"]
+  const categories = [
+    "All",
+    "Electrical",
+    "Cables",
+    "Safety",
+    "Solar",
+    "Monitoring",
+    "Mechanical",
+    "Water Treatment",
+    "Oil & Gas",
+    "Agriculture",
+  ]
 
   const products = [
     {
@@ -120,12 +131,12 @@ const Products = () => {
       description: "Energy-efficient LED lights, industrial lighting, and commercial illumination solutions",
       detailedDescription:
         "Our comprehensive LED lighting solutions offer superior energy efficiency, longer lifespan, and exceptional brightness. Perfect for industrial facilities, commercial spaces, and residential applications. These lights consume up to 80% less energy than traditional lighting while providing better illumination quality.",
-      price: "Starting from ₹500",
-      rating: 4.8,
+      price: "₹850 - ₹15,500",
+      rating: 4.6,
       image:
-        "https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/32014ace-a09d-4132-7913-08d9aeb6e494-qAP7S7nUCfWICRBjHF44bJA0MJ5h8z.jpeg",
       productImage:
-        "https://images.pexels.com/photos/1112598/pexels-photo-1112598.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/32014ace-a09d-4132-7913-08d9aeb6e494-qAP7S7nUCfWICRBjHF44bJA0MJ5h8z.jpeg",
       color: "from-[#96b6c5] to-[#adc4ce]",
       specifications: [
         "Power Range: 5W to 200W",
@@ -160,12 +171,12 @@ const Products = () => {
       description: "High-quality electrical cables, wires, and accessories for industrial applications",
       detailedDescription:
         "Premium quality power and control cables designed for reliable electrical transmission in industrial and commercial environments. Our cables meet international standards and are suitable for various voltage levels and environmental conditions.",
-      price: "Starting from ₹50/meter",
-      rating: 4.7,
+      price: "₹45 - ₹850/meter",
+      rating: 4.5,
       image:
-        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/power---control-cables-NtSRWL4QivTTvaLRex1DXVT3EBahJG.png",
       productImage:
-        "https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/power---control-cables-NtSRWL4QivTTvaLRex1DXVT3EBahJG.png",
       color: "from-[#96b6c5] to-[#adc4ce]",
       specifications: [
         "Voltage Rating: 1.1kV to 33kV",
@@ -193,43 +204,43 @@ const Products = () => {
       ],
     },
     {
-      category: "Electrical",
-      icon: Monitor,
-      title: "Control Panels & Enclosures",
+      category: "Mechanical",
+      icon: Wrench,
+      title: "Industrial Flanges & Fittings",
       brands: ["Comet", "Hensel", "Jackson", "Schneider", "ABB", "Siemens"],
-      description: "Robust electrical panels, distribution boards, and protective enclosures",
+      description: "High-grade stainless steel flanges, pipe fittings, and mechanical components",
       detailedDescription:
-        "Professional-grade control panels and enclosures designed to house and protect electrical components. Built with high-quality materials to ensure safety, durability, and optimal performance in various industrial environments.",
-      price: "Starting from ₹2,500",
-      rating: 4.9,
+        "Professional-grade industrial flanges and mechanical fittings manufactured from premium stainless steel and carbon steel. Designed for high-pressure applications in oil & gas, chemical processing, and industrial piping systems.",
+      price: "₹1,200 - ₹25,000",
+      rating: 4.7,
       image:
-        "https://images.pexels.com/photos/236722/pexels-photo-236722.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/61IatN6qZPL.jpg-9fukJo9L6UqgBfkw69ktmx7thWPnmS.jpeg",
       productImage:
-        "https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/61IatN6qZPL.jpg-9fukJo9L6UqgBfkw69ktmx7thWPnmS.jpeg",
       color: "from-[#96b6c5] to-[#adc4ce]",
       specifications: [
-        "Material: MS/SS/Aluminum",
-        "IP Rating: IP54 to IP66",
-        "Size Range: 200x300mm to 2000x1500mm",
-        "Thickness: 1.2mm to 3mm",
-        "Finish: Powder coated",
-        "Standards: IS 2147, IEC 62208",
+        "Material: SS316/SS304/Carbon Steel",
+        "Pressure Rating: 150# to 2500#",
+        'Size Range: 1/2" to 48"',
+        "Standards: ANSI, ASME, DIN",
+        "Face Type: RF, FF, RTJ",
+        "Temperature: -196°C to 540°C",
       ],
       features: [
         "Corrosion resistant",
-        "Modular design",
-        "Easy installation",
-        "Ventilation options",
-        "Cable entry systems",
-        "Locking mechanisms",
+        "High pressure rating",
+        "Precision machined",
+        "Multiple material options",
+        "Standard compliance",
+        "Long service life",
       ],
       applications: [
-        "Motor control centers",
-        "Distribution boards",
-        "Junction boxes",
-        "Instrument panels",
-        "Switchgear housing",
-        "Outdoor installations",
+        "Oil & gas pipelines",
+        "Chemical processing",
+        "Power generation",
+        "Water treatment",
+        "Petrochemical plants",
+        "Industrial piping",
       ],
     },
     {
@@ -240,12 +251,12 @@ const Products = () => {
       description: "Testing instruments, safety sirens, protective gear, and communication cables",
       detailedDescription:
         "Comprehensive safety equipment and testing instruments to ensure workplace safety and compliance. Our range includes advanced testing tools, protective equipment, and safety devices designed to meet international safety standards.",
-      price: "Starting from ₹200",
-      rating: 4.6,
+      price: "₹350 - ₹45,000",
+      rating: 4.4,
       image:
-        "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/safety-equipment---tools-cWGr01aPo9rjw3BZu8W91oNwXwUgk0.png",
       productImage:
-        "https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/safety-equipment---tools-cWGr01aPo9rjw3BZu8W91oNwXwUgk0.png",
       color: "from-[#96b6c5] to-[#adc4ce]",
       specifications: [
         "Testing Range: 0.1V to 1000V",
@@ -280,12 +291,12 @@ const Products = () => {
       description: "Complete solar solutions including panels, inverters, and charge controllers",
       detailedDescription:
         "Complete solar power systems designed for residential, commercial, and industrial applications. Our solutions include high-efficiency solar panels, advanced inverters, and intelligent charge controllers for optimal energy harvesting and management.",
-      price: "Starting from ₹15,000",
-      rating: 4.8,
+      price: "₹18,500 - ₹8,50,000",
+      rating: 4.3,
       image:
-        "https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/agriculture-food-production-concept-with-tractor-machine-silos-irrigation-system_342744-565-q3cqwTQOJzDN0ZYWKDC7CQNRTvHU7b.avif",
       productImage:
-        "https://images.pexels.com/photos/356036/pexels-photo-356036.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/agriculture-food-production-concept-with-tractor-machine-silos-irrigation-system_342744-565-q3cqwTQOJzDN0ZYWKDC7CQNRTvHU7b.avif",
       color: "from-[#96b6c5] to-[#adc4ce]",
       specifications: [
         "Panel Efficiency: 18-22%",
@@ -320,12 +331,12 @@ const Products = () => {
       description: "Advanced surveillance systems, CCTV cameras, and monitoring equipment",
       detailedDescription:
         "State-of-the-art surveillance systems providing comprehensive security solutions. Our CCTV systems offer high-definition video quality, advanced analytics, and remote monitoring capabilities for enhanced security and peace of mind.",
-      price: "Starting from ₹3,500",
-      rating: 4.7,
+      price: "₹4,200 - ₹1,25,000",
+      rating: 4.2,
       image:
-        "https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TAZIZ-Industrial-Chemical-Zone-1200x628.jpg-givYt5Y4KO4y5sF5UVg2wahEQKavTK.jpeg",
       productImage:
-        "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TAZIZ-Industrial-Chemical-Zone-1200x628.jpg-givYt5Y4KO4y5sF5UVg2wahEQKavTK.jpeg",
       color: "from-[#96b6c5] to-[#adc4ce]",
       specifications: [
         "Resolution: 2MP to 8MP",
@@ -350,6 +361,126 @@ const Products = () => {
         "Residential complexes",
         "Parking areas",
         "Perimeter security",
+      ],
+    },
+    {
+      category: "Water Treatment",
+      icon: Droplets,
+      title: "Water Treatment Systems",
+      brands: ["Grundfos", "KSB", "Kirloskar", "Crompton", "Aqua", "Ion Exchange"],
+      description: "Industrial water treatment plants, filtration systems, and sewage treatment solutions",
+      detailedDescription:
+        "Comprehensive water and wastewater treatment solutions for industrial, municipal, and commercial applications. Our systems ensure efficient water purification, recycling, and environmental compliance with advanced filtration and treatment technologies.",
+      price: "₹2,50,000 - ₹50,00,000",
+      rating: 4.8,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/industrial-waste-waer-treatment-plant.jpg-G0aMnlKytiWwDT79e3jcFznn2l67gT.jpeg",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/industrial-waste-waer-treatment-plant.jpg-G0aMnlKytiWwDT79e3jcFznn2l67gT.jpeg",
+      color: "from-[#96b6c5] to-[#adc4ce]",
+      specifications: [
+        "Capacity: 10 KLD to 50 MLD",
+        "Treatment Type: Physical, Chemical, Biological",
+        "Automation: PLC/SCADA controlled",
+        "Efficiency: >95% BOD/COD removal",
+        "Standards: CPCB, SPCB compliant",
+        "Power: 415V, 3-phase supply",
+      ],
+      features: [
+        "Advanced filtration technology",
+        "Automated operation",
+        "Energy efficient design",
+        "Modular construction",
+        "Remote monitoring",
+        "Low maintenance",
+      ],
+      applications: [
+        "Industrial effluent treatment",
+        "Municipal sewage treatment",
+        "Water recycling plants",
+        "Pharmaceutical industries",
+        "Textile processing",
+        "Food & beverage industry",
+      ],
+    },
+    {
+      category: "Oil & Gas",
+      icon: Factory,
+      title: "Oil & Gas Equipment",
+      brands: ["Honeywell", "Emerson", "Yokogawa", "ABB", "Siemens", "Schneider"],
+      description: "Process control equipment, instrumentation, and safety systems for oil & gas industry",
+      detailedDescription:
+        "Specialized equipment and instrumentation for oil & gas processing facilities. Our solutions include process control systems, safety instrumentation, and monitoring equipment designed for hazardous environments and critical applications.",
+      price: "₹75,000 - ₹25,00,000",
+      rating: 4.9,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/drives-frontpage-segment-oilgas.jpg-T1GqBcB9LhBsVro2hf4SGqEgypXJb6.jpeg",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/drives-frontpage-segment-oilgas.jpg-T1GqBcB9LhBsVro2hf4SGqEgypXJb6.jpeg",
+      color: "from-[#96b6c5] to-[#adc4ce]",
+      specifications: [
+        "Pressure Rating: Up to 10,000 PSI",
+        "Temperature: -40°C to 200°C",
+        "Hazardous Area: Zone 1/2, Div 1/2",
+        "Material: SS316L, Hastelloy",
+        "Accuracy: ±0.1% to ±0.5%",
+        "Certifications: ATEX, IECEx, SIL",
+      ],
+      features: [
+        "Explosion-proof design",
+        "High accuracy measurement",
+        "Corrosion resistant",
+        "SIL rated safety systems",
+        "Remote diagnostics",
+        "Redundant architecture",
+      ],
+      applications: [
+        "Refineries",
+        "Petrochemical plants",
+        "Offshore platforms",
+        "Gas processing units",
+        "Pipeline systems",
+        "Storage terminals",
+      ],
+    },
+    {
+      category: "Agriculture",
+      icon: Wrench,
+      title: "Agricultural Equipment",
+      brands: ["Mahindra", "John Deere", "Tafe", "Sonalika", "Escorts", "New Holland"],
+      description: "Agricultural machinery, irrigation systems, and farm equipment solutions",
+      detailedDescription:
+        "Complete range of agricultural equipment and machinery for modern farming operations. Our solutions include tractors, irrigation systems, harvesting equipment, and precision farming tools to enhance productivity and efficiency.",
+      price: "₹25,000 - ₹15,00,000",
+      rating: 4.5,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/agriculture-food-production-concept-with-tractor-machine-silos-irrigation-system_342744-565-q3cqwTQOJzDN0ZYWKDC7CQNRTvHU7b.avif",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/agriculture-food-production-concept-with-tractor-machine-silos-irrigation-system_342744-565-q3cqwTQOJzDN0ZYWKDC7CQNRTvHU7b.avif",
+      color: "from-[#96b6c5] to-[#adc4ce]",
+      specifications: [
+        "Power Range: 20 HP to 120 HP",
+        "Fuel Type: Diesel/Electric",
+        "Transmission: Manual/Automatic",
+        "PTO Speed: 540/1000 RPM",
+        "Hydraulic Capacity: 2000-4000 kg",
+        "Warranty: 2-5 years",
+      ],
+      features: [
+        "Fuel efficient engines",
+        "Advanced hydraulics",
+        "Comfortable operator cabin",
+        "GPS guidance ready",
+        "Multiple implement compatibility",
+        "Low maintenance design",
+      ],
+      applications: [
+        "Field cultivation",
+        "Crop harvesting",
+        "Irrigation systems",
+        "Material handling",
+        "Land preparation",
+        "Precision farming",
       ],
     },
   ]
@@ -378,8 +509,74 @@ const Products = () => {
     <section
       id="products"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-[#f1f0e8] via-[#eee0c9] to-[#adc4ce] relative"
+      className="py-20 relative overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, #f1f0e8 0%, #eee0c9 50%, #adc4ce 100%)`,
+      }}
     >
+      {/* Add decorative background elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[#96b6c5] rounded-full blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-48 h-48 bg-[#adc4ce] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-[#eee0c9] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 right-10 w-36 h-36 bg-[#96b6c5] rounded-full blur-3xl"></div>
+      </div>
+
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%2396b6c5' fillOpacity='0.3'%3E%3Cpath d='M0 0h100v1H0zM0 0v100h1V0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}
+      ></div>
+
+      {/* Floating decorative elements */}
+      <div className="absolute top-32 left-20 opacity-20">
+        <motion.div
+          animate={{
+            rotate: 360,
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        >
+          <div className="w-16 h-16 border-2 border-[#96b6c5] rounded-full"></div>
+        </motion.div>
+      </div>
+      <div className="absolute top-60 right-32 opacity-15">
+        <motion.div
+          animate={{
+            rotate: -360,
+            y: [-10, 10, -10],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        >
+          <div className="w-12 h-12 bg-[#eee0c9] rounded-lg transform rotate-45"></div>
+        </motion.div>
+      </div>
+      <div className="absolute bottom-32 left-1/4 opacity-10">
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        >
+          <div className="w-20 h-20 border border-[#adc4ce] rounded-full"></div>
+        </motion.div>
+      </div>
+
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 relative z-10">
           <motion.div
@@ -392,7 +589,6 @@ const Products = () => {
               Our Product Range
             </span>
           </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -401,7 +597,6 @@ const Products = () => {
           >
             Our Products
           </motion.h2>
-
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -410,7 +605,6 @@ const Products = () => {
           >
             Premium products from leading brands across electrical, mechanical, and safety equipment.
           </motion.p>
-
           {/* Filter and Search */}
           <div className="filter-section flex flex-col md:flex-row gap-6 items-center justify-center mb-12 relative z-10">
             <div className="flex flex-wrap gap-3 justify-center">
@@ -435,7 +629,6 @@ const Products = () => {
                 </motion.button>
               ))}
             </div>
-
             <motion.div
               className="relative"
               initial={{ opacity: 0, x: 30 }}
@@ -466,7 +659,6 @@ const Products = () => {
             {filteredProducts.map((product, index) => {
               const Icon = product.icon
               const isHovered = hoveredCard === index
-
               return (
                 <motion.div
                   key={index}
@@ -482,11 +674,13 @@ const Products = () => {
                       <img
                         src={product.productImage || "/placeholder.svg"}
                         alt={product.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-105"
                       />
-                      {/* Subtle gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                      {/* Enhanced gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-black/10"></div>
 
+                      {/* Add subtle shine effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
                       {/* Icon and Price Overlay */}
                       <div className="absolute top-4 left-4">
                         <motion.div
@@ -497,17 +691,14 @@ const Products = () => {
                           <Icon className="h-6 w-6 text-white" />
                         </motion.div>
                       </div>
-
                       <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
                         <span className="text-sm font-bold text-gray-800">{product.price}</span>
                       </div>
-
                       {/* Rating */}
                       <div className="absolute bottom-4 left-4 flex items-center bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
                         <Star className="h-4 w-4 text-yellow-500 fill-current mr-1" />
                         <span className="text-sm font-semibold text-gray-800">{product.rating}</span>
                       </div>
-
                       {/* Quick Action Buttons */}
                       <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <motion.button
@@ -527,15 +718,12 @@ const Products = () => {
                         </motion.button>
                       </div>
                     </div>
-
                     {/* Content Section */}
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-gray-700 transition-colors">
                         {product.title}
                       </h3>
-
                       <p className="text-gray-600 mb-4 leading-relaxed text-sm">{product.description}</p>
-
                       {/* Brands Section */}
                       <div className="mb-6">
                         <h4 className="font-semibold text-gray-700 mb-3 text-sm">Available Brands:</h4>
@@ -556,7 +744,6 @@ const Products = () => {
                           )}
                         </div>
                       </div>
-
                       {/* Action Buttons */}
                       <div className="flex gap-3">
                         <motion.button
@@ -576,7 +763,6 @@ const Products = () => {
                         </motion.button>
                       </div>
                     </div>
-
                     {/* Hover Glow Effect */}
                     <div
                       className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${product.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
@@ -606,13 +792,19 @@ const Products = () => {
           {/* Background Image */}
           <div className="absolute inset-0">
             <img
-              src="https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=1200&h=400&fit=crop"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TAZIZ-Industrial-Chemical-Zone-1200x628.jpg-givYt5Y4KO4y5sF5UVg2wahEQKavTK.jpeg"
               alt="Industrial Background"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#96b6c5]/80 to-[#adc4ce]/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#96b6c5]/60 to-[#adc4ce]/60"></div>
+            {/* Add subtle pattern overlay */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+            ></div>
           </div>
-
           {/* Content */}
           <div className="relative z-10 text-center py-16 px-8 text-white">
             <motion.h3
@@ -670,11 +862,13 @@ const Products = () => {
                   <img
                     src={selectedProduct.image || "/placeholder.svg"}
                     alt={selectedProduct.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover brightness-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent"></div>
 
+                  {/* Add subtle animated overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#96b6c5]/20 via-transparent to-[#adc4ce]/20 opacity-0 animate-pulse"></div>
+                </div>
                 {/* Close Button */}
                 <motion.button
                   whileHover={{ scale: 1.1 }}
@@ -684,7 +878,6 @@ const Products = () => {
                 >
                   <X className="h-5 w-5 text-gray-700" />
                 </motion.button>
-
                 {/* Product Icon */}
                 <div className="absolute top-4 left-4">
                   <div
@@ -693,7 +886,6 @@ const Products = () => {
                     <selectedProduct.icon className="h-8 w-8 text-white" />
                   </div>
                 </div>
-
                 {/* Title and Rating */}
                 <div className="absolute bottom-4 left-4 text-white">
                   <h2 className="text-3xl font-bold mb-2 drop-shadow-lg">{selectedProduct.title}</h2>
@@ -708,7 +900,6 @@ const Products = () => {
                   </div>
                 </div>
               </div>
-
               {/* Content */}
               <div className="p-8">
                 {/* Description */}
@@ -716,7 +907,6 @@ const Products = () => {
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">Product Description</h3>
                   <p className="text-gray-700 leading-relaxed text-lg">{selectedProduct.detailedDescription}</p>
                 </div>
-
                 {/* Grid Layout for Details */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                   {/* Specifications */}
@@ -734,7 +924,6 @@ const Products = () => {
                       ))}
                     </ul>
                   </div>
-
                   {/* Features */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#eee0c9]">
                     <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
@@ -751,7 +940,6 @@ const Products = () => {
                     </ul>
                   </div>
                 </div>
-
                 {/* Applications */}
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#eee0c9] mb-8">
                   <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
@@ -769,7 +957,6 @@ const Products = () => {
                     ))}
                   </div>
                 </div>
-
                 {/* All Brands */}
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#eee0c9] mb-8">
                   <h4 className="text-xl font-bold text-gray-800 mb-4">Available Brands</h4>
@@ -784,25 +971,23 @@ const Products = () => {
                     ))}
                   </div>
                 </div>
-
                 {/* Contact Section */}
                 <div className="bg-gradient-to-r from-[#96b6c5] to-[#adc4ce] rounded-2xl p-6 text-white">
                   <h4 className="text-xl font-bold mb-4">Get in Touch</h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div className="flex items-center">
                       <Phone className="h-5 w-5 mr-3" />
-                      <span className="text-sm">+91 98765 43210</span>
+                      <span className="text-sm">+91 9999113792</span>
                     </div>
                     <div className="flex items-center">
                       <Mail className="h-5 w-5 mr-3" />
-                      <span className="text-sm">info@ascendio.com</span>
+                      <span className="text-sm">Ascendio.global@gmail.com</span>
                     </div>
                     <div className="flex items-center">
                       <MapPin className="h-5 w-5 mr-3" />
                       <span className="text-sm">Greater Noida West</span>
                     </div>
                   </div>
-
                   {/* Action Buttons */}
                   <div className="flex gap-4">
                     <motion.button

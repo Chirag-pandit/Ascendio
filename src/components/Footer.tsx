@@ -248,7 +248,7 @@ const Footer = () => {
       <motion.div
         className="absolute bottom-0 left-0 w-full h-1"
         style={{
-          background: `linear-gradient(90deg, #eee0c9 0%, #f1f0e8 50%, #eee0c9 100%)`,
+          background: `linear-gradient(90deg,rgb(209, 196, 189) 0%, #f1f0e8 50%, #eee0c9 100%)`,
         }}
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}

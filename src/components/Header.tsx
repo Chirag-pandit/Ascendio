@@ -37,7 +37,7 @@ const Header = () => {
             className="flex items-center space-x-3"
           >
             <Building2 className="h-8 w-8 text-accent-700" />
-            <span className="text-2xl font-display font-bold text-gray-400">
+            <span className="text-2xl font-display font-bold text-green-800">
               Ascendio
             </span>
           </motion.div>
@@ -49,7 +49,7 @@ const Header = () => {
                 key={item.name}
                 href={item.href}
                 whileHover={{ y: -2 }}
-                className="text-primary-800 hover:text-accent-500 font-medium transition-colors"
+                className="text-primary-500 hover:text-accent-800 font-medium transition-colors"
               >
                 {item.name}
               </motion.a>

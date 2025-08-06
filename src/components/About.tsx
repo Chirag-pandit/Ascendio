@@ -179,8 +179,8 @@ const About = () => {
       icon: Target,
       title: "Expertise",
       description: "A team of experienced professionals ensures delivery of high-quality, industry-specific solutions.",
-      color: "from-[#96b6c5] to-[#adc4ce]",
-      bgColor: "bg-[#f1f0e8]",
+      color: "from-[#1EB2A6] to-[#16a085]",
+      bgColor: "bg-white",
       image:
         "https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
     },
@@ -188,8 +188,8 @@ const About = () => {
       icon: Users,
       title: "Reliability",
       description: "Known for timely execution and precise solutions that meet and exceed client expectations.",
-      color: "from-[#96b6c5] to-[#adc4ce]",
-      bgColor: "bg-[#f1f0e8]",
+      color: "from-[#1EB2A6] to-[#16a085]",
+      bgColor: "bg-white",
       image:
         "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
     },
@@ -197,8 +197,8 @@ const About = () => {
       icon: Lightbulb,
       title: "Innovation",
       description: "Constantly evolving with cutting-edge technology to provide future-ready solutions.",
-      color: "from-[#96b6c5] to-[#adc4ce]",
-      bgColor: "bg-[#f1f0e8]",
+      color: "from-[#1EB2A6] to-[#16a085]",
+      bgColor: "bg-white",
       image:
         "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
     },
@@ -206,18 +206,18 @@ const About = () => {
       icon: Heart,
       title: "Customer-Centric",
       description: "Focused on understanding and adapting to each client's unique needs and requirements.",
-      color: "from-[#96b6c5] to-[#adc4ce]",
-      bgColor: "bg-[#f1f0e8]",
+      color: "from-[#1EB2A6] to-[#16a085]",
+      bgColor: "bg-white",
       image:
         "https://images.pexels.com/photos/236722/pexels-photo-236722.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
     },
   ]
 
   const stats = [
-    { number: 500, label: "Projects Completed", suffix: "+", icon: Building },
-    { number: 50, label: "Expert Team Members", suffix: "+", icon: Users },
-    { number: 4, label: "Years of Excellence", suffix: "", icon: Calendar },
-    { number: 100, label: "Client Satisfaction", suffix: "%", icon: Award },
+    { number: 2, label: "Projects Completed", suffix: "+", icon: Building },
+    { number:  20, label: "Expert Team Members", suffix: "+", icon: Users },
+    { number: 5, label: "Years of Excellence", suffix: "", icon: Calendar },
+    { number: 2, label: "Client Satisfaction", suffix: "%", icon: Award },
   ]
 
   const achievements = [
@@ -233,7 +233,7 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-[#f1f0e8] via-[#eee0c9] to-[#adc4ce] relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-white via-[#D4F8E8]/30 to-[#D4F8E8] relative overflow-hidden"
     >
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}
@@ -244,7 +244,7 @@ const About = () => {
             transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
             className="inline-block mb-6"
           >
-            <span className="px-6 py-3 bg-gradient-to-r from-[#96b6c5] to-[#adc4ce] text-white text-sm font-semibold rounded-full shadow-lg backdrop-blur-sm">
+            <span className="px-6 py-3 bg-gradient-to-r from-[#1EB2A6] to-[#16a085] text-white text-sm font-semibold rounded-full shadow-lg backdrop-blur-sm">
               About Our Company
             </span>
           </motion.div>
@@ -282,7 +282,7 @@ const About = () => {
               alt="Engineering Background"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#96b6c5]/20 to-[#adc4ce]/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1EB2A6]/20 to-[#16a085]/20"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -310,9 +310,9 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <div className="bg-[#f1f0e8] rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 border border-[#eee0c9] group hover:bg-white">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 border border-[#D4F8E8] group hover:bg-[#D4F8E8]/20">
                     <motion.div
-                      className={`w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[#96b6c5] to-[#adc4ce] flex items-center justify-center`}
+                      className={`w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-r from-[#1EB2A6] to-[#16a085] flex items-center justify-center`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -347,7 +347,7 @@ const About = () => {
                 onHoverEnd={() => setHoveredCard(null)}
                 style={{ perspective: 1000 }}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-[#f1f0e8] shadow-lg hover:shadow-2xl transition-all duration-700 border border-[#eee0c9] hover:border-[#adc4ce]">
+                <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-700 border border-[#D4F8E8] hover:border-[#1EB2A6]">
                   {/* Image Section */}
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -385,7 +385,7 @@ const About = () => {
         </div>
 
         {/* Mission Section */}
-        <div className="mission-section bg-[#f1f0e8] rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden border border-[#eee0c9]">
+        <div className="mission-section bg-white rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden border border-[#D4F8E8]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             {/* Mission Content */}
             <div className="mission-content">
@@ -395,7 +395,7 @@ const About = () => {
                 transition={{ duration: 0.8 }}
                 className="mb-6"
               >
-                <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#96b6c5] to-[#adc4ce] text-white rounded-full text-sm font-semibold mb-4">
+                <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#1EB2A6] to-[#16a085] text-white rounded-full text-sm font-semibold mb-4">
                   <Award className="w-4 h-4 mr-2" />
                   Our Mission
                 </span>
@@ -432,7 +432,7 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                   >
                     <div className="flex-shrink-0">
-                      <CheckCircle className="w-5 h-5 text-[#96b6c5]" />
+                      <CheckCircle className="w-5 h-5 text-[#1EB2A6]" />
                     </div>
                     <span className="text-gray-700 font-medium">{achievement}</span>
                   </motion.div>
@@ -456,7 +456,7 @@ const About = () => {
                   />
 
                   {/* Subtle gradient overlay for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#96b6c5]/80 via-[#96b6c5]/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1EB2A6]/80 via-[#1EB2A6]/40 to-transparent"></div>
 
                   {/* Content Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
@@ -495,7 +495,7 @@ const About = () => {
 
                 {/* Floating Elements */}
                 <motion.div
-                  className="absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full"
+                  className="absolute top-4 right-4 w-2 h-2 bg-[#FFA34D] rounded-full"
                   animate={{
                     scale: [1, 1.5, 1],
                     opacity: [0.6, 1, 0.6],
@@ -503,7 +503,7 @@ const About = () => {
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 />
                 <motion.div
-                  className="absolute top-1/2 left-4 w-3 h-3 bg-white/40 rounded-full"
+                  className="absolute top-1/2 left-4 w-3 h-3 bg-[#FFA34D]/60 rounded-full"
                   animate={{
                     scale: [1, 1.3, 1],
                     opacity: [0.4, 0.8, 0.4],

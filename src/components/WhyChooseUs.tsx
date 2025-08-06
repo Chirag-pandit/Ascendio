@@ -1,5 +1,4 @@
-"use client"
-import { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -87,8 +86,8 @@ const WhyChooseUs = () => {
   ]
 
   const stats = [
-    { value: 400, label: "kV Projects", suffix: "" },
-    { value: 100, label: "Satisfied Clients", suffix: "+" },
+    { value: 2, label: "kV Projects", suffix: "" },
+    { value: 2, label: "Satisfied Clients", suffix: "+" },
     { value: 2020, label: "Established", suffix: "" },
     { value: 50, label: "Product Categories", suffix: "+" },
   ]
@@ -121,7 +120,9 @@ const WhyChooseUs = () => {
       id="why-choose-us"
       ref={sectionRef}
       className="py-20 relative overflow-hidden"
-      style={{ backgroundColor: "#f1f0e8" }}
+      style={{
+        background: `linear-gradient(135deg, #FFE5CC 0%, #FFA34D 35%, #FF8C1A 100%)`,
+      }}
     >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
@@ -136,7 +137,7 @@ const WhyChooseUs = () => {
               transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               className="mr-4"
             >
-              <Sparkles className="h-8 w-8" style={{ color: "#96b6c5" }} />
+              <Sparkles className="h-8 w-8" style={{ color: "#1EB2A6" }} />
             </motion.div>
             <h2 className="text-4xl md:text-5xl font-bold" style={{ color: "#2d2d2d" }}>
               Why Choose Ascendio?
@@ -146,7 +147,7 @@ const WhyChooseUs = () => {
               transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               className="ml-4"
             >
-              <Sparkles className="h-8 w-8" style={{ color: "#96b6c5" }} />
+              <Sparkles className="h-8 w-8" style={{ color: "#1EB2A6" }} />
             </motion.div>
           </motion.div>
           <motion.p
@@ -168,7 +169,7 @@ const WhyChooseUs = () => {
             transition={{ duration: 0.8 }}
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl"
             style={{
-              background: `linear-gradient(135deg, #96b6c5 0%, #adc4ce 100%)`,
+              background: `linear-gradient(135deg, #1EB2A6 0%, #17a085 100%)`,
             }}
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
@@ -184,9 +185,9 @@ const WhyChooseUs = () => {
                 >
                   <motion.div
                     className="text-4xl md:text-5xl font-bold mb-2"
-                    style={{ color: "#f1f0e8" }}
+                    style={{ color: "#FFFFFF" }}
                     whileHover={{
-                      textShadow: "0 0 20px rgba(241, 240, 232, 0.8)",
+                      textShadow: "0 0 20px rgba(255, 255, 255, 0.8)",
                     }}
                   >
                     <span className="stat-number drop-shadow-2xl" data-value={stat.value}>
@@ -194,14 +195,14 @@ const WhyChooseUs = () => {
                     </span>
                     <span>{stat.suffix}</span>
                   </motion.div>
-                  <div className="font-medium drop-shadow-xl" style={{ color: "#eee0c9" }}>
+                  <div className="font-medium drop-shadow-xl" style={{ color: "#FFA34D" }}>
                     {stat.label}
                   </div>
 
                   {/* Hover effect background */}
                   <motion.div
                     className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                    style={{ backgroundColor: "#f1f0e8" }}
+                    style={{ backgroundColor: "#FFFFFF" }}
                   />
                 </motion.div>
               ))}
@@ -213,7 +214,7 @@ const WhyChooseUs = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               >
-                <Star className="h-12 w-12" style={{ color: "#eee0c9" }} />
+                <Star className="h-12 w-12" style={{ color: "#FFA34D" }} />
               </motion.div>
             </div>
             <div className="absolute bottom-4 left-4 opacity-20">
@@ -221,7 +222,7 @@ const WhyChooseUs = () => {
                 animate={{ rotate: -360 }}
                 transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               >
-                <Star className="h-8 w-8" style={{ color: "#eee0c9" }} />
+                <Star className="h-8 w-8" style={{ color: "#FFA34D" }} />
               </motion.div>
             </div>
           </motion.div>
@@ -248,11 +249,11 @@ const WhyChooseUs = () => {
                 <div
                   className="rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border-2 relative overflow-hidden"
                   style={{
-                    backgroundColor: "#ffffff",
+                    backgroundColor: "#FFFFFF",
                     borderColor: "transparent",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "#eee0c9"
+                    e.currentTarget.style.borderColor = "#FFA34D"
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = "transparent"
@@ -261,15 +262,15 @@ const WhyChooseUs = () => {
                   <div className="flex items-start space-x-6 relative z-10">
                     <motion.div
                       className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg"
-                      style={{ backgroundColor: "#96b6c5" }}
+                      style={{ backgroundColor: "#1EB2A6" }}
                       whileHover={{
                         scale: 1.1,
-                        backgroundColor: "#adc4ce",
+                        backgroundColor: "#17a085",
                         rotate: 5,
                       }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <Icon className="h-8 w-8" style={{ color: "#f1f0e8" }} />
+                      <Icon className="h-8 w-8" style={{ color: "#FFFFFF" }} />
                     </motion.div>
 
                     <div className="flex-1">
@@ -294,7 +295,7 @@ const WhyChooseUs = () => {
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                             whileHover={{ x: 5 }}
                           >
-                            <CheckCircle className="h-4 w-4 mr-3 flex-shrink-0" style={{ color: "#eee0c9" }} />
+                            <CheckCircle className="h-4 w-4 mr-3 flex-shrink-0" style={{ color: "#FFA34D" }} />
                             <span className="text-sm font-medium" style={{ color: "#2d2d2d" }}>
                               {feature}
                             </span>
@@ -307,7 +308,7 @@ const WhyChooseUs = () => {
                   {/* Hover glow effect */}
                   <motion.div
                     className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
-                    style={{ backgroundColor: "#96b6c5" }}
+                    style={{ backgroundColor: "#1EB2A6" }}
                   />
                 </div>
               </motion.div>
@@ -322,7 +323,7 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.8 }}
           className="text-center rounded-3xl p-12 relative overflow-hidden shadow-2xl"
           style={{
-            background: `linear-gradient(135deg, #96b6c5 0%, #adc4ce 100%)`,
+            background: `linear-gradient(135deg, #1EB2A6 0%, #17a085 100%)`,
           }}
         >
           <motion.div
@@ -337,13 +338,13 @@ const WhyChooseUs = () => {
             }}
             className="relative z-10"
           >
-            <Star className="h-16 w-16 mx-auto mb-6 drop-shadow-2xl" style={{ color: "#eee0c9" }} />
+            <Star className="h-16 w-16 mx-auto mb-6 drop-shadow-2xl" style={{ color: "#FFA34D" }} />
           </motion.div>
 
-          <h3 className="text-3xl font-bold mb-6 relative z-10 drop-shadow-xl" style={{ color: "#f1f0e8" }}>
+          <h3 className="text-3xl font-bold mb-6 relative z-10 drop-shadow-xl" style={{ color: "#FFFFFF" }}>
             Ready to Ascend Together?
           </h3>
-          <p className="text-xl mb-8 max-w-2xl mx-auto relative z-10 drop-shadow-lg" style={{ color: "#eee0c9" }}>
+          <p className="text-xl mb-8 max-w-2xl mx-auto relative z-10 drop-shadow-lg" style={{ color: "#FFA34D" }}>
             Join industries, clients, and collaborators in building future-ready infrastructure with innovation, safety,
             and excellence at the core.
           </p>
@@ -357,16 +358,16 @@ const WhyChooseUs = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-xl"
               style={{
-                backgroundColor: "#f1f0e8",
-                color: "#96b6c5",
+                backgroundColor: "#FFA34D",
+                color: "#FFFFFF",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#eee0c9"
-                e.currentTarget.style.color = "#96b6c5"
+                e.currentTarget.style.backgroundColor = "#ff8c1a"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#f1f0e8"
-                e.currentTarget.style.color = "#96b6c5"
+                e.currentTarget.style.backgroundColor = "#FFA34D"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
             >
               Start Your Project
@@ -375,14 +376,14 @@ const WhyChooseUs = () => {
             <motion.button
               whileHover={{
                 scale: 1.05,
-                backgroundColor: "#f1f0e8",
-                color: "#96b6c5",
+                backgroundColor: "#FFA34D",
+                color: "#FFFFFF",
               }}
               whileTap={{ scale: 0.95 }}
               className="border-2 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg"
               style={{
-                borderColor: "#f1f0e8",
-                color: "#f1f0e8",
+                borderColor: "#FFA34D",
+                color: "#FFA34D",
                 backgroundColor: "transparent",
               }}
             >
@@ -396,7 +397,7 @@ const WhyChooseUs = () => {
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
             >
-              <Sparkles className="h-8 w-8" style={{ color: "#eee0c9" }} />
+              <Sparkles className="h-8 w-8" style={{ color: "#FFA34D" }} />
             </motion.div>
           </div>
           <div className="absolute bottom-8 right-8 opacity-10">
@@ -404,7 +405,7 @@ const WhyChooseUs = () => {
               animate={{ rotate: -360 }}
               transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
             >
-              <Sparkles className="h-6 w-6" style={{ color: "#eee0c9" }} />
+              <Sparkles className="h-6 w-6" style={{ color: "#FFA34D" }} />
             </motion.div>
           </div>
         </motion.div>
@@ -413,4 +414,12 @@ const WhyChooseUs = () => {
   )
 }
 
-export default WhyChooseUs
+function App() {
+  return (
+    <div className="min-h-screen">
+      <WhyChooseUs />
+    </div>
+  );
+}
+
+export default App;

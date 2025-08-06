@@ -47,7 +47,7 @@ const Services = () => {
       title: "Electrical",
       description: "Power distribution, components, and turnkey electrical solutions for industrial applications.",
       features: ["Power Distribution", "Control Systems", "Electrical Components", "Installation Services"],
-      color: "from-[#96b6c5] to-[#adc4ce]",
+      color: "from-[#1EB2A6] to-[#17a085]",
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/32014ace-a09d-4132-7913-08d9aeb6e494-Yy49UgA0fvux125Q6p8j8b9LtTrwYp.jpeg",
       count: "500+",
@@ -58,7 +58,7 @@ const Services = () => {
       title: "Mechanical",
       description: "Comprehensive mechanical systems installation, repairs, fabrication, and maintenance services.",
       features: ["System Installation", "Mechanical Repairs", "Custom Fabrication", "Maintenance"],
-      color: "from-[#96b6c5] to-[#adc4ce]",
+      color: "from-[#1EB2A6] to-[#17a085]",
       image:
         "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       count: "1000+",
@@ -69,7 +69,7 @@ const Services = () => {
       title: "Oil & Gas",
       description: "Complete services and supply solutions for upstream to downstream oil & gas operations.",
       features: ["Upstream Services", "Downstream Solutions", "Pipeline Systems", "Safety Equipment"],
-      color: "from-[#96b6c5] to-[#adc4ce]",
+      color: "from-[#1EB2A6] to-[#17a085]",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oil-and-gas-TkEfiJt8oAXwpW6OOw2GnedbaG6Qh1.png",
       count: "200+",
       metric: "Pipelines",
@@ -79,7 +79,7 @@ const Services = () => {
       title: "Industrial Infrastructure",
       description: "Manufacturing development and system integration for comprehensive industrial solutions.",
       features: ["Manufacturing Setup", "System Integration", "Quality Control", "Process Optimization"],
-      color: "from-[#96b6c5] to-[#adc4ce]",
+      color: "from-[#1EB2A6] to-[#17a085]",
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/drives-frontpage-segment-oilgas.jpg-T1GqBcB9LhBsVro2hf4SGqEgypXJb6.jpeg",
       count: "150+",
@@ -90,7 +90,7 @@ const Services = () => {
       title: "Water & Sewerage",
       description: "Water treatment solutions including pumps, pipes, STP/ETP systems, and infrastructure.",
       features: ["Water Treatment", "Sewage Systems", "Pump Installation", "Pipeline Networks"],
-      color: "from-[#96b6c5] to-[#adc4ce]",
+      color: "from-[#1EB2A6] to-[#17a085]",
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/industrial-waste-waer-treatment-plant.jpg-kbEtRsGVNn3gMGVW9DpV7d8b0EeP5r.jpeg",
       count: "300+",
@@ -101,7 +101,7 @@ const Services = () => {
       title: "Agriculture & EPC",
       description: "Agricultural infrastructure and EPC projects for sustainable farming solutions.",
       features: ["Agricultural Systems", "EPC Projects", "Irrigation Solutions", "Farm Infrastructure"],
-      color: "from-[#96b6c5] to-[#adc4ce]",
+      color: "from-[#1EB2A6] to-[#17a085]",
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/agriculture---epc-real-life-image-6Zt6I2gaqaGuabq7u7w26uJg3AonmZ.png",
       count: "400+",
@@ -115,22 +115,22 @@ const Services = () => {
       ref={sectionRef}
       className="py-20 relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, #f1f0e8 0%, #eee0c9 50%, #adc4ce 100%)`,
+        background: `linear-gradient(135deg, #D4F8E8 0%, #FFFFFF 50%, #D4F8E8 100%)`,
       }}
     >
       {/* Add decorative background elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-[#96b6c5] rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-48 h-48 bg-[#adc4ce] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-[#eee0c9] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 right-10 w-36 h-36 bg-[#96b6c5] rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[#1EB2A6] rounded-full blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-48 h-48 bg-[#FFA34D] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-[#1EB2A6] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 right-10 w-36 h-36 bg-[#FFA34D] rounded-full blur-3xl"></div>
       </div>
 
       {/* Subtle grid pattern */}
       <div
         className="absolute inset-0 opacity-5"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%2396b6c5' fillOpacity='0.3'%3E%3Cpath d='M0 0h100v1H0zM0 0v100h1V0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%231EB2A6' fillOpacity='0.3'%3E%3Cpath d='M0 0h100v1H0zM0 0v100h1V0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       ></div>
 
@@ -147,7 +147,7 @@ const Services = () => {
             ease: "linear",
           }}
         >
-          <div className="w-16 h-16 border-2 border-[#96b6c5] rounded-full"></div>
+          <div className="w-16 h-16 border-2 border-[#1EB2A6] rounded-full"></div>
         </motion.div>
       </div>
       <div className="absolute top-60 right-32 opacity-15">
@@ -162,7 +162,7 @@ const Services = () => {
             ease: "easeInOut",
           }}
         >
-          <div className="w-12 h-12 bg-[#eee0c9] rounded-lg transform rotate-45"></div>
+          <div className="w-12 h-12 bg-[#FFA34D] rounded-lg transform rotate-45"></div>
         </motion.div>
       </div>
       <div className="absolute bottom-32 left-1/4 opacity-10">
@@ -177,7 +177,7 @@ const Services = () => {
             ease: "easeInOut",
           }}
         >
-          <div className="w-20 h-20 border border-[#adc4ce] rounded-full"></div>
+          <div className="w-20 h-20 border border-[#1EB2A6] rounded-full"></div>
         </motion.div>
       </div>
 
@@ -189,7 +189,7 @@ const Services = () => {
             transition={{ duration: 0.6 }}
             className="inline-block mb-6"
           >
-            <span className="px-6 py-2 bg-gradient-to-r from-[#96b6c5] to-[#adc4ce] text-white text-sm font-semibold rounded-full shadow-lg">
+            <span className="px-6 py-2 bg-gradient-to-r from-[#1EB2A6] to-[#17a085] text-white text-sm font-semibold rounded-full shadow-lg">
               Our Expertise
             </span>
           </motion.div>
@@ -225,7 +225,7 @@ const Services = () => {
                 onHoverStart={() => setHoveredCard(index)}
                 onHoverEnd={() => setHoveredCard(null)}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-[#f1f0e8] shadow-xl hover:shadow-2xl transition-all duration-500 border border-[#eee0c9] hover:border-[#adc4ce]">
+                <div className="relative overflow-hidden rounded-2xl bg-[#FFFFFF] shadow-xl hover:shadow-2xl transition-all duration-500 border border-[#D4F8E8] hover:border-[#FFA34D]">
                   {/* Service Image - More Visible */}
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -293,7 +293,7 @@ const Services = () => {
 
                     {/* CTA Button */}
                     <motion.button
-                      className="flex items-center font-semibold text-[#96b6c5] hover:text-[#adc4ce] transition-all duration-300 group"
+                      className="flex items-center font-semibold text-[#1EB2A6] hover:text-[#17a085] transition-all duration-300 group"
                       whileHover={{ x: 5 }}
                     >
                       <span className="mr-2">Learn More</span>
@@ -327,7 +327,7 @@ const Services = () => {
               alt="Industrial Background"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#96b6c5]/70 to-[#adc4ce]/70"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1EB2A6]/70 to-[#17a085]/70"></div>
             {/* Add subtle pattern overlay */}
             <div
               className="absolute inset-0 opacity-10"
@@ -363,7 +363,7 @@ const Services = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white text-[#96b6c5] px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-colors shadow-lg text-lg"
+                className="bg-[#FFA34D] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#ff8c1a] transition-colors shadow-lg text-lg"
               >
                 Get Started Today
               </motion.button>
@@ -373,7 +373,7 @@ const Services = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#96b6c5] transition-colors shadow-lg text-lg"
+                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-[#1EB2A6] transition-colors shadow-lg text-lg"
               >
                 View Our Portfolio
               </motion.button>

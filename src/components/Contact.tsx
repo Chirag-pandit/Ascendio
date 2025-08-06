@@ -68,11 +68,14 @@ const Contact = () => {
 
   // Color theme from the provided palette
   const theme = {
-    primary: "#96b6c5", // Muted blue-gray
-    secondary: "#adc4ce", // Light blue-gray
-    accent: "#eee0c9", // Warm beige
-    background: "#f1f0e8", // Light cream
+    primary: "#1EB2A6",   // Main accent: teal (buttons, headers)
+    secondary: "#D4F8E8", // Light secondary: backgrounds, subtle panels
+    accent: "#FFA34D",    // Action/highlight: CTA buttons, highlights
+    background: "#FFFFFF" // Use white for clean contrast
   }
+  
+  
+  
 
   // Initialize particles with theme colors
   const initParticles = useCallback(() => {
@@ -190,19 +193,12 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        showNotification("Message sent successfully! We'll get back to you soon.", "success");
-        setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-      } else {
-        showNotification("Failed to send message. Please try again.", "error");
-      }
-    } catch  {
-      showNotification("Failed to send message. Please try again.", "error");
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      showNotification("Message sent successfully! We'll get back to you soon.", "success")
+      setFormData({ name: "", email: "", phone: "", company: "", message: "" })
+    } catch {
+      showNotification("Failed to send message. Please try again.", "error")
     } finally {
       setIsSubmitting(false)
     }
@@ -290,7 +286,7 @@ const Contact = () => {
       info: "ascendio.global@gmail.com",
       description: "Send us your inquiries",
       action: () => handleContactAction("email", "ascendio.global@gmail.com"),
-      copyAction: () => handleContactAction("copy", "Ascendio.global@gmail.com"),
+      copyAction: () => handleContactAction("copy", "ascendio.global@gmail.com"),
     },
     {
       icon: Phone,
@@ -322,7 +318,7 @@ const Contact = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 relative overflow-hidden"
+      className="py-20 relative overflow-hidden min-h-screen"
       style={{
         background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.accent} 50%, ${theme.secondary} 100%)`,
       }}

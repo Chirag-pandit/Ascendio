@@ -12,6 +12,14 @@ if (typeof window !== "undefined") {
 const WhyChooseUs = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
+  // Color theme from the provided palette
+  const theme = {
+    primary: "#1EB2A6",   // Main accent: teal (buttons, headers)
+    secondary: "#D4F8E8", // Light secondary: backgrounds, subtle panels
+    accent: "#FFA34D",    // Action/highlight: CTA buttons, highlights
+    background: "#FFFFFF" // Use white for clean contrast
+  }
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate the main content
@@ -121,7 +129,7 @@ const WhyChooseUs = () => {
       ref={sectionRef}
       className="py-20 relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, #FFE5CC 0%, #FFA34D 35%, #FF8C1A 100%)`,
+        background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.accent} 50%, ${theme.secondary} 100%)`,
       }}
     >
       <div className="container mx-auto px-6">

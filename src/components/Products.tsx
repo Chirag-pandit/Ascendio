@@ -39,6 +39,14 @@ const Products = () => {
   const [showDetails, setShowDetails] = useState(false)
   const lenisRef = useRef<Lenis | null>(null)
 
+  // Color theme from the provided palette
+  const theme = {
+    primary: "#1EB2A6",   // Main accent: teal (buttons, headers)
+    secondary: "#D4F8E8", // Light secondary: backgrounds, subtle panels
+    accent: "#FFA34D",    // Action/highlight: CTA buttons, highlights
+    background: "#FFFFFF" // Use white for clean contrast
+  }
+
   useEffect(() => {
     // Initialize Lenis
     lenisRef.current = new Lenis({
@@ -511,7 +519,7 @@ const Products = () => {
       ref={sectionRef}
       className="py-20 relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, #f1f0e8 0%, #eee0c9 50%, #adc4ce 100%)`,
+        background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.accent} 50%, ${theme.secondary} 100%)`,
       }}
     >
       {/* Add decorative background elements */}

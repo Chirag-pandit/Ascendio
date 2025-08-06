@@ -5,6 +5,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Lenis from "@studio-freight/lenis"
 import { Target, Users, Lightbulb, Heart, Award, Globe, Zap, CheckCircle, Building, Calendar } from "lucide-react"
+import { useTheme } from "@/hooks/useTheme"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,6 +13,14 @@ const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const lenisRef = useRef<Lenis | null>(null)
+
+  // Color theme from the provided palette
+  const theme = {
+    primary: "#1EB2A6",   // Main accent: teal (buttons, headers)
+    secondary: "#D4F8E8", // Light secondary: backgrounds, subtle panels
+    accent: "#FFA34D",    // Action/highlight: CTA buttons, highlights
+    background: "#FFFFFF" // Use white for clean contrast
+  }
 
   useEffect(() => {
     // Initialize Lenis
@@ -233,7 +242,10 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-white via-[#D4F8E8]/30 to-[#D4F8E8] relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.accent} 50%, ${theme.secondary} 100%)`,
+      }}
     >
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}

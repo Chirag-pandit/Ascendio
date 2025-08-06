@@ -11,6 +11,14 @@ const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
+  // Color theme from the provided palette
+  const theme = {
+    primary: "#1EB2A6",   // Main accent: teal (buttons, headers)
+    secondary: "#D4F8E8", // Light secondary: backgrounds, subtle panels
+    accent: "#FFA34D",    // Action/highlight: CTA buttons, highlights
+    background: "#FFFFFF" // Use white for clean contrast
+  }
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate service cards
@@ -115,7 +123,7 @@ const Services = () => {
       ref={sectionRef}
       className="py-20 relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, #D4F8E8 0%, #FFFFFF 50%, #D4F8E8 100%)`,
+        background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.accent} 50%, ${theme.secondary} 100%)`,
       }}
     >
       {/* Add decorative background elements */}

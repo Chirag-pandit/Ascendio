@@ -9,12 +9,11 @@ import { Brain, Rocket, Handshake, TrendingUp, CheckCircle, Star, Sparkles } fro
 
 type HSL = { h: number; s: number; l: number }
 
-// Register ScrollTrigger on client
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-// ---- Color utils and palette extraction from logo ----
+// Color utils and palette extraction
 function rgbToHsl(r: number, g: number, b: number): HSL {
   r /= 255
   g /= 255
@@ -49,7 +48,6 @@ function distanceH(h1: number, h2: number) {
   const d = Math.abs(h1 - h2)
   return Math.min(d, 360 - d)
 }
-
 async function extractPaletteFromImage(src: string): Promise<{ primary: HSL; secondary: HSL } | null> {
   try {
     const img = new Image()
@@ -76,13 +74,13 @@ async function extractPaletteFromImage(src: string): Promise<{ primary: HSL; sec
     const bins = new Map<number, { count: number; r: number; g: number; b: number }>()
     for (let i = 0; i < data.length; i += 4) {
       const a = data[i + 3]
-      if (a < 180) continue // ignore transparent
+      if (a < 180) continue
       const r = data[i]
       const g = data[i + 1]
       const b = data[i + 2]
       const max = Math.max(r, g, b)
       const min = Math.min(r, g, b)
-      if (max < 40 || min > 230) continue // ignore near-black/near-white
+      if (max < 40 || min > 230) continue
       const R = r >> 4
       const G = g >> 4
       const B = b >> 4
@@ -109,7 +107,6 @@ async function extractPaletteFromImage(src: string): Promise<{ primary: HSL; sec
         return { count: v.count, hsl: rgbToHsl(r, g, b) }
       })
 
-    // vibrant primary (mid lightness, higher saturation)
     let primary = top[0].hsl
     let best = Number.NEGATIVE_INFINITY
     for (const t of top) {
@@ -121,7 +118,6 @@ async function extractPaletteFromImage(src: string): Promise<{ primary: HSL; sec
         primary = t.hsl
       }
     }
-    // hue-separated secondary
     let secondary = top[0].hsl
     best = Number.NEGATIVE_INFINITY
     for (const t of top) {
@@ -146,18 +142,16 @@ async function extractPaletteFromImage(src: string): Promise<{ primary: HSL; sec
   }
 }
 
-type Props = {
-  logoSrc?: string
-}
+type Props = { logoSrc?: string }
 
 export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null)
 
-  // Brand variables (emerald/teal fallback)
+  // Brand fallback values (emerald/teal)
   const [brandPrimary, setBrandPrimary] = useState<string>("160 84% 39%")
   const [brandSecondary, setBrandSecondary] = useState<string>("173 80% 40%")
 
-  // Extract brand palette from logo
+  // Extract palette from logo
   useEffect(() => {
     let mounted = true
     extractPaletteFromImage(logoSrc).then((pal) => {
@@ -170,17 +164,16 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
     }
   }, [logoSrc])
 
-  // Attach CSS variables for easy theming
   const brandStyle = useMemo(
     () =>
       ({
-        ["--brand-primary" as any]: brandPrimary,
-        ["--brand-secondary" as any]: brandSecondary,
+        "--brand-primary": brandPrimary,
+        "--brand-secondary": brandSecondary,
       }) as React.CSSProperties,
     [brandPrimary, brandSecondary],
   )
 
-  // GSAP animations
+  // Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -263,14 +256,11 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
     <section
       id="why-choose-us"
       ref={sectionRef}
-      className="py-20 relative overflow-hidden"
-      style={
-        {
-          ...brandStyle,
-          background:
-            "linear-gradient(135deg, #ffffff 0%, hsl(var(--brand-primary) / 0.12) 50%, hsl(var(--brand-secondary) / 0.2) 100%)",
-        } as React.CSSProperties
-      }
+      className="py-20 relative overflow-hidden text-gray-800"
+      style={{
+        ...brandStyle,
+        background: "#ffffff",
+      }}
     >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
@@ -287,7 +277,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
             >
               <Sparkles className="h-8 w-8" style={{ color: "hsl(var(--brand-primary))" }} />
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">{"Why Choose Ascendio?"}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">{"Why Choose Ascendio?"}</h2>
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -300,7 +290,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-600"
+            className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-700"
           >
             {
               "Experience the difference with our comprehensive approach to engineering excellence and client satisfaction."
@@ -308,7 +298,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
           </motion.p>
         </div>
 
-        {/* Statistics Section */}
+        {/* Statistics Section (kept white text on brand gradient) */}
         <div className="stats-section mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -336,9 +326,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
                     </span>
                     <span>{stat.suffix}</span>
                   </motion.div>
-                  <div className="font-medium drop-shadow-xl" style={{ color: "hsl(var(--brand-secondary))" }}>
-                    {stat.label}
-                  </div>
+                  <div className="font-medium drop-shadow-xl text-white">{stat.label}</div>
                   <motion.div
                     className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
                     style={{ backgroundColor: "#FFFFFF" }}
@@ -367,7 +355,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
           </motion.div>
         </div>
 
-        {/* Reasons Grid */}
+        {/* Reasons Grid (dark text on white cards) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -405,7 +393,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
                       <Icon className="h-8 w-8" style={{ color: "#FFFFFF" }} />
                     </motion.div>
                     <div className="flex-1">
-                      <motion.h3 className="text-2xl font-bold mb-4 text-gray-800" whileHover={{ scale: 1.02 }}>
+                      <motion.h3 className="text-2xl font-bold mb-4 text-gray-900" whileHover={{ scale: 1.02 }}>
                         {reason.title}
                       </motion.h3>
                       <p className="mb-6 leading-relaxed text-gray-700">{reason.description}</p>
@@ -429,7 +417,6 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
                       </ul>
                     </div>
                   </div>
-                  {/* Hover glow */}
                   <motion.div
                     className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                     style={{ backgroundColor: "hsl(var(--brand-primary))" }}
@@ -440,12 +427,12 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
           })}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Call to Action (keep white text on gradient) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center rounded-3xl p-12 relative overflow-hidden shadow-2xl"
+          className="text-center rounded-3xl p-12 relative overflow-hidden shadow-2xl text-white"
           style={{
             background: "linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%)",
           }}
@@ -460,10 +447,7 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
           <h3 className="text-3xl font-bold mb-6 relative z-10 drop-shadow-xl text-white">
             {"Ready to Ascend Together?"}
           </h3>
-          <p
-            className="text-xl mb-8 max-w-2xl mx-auto relative z-10 drop-shadow-lg"
-            style={{ color: "hsl(var(--brand-secondary))" }}
-          >
+          <p className="text-xl mb-8 max-w-2xl mx-auto relative z-10 drop-shadow-lg text-white">
             {
               "Join industries, clients, and collaborators in building future-ready infrastructure with innovation, safety, and excellence at the core."
             }
@@ -480,10 +464,9 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg"
+              className="border-2 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg text-white"
               style={{
                 borderColor: "hsl(var(--brand-secondary))",
-                color: "#ffffff",
                 backgroundColor: "rgba(255,255,255,0.15)",
               }}
             >
@@ -491,7 +474,6 @@ export default function WhyChooseAscedio({ logoSrc = "/AAAAAA.PNG" }: Props) {
             </motion.button>
           </div>
 
-          {/* Decorative background elements */}
           <div className="absolute top-8 left-8 opacity-10">
             <motion.div
               animate={{ rotate: 360 }}

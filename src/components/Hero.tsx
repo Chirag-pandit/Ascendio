@@ -1,121 +1,199 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ChevronDown, Zap, Shield, Award } from 'lucide-react';
+"use client"
 
-const Hero = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
+import type React from "react"
+import { useEffect, useMemo, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Zap, Shield, Award, ChevronDown } from "lucide-react"
 
+type BgItem = { src: string; alt: string }
+
+// Teal/Green brand theme background images
+const BACKGROUND_IMAGES: BgItem[] = [
+  {
+    src: "https://images.pexels.com/photos/236722/pexels-photo-236722.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    alt: "Industrial refinery at dusk with metallic structures",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1920&auto=format&fit=crop",
+    alt: "Engineer working with mechanical parts in a workshop",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1581091870622-7f3c56d33179?q=80&w=1920&auto=format&fit=crop",
+    alt: "High-tech control room with monitors and data visualizations",
+  },
+]
+
+const SLIDE_DURATION = 6500 // ms
+
+export default function Hero() {
+  const [index, setIndex] = useState(0)
+  const [reduced, setReduced] = useState(false)
+
+  // Respect user motion preferences
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animated background elements
-      gsap.set('.floating-element', { opacity: 0.1 });
-      gsap.to('.floating-element', {
-        y: -30,
-        duration: 4,
-        ease: 'power2.inOut',
-        repeat: -1,
-        yoyo: true,
-        stagger: 0.5,
-      });
+    if (typeof window === "undefined") return
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const handle = () => setReduced(mql.matches)
+    handle()
+    if (mql.addEventListener) mql.addEventListener("change", handle)
+    else mql.addListener(handle)
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener("change", handle)
+      else mql.removeListener(handle)
+    }
+  }, [])
 
-      // Hero text animation
-      gsap.fromTo(
-        '.hero-text',
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', stagger: 0.2 }
-      );
-    }, heroRef);
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (reduced) return
+    const id = setInterval(() => setIndex((i) => (i + 1) % BACKGROUND_IMAGES.length), SLIDE_DURATION)
+    return () => clearInterval(id)
+  }, [reduced])
 
-    return () => ctx.revert();
-  }, []);
+  // Preload the next image for smoother crossfade
+  useEffect(() => {
+    const next = BACKGROUND_IMAGES[(index + 1) % BACKGROUND_IMAGES.length]?.src
+    if (!next) return
+    const img = new Image()
+    img.decoding = "async"
+    img.src = next
+  }, [index])
+
+  // Brand colors derived from a teal/green logo (emerald/teal blend)
+  // These CSS variables drive subtle ambient gradients and accents
+  const brandStyle = useMemo(
+    () =>
+      ({
+        // emerald-500
+        ["--brand-start" as any]: "160 84% 39%",
+        // teal-500
+        ["--brand-end" as any]: "173 80% 40%",
+      }) as React.CSSProperties,
+    [],
+  )
 
   return (
-    <section
-      id="home"
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-500 via-accent-600 to-accent-500"
-    >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-100">
-        <div className="floating-element absolute top-20 left-10 w-32 h-32 bg-white/15 rounded-full blur-xl"></div>
-        <div className="floating-element absolute top-40 right-20 w-24 h-24 bg-accent-300/20 rounded-full blur-xl"></div>
-        <div className="floating-element absolute bottom-32 left-1/4 w-40 h-40 bg-secondary-400/20 rounded-full blur-xl"></div>
-        <div className="floating-element absolute bottom-20 right-1/3 w-28 h-28 bg-white/15 rounded-full blur-xl"></div>
-        
-        {/* Industrial Background Pattern */}
-        <div className="absolute inset-0 opacity-90">
-          <img 
-            src="https://images.pexels.com/photos/236722/pexels-photo-236722.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" 
-            alt="Industrial Background" 
-            className="w-full h-full object-cover brightness-100"
+    <section id="home" aria-label="Hero" className="relative min-h-[100svh] isolate overflow-hidden" style={brandStyle}>
+      {/* Ambient brand gradients */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(1200px 600px at 80% 10%, hsl(var(--brand-start) / 0.22), transparent), radial-gradient(1000px 500px at 0% 100%, hsl(var(--brand-end) / 0.20), transparent)",
+          }}
+        />
+      </div>
+
+      {/* Background slideshow with smooth crossfade */}
+      <div className="absolute inset-0 -z-20">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={BACKGROUND_IMAGES[index].src}
+            src={BACKGROUND_IMAGES[index].src}
+            alt={BACKGROUND_IMAGES[index].alt}
+            loading="eager"
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.005 }}
+            transition={{ duration: reduced ? 0 : 1.2, ease: "easeOut" }}
+            className="h-full w-full object-cover"
           />
-        </div>``
-        
-        {/* Dark overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+        </AnimatePresence>
+
+        {/* Strong dark overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75" />
       </div>
 
-      <div className="container mx-auto px-6 text-center relative z-10">
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto"
-        >
-          <h1 className="hero-text text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-            Engineering
-            <span className="block text-accent-200 drop-shadow-2xl">Excellence</span>
-          </h1>
-          
-          <p className="hero-text text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-xl">
-            Premium engineering, supply, and project solutions across electrical, mechanical, oil & gas, and industrial infrastructure
-          </p>
+      <main className="relative z-10">
+        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:py-40 text-center">
+          <div className="mx-auto max-w-4xl">
+            {/* Logo (replace with your uploaded asset if available) */}
+            <div className="mb-6 flex justify-center">
+              <img
+                src="AAAAAA.PNG"
+                alt="Brand logo"
+                width={120}
+                height={48}
+                className="h-12 w-auto opacity-95"
+              />
+            </div>
 
-          <div className="hero-text flex flex-wrap justify-center gap-6 mb-12 text-white drop-shadow-lg">
-            <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <Zap className="h-6 w-6 text-accent-200" />
-              <span className="font-medium drop-shadow-md">Innovative Solutions</span>
+            {/* Headline */}
+            <motion.h1
+              initial={{ y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-white drop-shadow"
+            >
+              Engineering Excellence
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-300">
+                Built for Real-World Impact
+              </span>
+            </motion.h1>
+
+            {/* Subheading */}
+            <motion.p
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
+              className="mt-5 text-lg md:text-xl text-white/90 mx-auto max-w-2xl drop-shadow"
+            >
+              Premium engineering, supply, and project solutions across electrical, mechanical, oil & gas, and
+              industrial infrastructure.
+            </motion.p>
+
+            {/* Feature badges */}
+            <div className="mt-8 flex flex-wrap justify-center gap-3 md:gap-4">
+              {[
+                { Icon: Zap, label: "Innovative Solutions" },
+                { Icon: Shield, label: "Reliable Execution" },
+                { Icon: Award, label: "Quality Assured" },
+              ].map(({ Icon, label }) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-md"
+                >
+                  <Icon className="h-5 w-5 text-emerald-300" aria-hidden />
+                  <span className="text-sm font-medium text-white">{label}</span>
+                </motion.div>
+              ))}
             </div>
-            <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <Shield className="h-6 w-6 text-accent-200" />
-              <span className="font-medium drop-shadow-md">Reliable Execution</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-              <Award className="h-6 w-6 text-accent-200" />
-              <span className="font-medium drop-shadow-md">Quality Assured</span>
+
+            {/* CTAs */}
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 px-7 py-3 text-base font-semibold text-white shadow-lg shadow-emerald-500/15 ring-1 ring-white/10 transition-[transform,filter] hover:saturate-125"
+              >
+                Explore Services
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center justify-center rounded-full border border-white/50 px-7 py-3 text-base font-semibold text-white/95 backdrop-blur-sm transition-colors hover:bg-white hover:text-gray-900"
+              >
+                Get Quote
+              </motion.button>
             </div>
           </div>
+        </div>
+      </main>
 
-          <div className="hero-text flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent-400 hover:text-white transition-all shadow-xl"
-            >
-              Explore Services
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-primary-600 transition-all shadow-lg"
-            >
-              Get Quote
-            </motion.button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <ChevronDown className="h-8 w-8 text-white/60" />
-        </motion.div>
-      </div>
+      {/* Scroll indicator */}
+      <motion.div
+        aria-hidden
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <ChevronDown className="h-8 w-8 text-white/85" />
+        <span className="sr-only">{"Scroll down"}</span>
+      </motion.div>
     </section>
-  );
-};
-
-export default Hero;
+  )
+}

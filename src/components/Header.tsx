@@ -185,7 +185,7 @@ export default function Header() {
   }, [])
 
   // Extract theme from the logo automatically
-  const logoSrc = "/AAAAAA.PNG" // replace with your actual uploaded logo path if different
+  const logoSrc = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png" // replace with your actual uploaded logo path if different
   useEffect(() => {
     let mounted = true
     extractPaletteFromImage(logoSrc).then((palette) => {
@@ -239,12 +239,12 @@ export default function Header() {
           >
             <div className="relative">
               <img
-                src={logoSrc || "/placeholder.svg"}
+                src={logoSrc || "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"}
                 alt="Brand logo"
                 className="h-10 w-auto"
                 onError={(e) => {
                   const img = e.currentTarget
-                  img.src = "/placeholder.svg?height=40&width=120"
+                  img.src = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
                 }}
               />
             </div>

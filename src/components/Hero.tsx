@@ -111,7 +111,7 @@ export default function Hero() {
             {/* Logo (replace with your uploaded asset if available) */}
             <div className="mb-6 flex justify-center">
               <img
-                src="AAAAAA.PNG"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
                 alt="Brand logo"
                 width={120}
                 height={48}

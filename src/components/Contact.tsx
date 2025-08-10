@@ -237,7 +237,7 @@ const Contact: React.FC = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <img
-              src="AAAAAA.PNG"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
               alt="Ascendio Global logo"
               className="mx-auto mb-6 w-28 h-auto"
               loading="lazy"

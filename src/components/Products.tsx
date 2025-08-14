@@ -30,6 +30,9 @@ import {
   Boxes,
   ChevronLeft,
   ChevronRight,
+  Trash2,
+  Heart,
+  Smartphone,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
@@ -316,6 +319,10 @@ export default function Products() {
     { label: "FITTING", icon: Wrench },
     { label: "FLANGES", icon: Settings },
     { label: "LITHIUM BATTERIES", icon: BatteryCharging },
+    { label: "WASTE MANAGEMENT", icon: Trash2 },
+    { label: "BATTERIES", icon: BatteryCharging },
+    { label: "INSULATORS", icon: Zap },
+    { label: "PIPE FITTINGS", icon: Settings },
   ]
 
   const categories = categoryDefs.map((c) => c.label)
@@ -352,43 +359,1016 @@ export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [showDetails, setShowDetails] = useState(false)
 
-  // Seeded products from your descriptions
+  // Comprehensive products from your specifications
   const products: Product[] = [
+    // FLANGES
+    {
+      category: "FLANGES",
+      icon: Settings,
+      title: "Weld Neck Flange (WN)",
+      brands: ["Ratnamani", "Neo Impex", "Citizen", "Penn Machine", "Sandvik"],
+      description: "A flange with a tapered neck that is welded to the pipe for high-pressure applications.",
+      detailedDescription:
+        "Weld neck flanges provide excellent structural integrity and are ideal for high-pressure, high-temperature applications. The tapered neck reduces stress concentration.",
+      price: "₹850 - ₹25,000",
+      rating: 4.8,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/weld-neck-flange--wn--make-this-product-more-reali-oeeHSw15WWQWUIsXG8e19Vn3qfRapP.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/weld-neck-flange--wn--make-this-product-more-reali-oeeHSw15WWQWUIsXG8e19Vn3qfRapP.png",
+      specifications: ['Size: 1/2" to 48"', "Pressure: 150# to 2500#", "Face: RF/FF/RTJ", "Material: CS/SS"],
+      features: ["High pressure rating", "Excellent structural integrity", "Stress reduction", "Welded connection"],
+      applications: ["High-pressure systems", "Chemical processing", "Oil & gas pipelines", "Power plants"],
+    },
+    {
+      category: "FLANGES",
+      icon: Settings,
+      title: "Slip-On Flange (SO)",
+      brands: ["Ratnamani", "Neo Impex", "Citizen", "Penn Machine"],
+      description: "A flange that slides over the pipe and is then welded for easy installation.",
+      detailedDescription:
+        "Slip-on flanges are cost-effective and easy to install, making them popular for low-pressure applications where alignment is not critical.",
+      price: "₹450 - ₹15,000",
+      rating: 4.6,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/slip-on-flange--so--make-this-product-more-realist-kjpyTvpwNr6y0y14bgIPUsHIVDxjoV.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/slip-on-flange--so--make-this-product-more-realistic-kjpyTvpwNr6y0y14bgIPUsHIVDxjoV.png",
+      specifications: ['Size: 1/2" to 24"', "Pressure: 150# to 600#", "Face: RF/FF", "Material: CS/SS"],
+      features: ["Easy installation", "Cost-effective", "Good for alignment", "Welded connection"],
+      applications: ["Low-pressure systems", "Water lines", "HVAC systems", "General piping"],
+    },
+    {
+      category: "FLANGES",
+      icon: Settings,
+      title: "Blind Flange (BL)",
+      brands: ["Ratnamani", "Neo Impex", "Penn Machine", "Sandvik"],
+      description: "A flange used to close the end of a piping system for maintenance or testing.",
+      detailedDescription:
+        "Blind flanges are solid flanges without a center hole, used to close pipe ends, test systems, or provide access points for future connections.",
+      price: "₹350 - ₹12,000",
+      rating: 4.7,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blind-flange--bl--make-this-product-more-realistic-ikaGWmktoR90jV5I1WvAlbhl99MiMr.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blind-flange--bl--make-this-product-more-realistic-ikaGWmktoR90jV5I1WvAlbhl99MiMr.png",
+      specifications: ['Size: 1/2" to 48"', "Pressure: 150# to 2500#", "Face: RF/FF/RTJ", "Material: CS/SS"],
+      features: ["System closure", "Test point access", "Maintenance friendly", "High pressure capability"],
+      applications: ["System testing", "Pipe end closure", "Maintenance access", "Future connections"],
+    },
+    {
+      category: "FLANGES",
+      icon: Settings,
+      title: "Ring-Type Joint (RTJ) Flange",
+      brands: ["Ratnamani", "Penn Machine", "Sandvik", "Neo Impex"],
+      description: "High-pressure flanges with groove and metal ring for superior sealing.",
+      detailedDescription:
+        "RTJ flanges feature a groove and metal ring design that provides excellent sealing for high-pressure, high-temperature applications in critical services.",
+      price: "₹1,200 - ₹35,000",
+      rating: 4.9,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ring-type-joint--rtj--flange-make-this-product-mor-My9FTKGJeWKJ6ruqLlTwYG3Y1uNfgo.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ring-type-joint--rtj--flange-make-this-product-mor-My9FTKGJeWKJ6ruqLlTwYG3Y1uNfgo.png",
+      specifications: ['Size: 1" to 48"', "Pressure: 600# to 2500#", "Ring: R/RX/BX", "Material: CS/SS/Alloy"],
+      features: ["Superior sealing", "High pressure rating", "Metal-to-metal seal", "Critical service"],
+      applications: ["High-pressure systems", "Oil & gas", "Refineries", "Chemical plants"],
+    },
+
+    // INSULATORS
+    {
+      category: "INSULATORS",
+      icon: Zap,
+      title: "Disc Insulator",
+      brands: ["Lapp Insulators", "NGK", "Hubbell", "Seves", "MacLean"],
+      description:
+        "Used in high-voltage transmission lines to support conductors and prevent contact with tower structure.",
+      detailedDescription:
+        "Disc insulators are designed to support conductors in high-voltage transmission systems while providing electrical insulation and mechanical strength.",
+      price: "₹450 - ₹3,500",
+      rating: 4.7,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lightning-insulator-make-this-product-more-realist-vJwO4Ey6rSNQS0BrlpKhooBSwbYQFq.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lightning-insulator-make-this-product-more-realist-vJwO4Ey6rSNQS0BrlpKhooBSwbYQFq.png",
+      specifications: [
+        "Voltage: 11kV to 765kV",
+        "Type: Suspension/Strain",
+        "Material: Porcelain/Glass",
+        "Creepage: High",
+      ],
+      features: ["High dielectric strength", "Weather resistant", "Mechanical strength", "Low leakage current"],
+      applications: ["Transmission lines", "Distribution lines", "Substations", "Switchgear"],
+    },
+    {
+      category: "INSULATORS",
+      icon: Zap,
+      title: "Pin Insulator",
+      brands: ["Lapp Insulators", "NGK", "Hubbell", "Seves"],
+      description: "Used for supporting conductors in medium and low-voltage power lines.",
+      detailedDescription:
+        "Pin insulators are mounted on crossarms of poles and towers to support overhead conductors in medium voltage distribution systems.",
+      price: "₹125 - ₹850",
+      rating: 4.5,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pin-insulator-make-this-product-more-realistics-re-qVyF65lI7Ie4A0OjZmWBPKkT41Sjm1.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pin-insulator-make-this-product-more-realistics-re-qVyF65lI7Ie4A0OjZmWBPKkT41Sjm1.png",
+      specifications: ["Voltage: 11kV to 33kV", "Type: Pin type", "Material: Porcelain", "Mounting: Threaded"],
+      features: ["Simple design", "Cost effective", "Easy installation", "Reliable performance"],
+      applications: ["Distribution lines", "Rural electrification", "Medium voltage systems", "Overhead lines"],
+    },
+    {
+      category: "INSULATORS",
+      icon: Zap,
+      title: "Guy Insulator",
+      brands: ["Lapp Insulators", "NGK", "Hubbell"],
+      description: "Designed to prevent electrical current from passing through the supporting guy wires.",
+      detailedDescription:
+        "Guy insulators are installed in guy wires to provide electrical isolation while maintaining mechanical support for poles and towers.",
+      price: "₹85 - ₹650",
+      rating: 4.4,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/guy-insulator-make-this-product-more-realistics-re-JeBNBZGnfiklLbXub4Fjs96fgNRbQm.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/guy-insulator-make-this-product-more-realistics-re-JeBNBZGnfiklLbXub4Fjs96fgNRbQm.png",
+      specifications: ["Voltage: Up to 33kV", "Type: Guy wire", "Material: Porcelain", "Load: High tensile"],
+      features: ["Electrical isolation", "High tensile strength", "Weather resistant", "Compact design"],
+      applications: ["Guy wire systems", "Pole support", "Tower anchoring", "Mechanical support"],
+    },
+    {
+      category: "INSULATORS",
+      icon: Zap,
+      title: "Ceramic Insulator",
+      brands: ["Lapp Insulators", "NGK", "Seves", "MacLean"],
+      description: "Traditional, durable insulators made from ceramic materials for power transmission.",
+      detailedDescription:
+        "Ceramic insulators offer excellent electrical properties and durability, commonly used in power transmission and high-voltage applications.",
+      price: "₹200 - ₹2,800",
+      rating: 4.6,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ceramic-insulator-make-this-product-more-realistic-d54Ze4jIadxkl0Izy40ftzdg1CHQxE.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ceramic-insulator-make-this-product-more-realistic-d54Ze4jIadxkl0Izy40ftzdg1CHQxE.png",
+      specifications: ["Voltage: 11kV to 400kV", "Material: Ceramic/Porcelain", "Type: Various", "Finish: Glazed"],
+      features: ["High dielectric strength", "Thermal stability", "Chemical resistance", "Long service life"],
+      applications: ["Power transmission", "High voltage lines", "Substations", "Industrial applications"],
+    },
+    {
+      category: "INSULATORS",
+      icon: Zap,
+      title: "Glass Insulator",
+      brands: ["NGK", "Seves", "MacLean", "Hubbell"],
+      description: "Strong and transparent insulators made of glass, used in medium to high voltage systems.",
+      detailedDescription:
+        "Glass insulators provide excellent visibility for inspection and offer superior mechanical and electrical properties for overhead power systems.",
+      price: "₹180 - ₹2,200",
+      rating: 4.5,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glass-insulator-make-this-product-more-realistics--TltbgPJjxtD6rPZzCnTpMS8eLeLA92.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glass-insulator-make-this-product-more-realistics--TltbgPJjxtD6rPZzCnTpMS8eLeLA92.png",
+      specifications: [
+        "Voltage: 11kV to 220kV",
+        "Material: Toughened glass",
+        "Type: Suspension/Pin",
+        "Visibility: Transparent",
+      ],
+      features: ["Visual inspection", "High strength", "Weather resistant", "Self-cleaning"],
+      applications: ["Distribution systems", "Transmission lines", "Coastal areas", "Polluted environments"],
+    },
+    {
+      category: "INSULATORS",
+      icon: Zap,
+      title: "Lightning Arrestor",
+      brands: ["ABB", "Siemens", "Schneider", "Hubbell", "Cooper"],
+      description: "Used to protect electrical equipment from lightning strikes by diverting the current.",
+      detailedDescription:
+        "Lightning arrestors protect electrical systems and equipment from voltage surges caused by lightning strikes or switching operations.",
+      price: "₹1,500 - ₹25,000",
+      rating: 4.8,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Voltage: 3kV to 800kV", "Type: Gapless/Gapped", "Material: Metal oxide", "Duty: Heavy/Normal"],
+      features: ["Surge protection", "Fast response", "High energy absorption", "Reliable operation"],
+      applications: ["Substations", "Transmission lines", "Industrial plants", "Distribution systems"],
+    },
+
+    // EARTHING
+    {
+      category: "EARTHING MATERIAL",
+      icon: "Bolt",
+      title: "GI (Galvanized Iron) Earthing Rods",
+      brands: ["Erico", "Furse", "Kopel", "Kingsmill", "Lightning"],
+      description: "Galvanized iron rods for electrical earthing systems with corrosion protection.",
+      detailedDescription:
+        "GI earthing rods provide reliable grounding with zinc coating for corrosion protection, suitable for most soil conditions and electrical installations.",
+      price: "₹450 - ₹2,500",
+      rating: 4.5,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gi--galvanized-iron--earthing-rods-make-this-produ-ESzDsaLnH2dUZBiAeGAw4XHGKv7SUb.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gi--galvanized-iron--earthing-rods-make-this-produ-ESzDsaLnH2dUZBiAeGAw4XHGKv7SUb.png",
+      specifications: [
+        "Material: Galvanized iron",
+        "Diameter: 12mm to 25mm",
+        "Length: 1m to 3m",
+        "Coating: Hot dip galvanized",
+      ],
+      features: ["Corrosion resistant", "Cost effective", "Easy installation", "Standard compliance"],
+      applications: ["Residential earthing", "Commercial buildings", "Industrial earthing", "Distribution systems"],
+    },
+    {
+      category: "EARTHING MATERIAL",
+      icon: "Bolt",
+      title: "CU (Copper) Earthing Rods",
+      brands: ["Erico", "Furse", "Kopel", "Kingsmill"],
+      description: "High-conductivity copper rods for superior electrical earthing performance.",
+      detailedDescription:
+        "Pure copper earthing rods offer the highest conductivity and corrosion resistance for critical earthing applications requiring low resistance values.",
+      price: "₹850 - ₹8,500",
+      rating: 4.7,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-cu--copper--earthing-rods--make-this-product-imag-D7WJqOjOcLmqDX3KpGhe1vpgxAdxph.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-cu--copper--earthing-rods--make-this-product-imag-D7WJqOjOcLmqDX3KpGhe1vpgxAdxph.png",
+      specifications: ["Material: 99.9% pure copper", "Diameter: 12mm to 25mm", "Length: 1m to 3m", "Resistance: <1 ohm"],
+      features: ["Highest conductivity", "Excellent corrosion resistance", "Low resistance", "Long lasting"],
+      applications: ["Critical earthing", "Lightning protection", "Substations", "Sensitive equipment"],
+    },
+    {
+      category: "EARTHING MATERIAL",
+      icon: "Wrench",
+      title: "Earthing Clamps",
+      brands: ["Erico", "Furse", "Kopel", "Lightning"],
+      description: "Clamps for connecting earthing conductors to rods and structures.",
+      detailedDescription:
+        "Earthing clamps provide secure mechanical and electrical connections between earthing conductors and electrodes in grounding systems.",
+      price: "₹125 - ₹1,200",
+      rating: 4.6,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-earthing-clamps--make-this-product-image-more-rea-Y48diMvBNFq2GJJgcMiTtKnfcHiakz.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-earthing-clamps--make-this-product-image-more-rea-Y48diMvBNFq2GJJgcMiTtKnfcHiakz.png",
+      specifications: ["Material: Copper/Brass", "Size: 12mm to 50mm", "Type: Bolt/Compression", "Current: Up to 1000A"],
+      features: ["Secure connection", "Corrosion resistant", "Easy installation", "High current capacity"],
+      applications: ["Earthing connections", "Grounding systems", "Lightning protection", "Electrical installations"],
+    },
+    {
+      category: "EARTHING MATERIAL",
+      icon: "Settings",
+      title: "Earthing Wire & Strips",
+      brands: ["Erico", "Furse", "Kopel", "Kingsmill"],
+      description: "Copper conductors for earthing networks and equipotential bonding.",
+      detailedDescription:
+        "Earthing wires and strips form the conductor network in grounding systems, providing low-resistance paths for fault currents and lightning protection.",
+      price: "₹85 - ₹450 per meter",
+      rating: 4.5,
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-earthing-wire---strips--make-this-product-image-m-3q1KpwYxDcvjJLhdeIj4wM48a22XTu.png",
+      productImage:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-earthing-wire---strips--make-this-product-image-m-3q1KpwYxDcvjJLhdeIj4wM48a22XTu.png",
+      specifications: ["Material: Copper", "Size: 25mm² to 120mm²", "Type: Wire/Strip", "Purity: 99.9%"],
+      features: ["High conductivity", "Flexible installation", "Corrosion resistant", "Various sizes"],
+      applications: ["Earthing networks", "Equipotential bonding", "Lightning protection", "Grounding grids"],
+    },
+
+     // PIPE FITTINGS
+  {
+    category: "PIPE FITTINGS",
+    icon: Settings,
+    title: "Buttweld Fittings",
+    brands: ["Ratnamani", "Sandvik", "Penn Machine", "Neo Impex", "Petromet"],
+    description: "Seamless pipe fittings for welded piping systems in high-pressure applications.",
+    detailedDescription:
+      "Buttweld fittings provide smooth bore and excellent flow characteristics for welded piping systems in oil & gas, chemical, and power industries.",
+    price: "₹350 - ₹8,500",
+    rating: 4.7,
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-buttweld-fittings--make-this-product-image-more-r-fSVRuipt0NvFNvryIptGv2bbY8kGAA.png",
+    productImage:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-buttweld-fittings--make-this-product-image-more-r-fSVRuipt0NvFNvryIptGv2bbY8kGAA.png",
+    specifications: ['Size: 1/2" to 48"', "Material: SS/CS", "Standard: ASME B16.9", "Schedule: 10S to XXS"],
+    features: ["Smooth bore", "High pressure rating", "Welded construction", "Standard dimensions"],
+    applications: ["Oil & gas pipelines", "Chemical processing", "Power plants", "Refineries"],
+  },
+  {
+    category: "PIPE FITTINGS",
+    icon: Wrench,
+    title: "Forged Fittings",
+    brands: ["Penn Machine", "Neo Impex", "Citizen", "Petromet", "Ratnamani"],
+    description: "High-pressure forged fittings for threaded and socket weld connections.",
+    detailedDescription:
+      "Forged steel fittings for high-pressure applications with threaded and socket weld end connections, ideal for small bore piping.",
+    price: "₹125 - ₹5,500",
+    rating: 4.6,
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-forged-fittings-make-this-product-image-more-real-i3kxJwBCaTFG2LGJHrU8fb5N9wc0KQ.png",
+    productImage:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-forged-fittings-make-this-product-image-more-real-i3kxJwBCaTFG2LGJHrU8fb5N9wc0KQ.png",
+    specifications: ['Size: 1/8" to 4"', "Pressure: 2000# to 9000#", "End: NPT/SW", "Material: A105/SS316"],
+    features: ["High pressure capability", "Compact design", "Threaded/SW ends", "Forged construction"],
+    applications: ["Instrumentation", "Small bore piping", "High pressure systems", "Process connections"],
+  },
+
+  // FABRICATING ITEMS
+  {
+    category: "FABRICATING ITEMS",
+    icon: Factory,
+    title: "Transmission Line Tower Accessories",
+    brands: ["Kalpataru", "KEC", "Skipper", "Sterling & Wilson"],
+    description: "Accessories used in construction and maintenance of transmission line towers.",
+    detailedDescription:
+      "Complete range of tower accessories including brackets, bolts, nuts, and components for transmission line tower construction and maintenance.",
+    price: "₹125 - ₹5,500",
+    rating: 4.6,
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-transmission-line-tower-accessories--make-this-pr-bdjnqqWINGS98uGzFxk0Dxuw1f0ITg.png",
+    productImage:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-transmission-line-tower-accessories--make-this-pr-bdjnqqWINGS98uGzFxk0Dxuw1f0ITg.png",
+    specifications: [
+      "Material: Galvanized steel",
+      "Type: Various accessories",
+      "Standard: IS/IEC",
+      "Coating: Hot dip galvanized",
+    ],
+    features: ["Corrosion resistant", "High strength", "Standard compliance", "Easy installation"],
+    applications: ["Transmission towers", "Distribution structures", "Substation equipment", "Line construction"],
+  },
+  {
+    category: "FABRICATING ITEMS",
+    icon: Zap,
+    title: "Conductor Accessories",
+    brands: ["Preformed Line Products", "AFL", "Hubbell", "Tyco"],
+    description: "Items like conductor clamps, splices, and connectors for maintaining electrical conductor integrity.",
+    detailedDescription:
+      "Conductor accessories ensure proper connection and support of overhead conductors in transmission and distribution systems.",
+    price: "₹85 - ₹2,500",
+    rating: 4.5,
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-conductor-accessories--make-this-product-image-mo-WRHXb0vMzcr59WPADtBaLOJKW2ASOm.png",
+    productImage:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-conductor-accessories--make-this-product-image-mo-WRHXb0vMzcr59WPADtBaLOJKW2ASOm.png",
+    specifications: ["Material: Aluminum/Copper", "Type: Clamps/Splices", "Current: Up to 2000A", "Standard: IEC/ASTM"],
+    features: ["Low resistance", "Weather resistant", "Easy installation", "High current capacity"],
+    applications: ["Overhead lines", "Conductor connections", "Line maintenance", "Power transmission"],
+  },
+  {
+    category: "FABRICATING ITEMS",
+    icon: Settings,
+    title: "Cable Accessories",
+    brands: ["3M", "Raychem", "Prysmian", "Nexans"],
+    description: "Cable glands, cable lugs, cable trays, and cable ties for routing and terminating electrical cables.",
+    detailedDescription:
+      "Complete range of cable accessories for proper routing, securing, and termination of electrical cables in various applications.",
+    price: "₹25 - ₹1,500",
+    rating: 4.4,
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-cable-accessories--make-this-product-image-more-r-5uq8MKcjgvI6xSIXFi9b8vpjBj91Mr.png",
+    productImage:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-cable-accessories--make-this-product-image-more-r-5uq8MKcjgvI6xSIXFi9b8vpjBj91Mr.png",
+    specifications: ["Material: Brass/SS/Plastic", "Size: Various", "Type: Glands/Lugs/Trays", "IP rating: IP65/IP68"],
+    features: ["Weather proof", "Easy installation", "Multiple sizes", "Secure connection"],
+    applications: ["Cable installations", "Panel connections", "Industrial wiring", "Control systems"],
+  },
+  {
+    category: "FABRICATING ITEMS",
+    icon: Wrench,
+    title: "Electrical Connectors",
+    brands: ["Burndy", "Panduit", "3M", "Hubbell"],
+    description: "Devices for joining electrical cables or wires together, ensuring secure electrical connection.",
+    detailedDescription:
+      "Electrical connectors provide reliable connections between conductors, ensuring proper electrical continuity and mechanical strength.",
+    price: "₹15 - ₹850",
+    rating: 4.5,
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-electrical-connectors--make-this-product-image-mo-MVDTt0U3AeWHg68vS70EepcRV0aKp0.png",
+    productImage:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-electrical-connectors--make-this-product-image-mo-MVDTt0U3AeWHg68vS70EepcRV0aKp0.png",
+    specifications: ["Material: Copper/Aluminum", "Type: Various", "Current: 10A to 1000A", "Voltage: Up to 35kV"],
+    features: ["Reliable connection", "Easy installation", "Multiple types", "High current capacity"],
+    applications: ["Electrical connections", "Panel wiring", "Motor connections", "Distribution systems"],
+  },
+
+    // BATTERIES
+    {
+      category: "BATTERIES",
+      icon: BatteryCharging,
+      title: "Car Batteries (Electric Vehicles - EVs)",
+      brands: ["Exide", "Amaron", "Livguard", "Okaya", "Base"],
+      description:
+        "High-performance batteries for electric vehicles with longer range, faster charging, and eco-friendly operation.",
+      detailedDescription:
+        "Advanced lithium-ion batteries for electric cars providing superior performance, longer range, and faster charging compared to traditional batteries. Examples include Tesla, Nissan Leaf, BMW i3.",
+      price: "₹25,000 - ₹1,85,000",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Capacity: 40Ah to 200Ah",
+        "Voltage: 12V/48V/72V",
+        "Chemistry: LiFePO4",
+        "Cycle life: 2000+ cycles",
+      ],
+      features: ["Longer range", "Faster charging", "Lighter weight", "Eco-friendly"],
+      applications: ["Electric cars", "Electric buses", "Commercial EVs", "Two-wheelers"],
+    },
+    {
+      category: "BATTERIES",
+      icon: BatteryCharging,
+      title: "Auto Rickshaw Batteries",
+      brands: ["Exide", "Amaron", "Livguard", "Okaya"],
+      description: "Specialized batteries for electric auto rickshaws with lower operating costs and zero emissions.",
+      detailedDescription:
+        "Electric auto rickshaw batteries provide cost-effective operation with zero emissions and reduced noise, ideal for urban transportation in India.",
+      price: "₹8,500 - ₹25,000",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Capacity: 80Ah to 150Ah",
+        "Voltage: 48V/60V",
+        "Type: Lead acid/Lithium",
+        "Cycle life: 800-2000 cycles",
+      ],
+      features: ["Lower operating costs", "Zero emissions", "Reduced noise", "Reliable performance"],
+      applications: ["Electric auto rickshaws", "Three-wheelers", "Commercial transport", "Urban mobility"],
+    },
+    {
+      category: "BATTERIES",
+      icon: BatteryCharging,
+      title: "Bike Batteries (E-Bikes)",
+      brands: ["Okaya", "Livguard", "Exide", "Amaron", "Microtek"],
+      description:
+        "Lightweight batteries for electric bikes with longer battery life, faster charging, and high performance.",
+      detailedDescription:
+        "Compact and lightweight lithium batteries designed for electric bikes and scooters, popular with e-bike brands like Rad Power Bikes, offering excellent performance and durability.",
+      price: "₹8,500 - ₹25,000",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Capacity: 20Ah to 60Ah", "Voltage: 24V/36V/48V", "Weight: 2-6 kg", "Charging time: 4-6 hours"],
+      features: ["Lightweight", "Longer battery life", "Faster charging", "High performance"],
+      applications: ["Electric bikes", "Electric scooters", "E-rickshaws", "Personal mobility"],
+    },
+    {
+      category: "BATTERIES",
+      icon: BatteryCharging,
+      title: "Solar Batteries",
+      brands: ["Luminous", "Exide", "Amaron", "Su-Kam", "Okaya"],
+      description:
+        "Energy storage batteries with efficient storage, long lifespan, faster charging, and compact design.",
+      detailedDescription:
+        "Solar batteries designed for energy storage applications with deep cycle capability and long service life. Examples include Tesla Powerwall, LG Chem RESU for residential and commercial use.",
+      price: "₹15,000 - ₹85,000",
+      rating: 4.3,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Capacity: 50Ah to 300Ah", "Voltage: 12V/24V/48V", "DOD: 90%+", "Cycle life: 3000+ cycles"],
+      features: ["Efficient energy storage", "Long lifespan", "Faster charging", "Compact design"],
+      applications: ["Solar power systems", "Off-grid installations", "Backup power", "Energy storage"],
+    },
+
+    // NUTS & BOLTS
+    {
+      category: "NUTS & BOLTS",
+      icon: Bolt,
+      title: "Hot Dip Galvanized Nuts & Bolts",
+      brands: ["Sundram Fasteners", "Unbrako", "Precision", "LISI", "Ramdev"],
+      description:
+        "Steel fasteners coated with zinc to protect from corrosion, common in outdoor and marine environments.",
+      detailedDescription:
+        "Hot dip galvanized nuts and bolts provide superior corrosion protection for outdoor installations, marine environments, and industrial applications where rust resistance is crucial.",
+      price: "₹25 - ₹850",
+      rating: 4.6,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Size: M6 to M64", "Length: 10mm to 500mm", "Coating: Hot dip galvanized", "Grade: 4.6, 8.8"],
+      features: ["Corrosion resistant", "Long lasting", "High strength", "Weather proof"],
+      applications: ["Outdoor structures", "Marine installations", "Transmission towers", "Infrastructure"],
+    },
+    {
+      category: "NUTS & BOLTS",
+      icon: Wrench,
+      title: "MS Nuts & Bolts (Mild Steel)",
+      brands: ["Sundram Fasteners", "Unbrako", "Precision", "LISI"],
+      description:
+        "Mild steel fasteners used in low to medium-strength applications, cheaper but may rust if exposed to moisture.",
+      detailedDescription:
+        "Mild steel nuts and bolts are cost-effective fasteners for general applications where high strength is not critical, but require protection from moisture to prevent rusting.",
+      price: "₹15 - ₹450",
+      rating: 4.3,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Size: M3 to M48", "Grade: 4.6, 5.6", "Finish: Plain/Zinc plated", "Standard: IS/DIN"],
+      features: ["Cost effective", "General purpose", "Easy machining", "Standard sizes"],
+      applications: ["General construction", "Furniture", "Light machinery", "Indoor applications"],
+    },
+    {
+      category: "NUTS & BOLTS",
+      icon: Bolt,
+      title: "SS Nuts & Bolts (Stainless Steel)",
+      brands: ["Unbrako", "Precision", "Super Bolts", "Neo Impex", "Citizen"],
+      description:
+        "Made from stainless steel for improved corrosion resistance, commonly used where durability is necessary.",
+      detailedDescription:
+        "High-grade stainless steel bolts (SS304/SS316) offering excellent corrosion resistance for critical applications in chemical, food processing, and marine environments.",
+      price: "₹35 - ₹1,250",
+      rating: 4.7,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Material: SS304/SS316", "Size: M3 to M48", "Finish: Plain/Polished", "Grade: A2, A4"],
+      features: ["Excellent corrosion resistance", "Food grade", "High temperature resistance", "Non-magnetic"],
+      applications: ["Chemical plants", "Food processing", "Pharmaceutical", "Marine equipment"],
+    },
+    {
+      category: "NUTS & BOLTS",
+      icon: Settings,
+      title: "EP Nuts & Bolts (Electroplated)",
+      brands: ["Sundram Fasteners", "Unbrako", "Precision"],
+      description:
+        "Electroplated with zinc or other metals to prevent rust and corrosion, suitable for indoor or moderately corrosive environments.",
+      detailedDescription:
+        "Electroplated nuts and bolts with a thin layer of zinc or other metals provide rust protection for indoor or moderately corrosive environments at an economical cost.",
+      price: "₹20 - ₹650",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Coating: Zinc/Nickel", "Thickness: 5-25 microns", "Size: M3 to M36", "Grade: 4.6, 8.8"],
+      features: ["Rust prevention", "Cost effective", "Good appearance", "Indoor suitable"],
+      applications: ["Indoor applications", "Light machinery", "Electrical panels", "Moderate environments"],
+    },
+    {
+      category: "NUTS & BOLTS",
+      icon: Wrench,
+      title: "U Bolts & U Clamps",
+      brands: ["Sundram Fasteners", "Unbrako", "Precision", "LISI"],
+      description: "U-shaped bolts and clamps used for securing pipes, rods, or structural components to surfaces.",
+      detailedDescription:
+        "U-bolts and U-clamps are designed for securing pipes, cables, and structural components to surfaces with reliable clamping force and easy installation.",
+      price: "₹45 - ₹1,500",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Size: M6 to M24",
+        "Pipe dia: 10mm to 200mm",
+        "Material: MS/SS/Galvanized",
+        "Thread: Metric/BSW",
+      ],
+      features: ["Secure clamping", "Multiple sizes", "Corrosion protection", "Easy installation"],
+      applications: ["Pipe supports", "Cable management", "Structural mounting", "Automotive"],
+    },
+
+    // WASTE MANAGEMENT
+    {
+      category: "WASTE MANAGEMENT",
+      icon: Trash2,
+      title: "Municipal Solid Waste (MSW) Management",
+      brands: ["Ramky Enviro", "IL&FS", "Antony Waste", "BEIL"],
+      description: "Household garbage, packaging, and food scraps collection and processing systems.",
+      detailedDescription:
+        "Comprehensive municipal solid waste management solutions including collection, segregation, processing, and disposal of household garbage, packaging materials, and organic waste.",
+      price: "₹25,000 - ₹5,00,000",
+      rating: 4.3,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Capacity: 1-50 tons/day",
+        "Type: Collection/Processing",
+        "Technology: Various",
+        "Automation: Available",
+      ],
+      features: [
+        "Systematic collection",
+        "Segregation capability",
+        "Processing efficiency",
+        "Environmental compliance",
+      ],
+      applications: ["Cities and towns", "Residential areas", "Commercial zones", "Public spaces"],
+    },
+    {
+      category: "WASTE MANAGEMENT",
+      icon: Factory,
+      title: "Industrial Waste Management",
+      brands: ["Ramky Enviro", "IL&FS", "Clean Science", "BEIL"],
+      description: "Manufacturing residues, scrap metal, and chemical waste treatment and disposal systems.",
+      detailedDescription:
+        "Specialized industrial waste management for manufacturing residues, scrap metal, chemicals, and other industrial byproducts with proper treatment and disposal methods.",
+      price: "₹50,000 - ₹15,00,000",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Capacity: 5-200 tons/day",
+        "Type: Treatment/Disposal",
+        "Compliance: Pollution board",
+        "Technology: Advanced",
+      ],
+      features: ["Specialized treatment", "Regulatory compliance", "Resource recovery", "Environmental protection"],
+      applications: ["Manufacturing plants", "Chemical industries", "Metal processing", "Pharmaceutical units"],
+    },
+    {
+      category: "WASTE MANAGEMENT",
+      icon: Shield,
+      title: "Hazardous Waste Management",
+      brands: ["Ramky Enviro", "Clean Science", "TSDF", "Gujarat Enviro"],
+      description: "Safe handling and disposal of paints, pesticides, batteries, and medical sharps.",
+      detailedDescription:
+        "Specialized hazardous waste management for dangerous materials including paints, pesticides, batteries, medical sharps, and other toxic substances requiring special handling.",
+      price: "₹1,00,000 - ₹25,00,000",
+      rating: 4.6,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Type: TSDF facility", "Capacity: Various", "Safety: High level", "Compliance: CPCB/SPCB"],
+      features: ["Safe handling", "Specialized treatment", "Regulatory compliance", "Environmental safety"],
+      applications: ["Hospitals", "Laboratories", "Chemical plants", "Research facilities"],
+    },
+    {
+      category: "WASTE MANAGEMENT",
+      icon: Heart,
+      title: "Biomedical Waste Management",
+      brands: ["Ramky Enviro", "Antony Waste", "BEIL", "Synergy Waste"],
+      description: "Specialized disposal of hospital disposables, syringes, and human tissue waste.",
+      detailedDescription:
+        "Comprehensive biomedical waste management for hospitals, clinics, and healthcare facilities including safe collection, treatment, and disposal of medical waste.",
+      price: "₹15,000 - ₹2,50,000",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Type: Autoclave/Incineration",
+        "Capacity: 10-500 kg/day",
+        "Safety: Bio-safety level",
+        "Compliance: BMW rules",
+      ],
+      features: ["Safe collection", "Proper segregation", "Sterilization treatment", "Regulatory compliance"],
+      applications: ["Hospitals", "Clinics", "Diagnostic centers", "Research labs"],
+    },
+    {
+      category: "WASTE MANAGEMENT",
+      icon: Smartphone,
+      title: "E-waste Management",
+      brands: ["Attero Recycling", "E-Parisaraa", "Ramky Enviro", "BEIL"],
+      description: "Recycling and disposal of old computers, phones, and electronic appliances.",
+      detailedDescription:
+        "Electronic waste management and recycling services for computers, mobile phones, appliances, and other electronic devices with resource recovery and safe disposal.",
+      price: "₹5,000 - ₹1,00,000",
+      rating: 4.2,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Type: Dismantling/Recovery",
+        "Capacity: 100-5000 units/day",
+        "Recovery: Metals/Plastics",
+        "Compliance: E-waste rules",
+      ],
+      features: ["Resource recovery", "Data destruction", "Environmental safety", "Certified disposal"],
+      applications: ["IT companies", "Electronics manufacturers", "Government offices", "Educational institutions"],
+    },
+
     // POLES & LIGHTING MASTS
     {
       category: "POLES & LIGHTING MASTS",
       icon: Lightbulb,
       title: "PCC Pole (Precast Concrete)",
-      brands: [],
+      brands: ["Supreme", "RCC Poles", "Anchor Poles", "Bajaj Electricals"],
       description:
         "Durable and cost-effective poles for lighting and power distribution, common in rural and suburban areas.",
       detailedDescription:
         "PCC poles are precast to ensure consistency and strength. Widely used for street lighting, telecom towers, and distribution networks thanks to durability and lower lifecycle cost.",
-      price: "On request",
+      price: "₹8,500 - ₹45,000",
       rating: 4.6,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
-      specifications: ["Material: Precast concrete", "Use: Lighting / Distribution", "Finish: Plain / Painted"],
-      features: ["Cost-effective", "Durable", "Standardized sizes"],
-      applications: ["Street lighting", "Distribution networks", "Telecom support"],
+      specifications: ["Material: Precast concrete", "Height: 3m to 12m", "Load: Up to 150kg", "Foundation: Bolt type"],
+      features: ["Cost-effective", "Durable", "Weather resistant", "Easy installation"],
+      applications: ["Street lighting", "Distribution networks", "Telecom support", "Rural electrification"],
     },
     {
       category: "POLES & LIGHTING MASTS",
       icon: Factory,
       title: "Steel Tubular Pole",
-      brands: [],
+      brands: ["Bajaj Electricals", "AE&E", "Supreme", "Anchor"],
       description: "High-strength tubular steel poles for high-voltage transmission lines and large-scale lighting.",
       detailedDescription:
         "Steel tubular poles deliver higher load capacity and durability than concrete for demanding applications including highways and high-mast lighting.",
-      price: "On request",
+      price: "₹15,000 - ₹1,25,000",
       rating: 4.7,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
-      specifications: ["Material: Galvanized steel", "Shape: Tubular", "Duty: Medium/Heavy"],
-      features: ["High load capacity", "Long life", "Corrosion-protected"],
-      applications: ["Transmission lines", "Highway lighting", "Large campuses"],
+      specifications: [
+        "Material: Galvanized steel",
+        "Height: 6m to 40m",
+        "Wind load: 150 km/hr",
+        "Coating: Hot dip galvanized",
+      ],
+      features: ["High load capacity", "Corrosion resistant", "Long life", "Customizable height"],
+      applications: ["Transmission lines", "Highway lighting", "Stadium lighting", "Industrial complexes"],
     },
-    // Add more products here...
+    {
+      category: "POLES & LIGHTING MASTS",
+      icon: Lightbulb,
+      title: "High Mast Lighting",
+      brands: ["Philips", "Bajaj", "Halonix", "Syska"],
+      description: "Tall structures for lighting large outdoor areas like stadiums, airports, and highways.",
+      detailedDescription:
+        "High mast lighting systems provide uniform illumination over large areas with multiple light fixtures mounted on tall poles.",
+      price: "₹85,000 - ₹5,00,000",
+      rating: 4.8,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Height: 15m to 40m",
+        "Luminaires: 4 to 12",
+        "Wind load: 200 km/hr",
+        "Lowering system: Manual/Electric",
+      ],
+      features: ["Wide area coverage", "Lowering mechanism", "Multiple luminaires", "Remote control"],
+      applications: ["Stadiums", "Airports", "Highways", "Large industrial areas"],
+    },
+
+    // LED LIGHTINGS
+    {
+      category: "LED LIGHTINGS",
+      icon: Lightbulb,
+      title: "Industrial LED Lights",
+      brands: ["Bajaj", "Philips", "Surya", "Anchor", "Crompton", "Osram", "Havells"],
+      description: "High-output LED lights for factories, warehouses, and industrial facilities.",
+      detailedDescription:
+        "Industrial LED lights provide exceptional brightness and energy efficiency for manufacturing facilities, warehouses, and industrial spaces.",
+      price: "₹850 - ₹15,500",
+      rating: 4.6,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Power: 50W to 200W",
+        "Lumen output: 5000-25000 lm",
+        "IP rating: IP65",
+        "Lifespan: 50,000 hours",
+      ],
+      features: ["Energy efficient", "High brightness", "Long lasting", "Weather proof"],
+      applications: ["Factories", "Warehouses", "Manufacturing units", "Industrial yards"],
+    },
+    {
+      category: "LED LIGHTINGS",
+      icon: Lightbulb,
+      title: "Street LED Lights",
+      brands: ["Bajaj", "Philips", "Havells", "Orient", "Anchor"],
+      description: "Energy-efficient street lighting solutions for roads and public areas.",
+      detailedDescription:
+        "Street LED lights designed for roadway illumination with optimal light distribution and energy savings.",
+      price: "₹1,200 - ₹8,500",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Power: 30W to 150W", "IP rating: IP66", "Color temp: 4000K-6500K", "Optical: Type II/III/IV"],
+      features: ["Uniform light distribution", "Energy saving", "Long life", "Low maintenance"],
+      applications: ["Street lighting", "Highway lighting", "Parking areas", "Public spaces"],
+    },
+    {
+      category: "LED LIGHTINGS",
+      icon: Lightbulb,
+      title: "Home LED Lights",
+      brands: ["Bajaj", "Philips", "Havells", "Orient", "Syska", "Wipro"],
+      description: "Residential LED lighting solutions for homes and apartments.",
+      detailedDescription:
+        "Complete range of LED lights for residential applications including bulbs, tubes, panels, and decorative lighting.",
+      price: "₹150 - ₹2,500",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Power: 3W to 50W", "Base: B22/E27/GU10", "Color temp: 2700K-6500K", "Dimmable: Available"],
+      features: ["Energy saving", "Long life", "Multiple designs", "Instant on"],
+      applications: ["Home lighting", "Office lighting", "Decorative lighting", "Task lighting"],
+    },
+
+    // ELECTRICAL ACCESSORIES
+    {
+      category: "ELECTRICAL ACCESSORIES",
+      icon: Zap,
+      title: "MCB (Miniature Circuit Breaker)",
+      brands: ["Schneider Electric", "ABB", "Siemens", "L&T", "Legrand", "Havells"],
+      description: "Automatic switches for overload and short circuit protection in electrical installations.",
+      detailedDescription:
+        "MCBs provide protection against overload and short circuit faults in electrical circuits, commonly used in residential and commercial applications.",
+      price: "₹125 - ₹2,500",
+      rating: 4.8,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Current: 6A to 63A",
+        "Breaking capacity: 6kA to 10kA",
+        "Poles: 1P, 2P, 3P, 4P",
+        "Curve: B, C, D",
+      ],
+      features: ["Trip-free mechanism", "High breaking capacity", "Compact design", "Easy installation"],
+      applications: ["Residential wiring", "Commercial buildings", "Distribution boards", "Motor protection"],
+    },
+    {
+      category: "ELECTRICAL ACCESSORIES",
+      icon: Settings,
+      title: "MCCB (Molded Case Circuit Breaker)",
+      brands: ["Schneider Electric", "ABB", "Siemens", "L&T", "C&S Electric"],
+      description: "Heavy-duty circuit breakers for industrial applications with adjustable trip settings.",
+      detailedDescription:
+        "MCCBs are used for higher current ratings and provide protection with adjustable trip settings for industrial and commercial applications.",
+      price: "₹2,500 - ₹85,000",
+      rating: 4.7,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Current: 16A to 6300A",
+        "Breaking capacity: 25kA to 150kA",
+        "Adjustable: Thermal/Magnetic",
+        "Poles: 3P, 4P",
+      ],
+      features: ["Adjustable protection", "High breaking capacity", "Indication system", "Auxiliary contacts"],
+      applications: ["Industrial panels", "Motor control centers", "Main distribution", "Heavy machinery"],
+    },
+    {
+      category: "ELECTRICAL ACCESSORIES",
+      icon: Shield,
+      title: "RCCB (Residual Current Circuit Breaker)",
+      brands: ["Schneider Electric", "ABB", "Legrand", "Havells", "L&T"],
+      description: "Earth leakage protection devices to prevent electric shock and fire hazards.",
+      detailedDescription:
+        "RCCBs detect earth leakage currents and disconnect the circuit to prevent electric shock and fire hazards caused by earth faults.",
+      price: "₹850 - ₹12,500",
+      rating: 4.6,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Current: 25A to 125A", "Sensitivity: 30mA to 1000mA", "Poles: 2P, 4P", "Type: AC, A"],
+      features: ["Earth fault protection", "Quick disconnection", "Test button", "High sensitivity"],
+      applications: ["Residential safety", "Commercial buildings", "IT equipment", "Medical facilities"],
+    },
+    {
+      category: "ELECTRICAL ACCESSORIES",
+      icon: Settings,
+      title: "Distribution Boards",
+      brands: ["Schneider Electric", "ABB", "Legrand", "Havells", "Siemens"],
+      description: "Metal enclosures for housing circuit breakers and electrical protection devices.",
+      detailedDescription:
+        "Distribution boards provide organized and safe housing for MCBs, RCCBs, and other electrical components in residential and commercial installations.",
+      price: "₹1,500 - ₹25,000",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Ways: 4 to 72", "Material: MS/Plastic", "IP rating: IP40/IP65", "Standard: IS 8623"],
+      features: ["Modular design", "Easy wiring", "Safe enclosure", "Multiple configurations"],
+      applications: ["Residential distribution", "Commercial buildings", "Industrial panels", "Control rooms"],
+    },
+
+    // SOLAR
+    {
+      category: "SOLAR",
+      icon: Sun,
+      title: "Solar Panels",
+      brands: ["Tata Solar", "Adani Solar", "Vikram Solar", "Waaree", "Luminous"],
+      description: "High-efficiency photovoltaic panels for converting sunlight into electricity.",
+      detailedDescription:
+        "Monocrystalline and polycrystalline solar panels with high efficiency ratings for residential, commercial, and industrial solar installations.",
+      price: "₹18,500 - ₹85,000",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Power: 100W to 540W", "Efficiency: 18% to 22%", "Voltage: 12V/24V", "Warranty: 25 years"],
+      features: ["High efficiency", "Weather resistant", "Long warranty", "Anti-reflective coating"],
+      applications: ["Rooftop installations", "Solar farms", "Off-grid systems", "Grid-tie systems"],
+    },
+    {
+      category: "SOLAR",
+      icon: Sun,
+      title: "Solar Street Lights",
+      brands: ["Luminous", "Su-Kam", "Microtek", "Waaree", "Solar Street Light Co."],
+      description: "Self-contained LED street lights powered by solar energy for outdoor lighting.",
+      detailedDescription:
+        "All-in-one solar street lights with integrated LED fixtures, solar panels, and batteries for autonomous outdoor lighting.",
+      price: "₹8,500 - ₹45,000",
+      rating: 4.3,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "LED power: 20W to 120W",
+        "Solar panel: 60W to 200W",
+        "Battery: Lithium/LiFePO4",
+        "Working time: 10-12 hours",
+      ],
+      features: ["All-in-one design", "Motion sensor", "Remote control", "Weather proof"],
+      applications: ["Street lighting", "Garden lighting", "Parking areas", "Rural areas"],
+    },
+    {
+      category: "SOLAR",
+      icon: Sun,
+      title: "Solar Inverters",
+      brands: ["Luminous", "Microtek", "Su-Kam", "Delta", "ABB"],
+      description: "Power conversion systems for solar energy applications.",
+      detailedDescription:
+        "Solar inverters convert DC power from solar panels to AC power for grid connection or battery charging applications.",
+      price: "₹15,000 - ₹2,50,000",
+      rating: 4.2,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Power: 1kW to 100kW", "Efficiency: >95%", "Type: Grid-tie/Off-grid", "MPPT: Dual/Multi"],
+      features: ["High efficiency", "MPPT tracking", "Grid synchronization", "Remote monitoring"],
+      applications: ["Solar power systems", "Grid-tie installations", "Off-grid systems", "Hybrid systems"],
+    },
+
+    // LITHIUM BATTERIES
+    {
+      category: "LITHIUM BATTERIES",
+      icon: BatteryCharging,
+      title: "Lithium Car Batteries",
+      brands: ["Exide", "Amaron", "Livguard", "Okaya", "Base"],
+      description: "High-performance lithium batteries for electric vehicles with longer range and faster charging.",
+      detailedDescription:
+        "Advanced lithium-ion batteries for electric cars providing superior performance, longer range, and faster charging compared to traditional batteries.",
+      price: "₹25,000 - ₹1,85,000",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Capacity: 40Ah to 200Ah",
+        "Voltage: 12V/48V/72V",
+        "Chemistry: LiFePO4",
+        "Cycle life: 2000+ cycles",
+      ],
+      features: ["Fast charging", "Long life", "Lightweight", "High energy density"],
+      applications: ["Electric cars", "Electric buses", "Commercial EVs", "Two-wheelers"],
+    },
+    {
+      category: "LITHIUM BATTERIES",
+      icon: BatteryCharging,
+      title: "E-Bike Batteries",
+      brands: ["Okaya", "Livguard", "Exide", "Amaron", "Microtek"],
+      description: "Lightweight lithium batteries for electric bikes and scooters with long cycle life.",
+      detailedDescription:
+        "Compact and lightweight lithium batteries designed specifically for electric bikes and scooters with excellent performance and durability.",
+      price: "₹8,500 - ₹25,000",
+      rating: 4.4,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Capacity: 20Ah to 60Ah", "Voltage: 24V/36V/48V", "Weight: 2-6 kg", "Charging time: 4-6 hours"],
+      features: ["Lightweight", "Quick charge", "High efficiency", "BMS protection"],
+      applications: ["Electric bikes", "Electric scooters", "E-rickshaws", "Personal mobility"],
+    },
+    {
+      category: "LITHIUM BATTERIES",
+      icon: BatteryCharging,
+      title: "Solar Batteries",
+      brands: ["Luminous", "Exide", "Amaron", "Su-Kam", "Okaya"],
+      description: "Energy storage batteries for solar power systems with deep cycle capability.",
+      detailedDescription:
+        "Lithium batteries specifically designed for solar energy storage applications with deep cycle capability and long service life.",
+      price: "₹15,000 - ₹85,000",
+      rating: 4.3,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Capacity: 50Ah to 300Ah", "Voltage: 12V/24V/48V", "DOD: 90%+", "Cycle life: 3000+ cycles"],
+      features: ["Deep cycle", "Long life", "High efficiency", "Temperature stable"],
+      applications: ["Solar power systems", "Off-grid installations", "Backup power", "Energy storage"],
+    },
+
+    // SAFETY ITEMS
+    {
+      category: "SAFETY ITEMS",
+      icon: Shield,
+      title: "Safety Testing Equipment",
+      brands: ["Motwane", "Kheraj", "Mazda", "Fluke", "Megger", "Kyoritsu"],
+      description: "Electrical testing instruments and safety equipment for maintenance and troubleshooting.",
+      detailedDescription:
+        "Professional testing instruments including multimeters, insulation testers, earth testers, and clamp meters for electrical safety and maintenance.",
+      price: "₹1,200 - ₹45,000",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: [
+        "Voltage range: 0.1V to 1000V",
+        "Current: 0.1A to 1000A",
+        "Safety: CAT III/IV",
+        "Display: Digital LCD",
+      ],
+      features: ["High accuracy", "Safety certified", "Rugged design", "Multiple functions"],
+      applications: ["Electrical testing", "Maintenance work", "Troubleshooting", "Safety inspections"],
+    },
+
+    // TOOLS & TACKLES
+    {
+      category: "TOOLS & TACKLES",
+      icon: Wrench,
+      title: "Electrical Hand Tools",
+      brands: ["Stanley", "Taparia", "Jhalani", "Pye", "Tata Agrico"],
+      description: "Professional electrical tools including pliers, screwdrivers, and wire strippers.",
+      detailedDescription:
+        "Complete range of hand tools for electrical work including insulated tools, wire strippers, crimping tools, and testing equipment.",
+      price: "₹250 - ₹5,500",
+      rating: 4.5,
+      image: "/placeholder.svg?height=320&width=640",
+      productImage: "/placeholder.svg?height=240&width=480",
+      specifications: ["Insulation: 1000V", "Material: Chrome vanadium", "Handles: Ergonomic", "Standards: IEC 60900"],
+      features: ["Insulated handles", "Precision made", "Durable construction", "Safety certified"],
+      applications: ["Electrical installations", "Maintenance work", "Panel building", "Field work"],
+    },
   ]
 
   const filteredProducts = products.filter((p) => {
@@ -970,7 +1950,7 @@ export default function Products() {
         </AnimatePresence>
       </section>
 
-      <style jsx>{`
+      <style>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>

@@ -10,12 +10,12 @@ import Products from './components/Products';
 import WhyChooseUs from './components/WhyChooseUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Blog from './components/Blog';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   useEffect(() => {
-    // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -27,21 +27,26 @@ function App() {
       touchMultiplier: 2,
       infinite: false,
     });
-
+  
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
+  
     requestAnimationFrame(raf);
-
+  
     // Update ScrollTrigger on scroll
     lenis.on('scroll', ScrollTrigger.update);
-
+  
+    // 👇 Force scroll to top on load
+    lenis.scrollTo(0, { immediate: true });
+  
     return () => {
       lenis.destroy();
     };
   }, []);
+  
+  
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -51,6 +56,7 @@ function App() {
       <Services />
       <Products />
       <WhyChooseUs />
+      <Blog/>
       <Contact />
       <Footer />
     </div>

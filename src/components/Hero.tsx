@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useMemo, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Zap, Shield, Award, ChevronDown } from "lucide-react"
+import type React from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Zap, Shield, Award, ChevronDown } from "lucide-react";
 
-type BgItem = { src: string; alt: string }
+type BgItem = { src: string; alt: string };
 
 // Teal/Green brand theme background images
 const BACKGROUND_IMAGES: BgItem[] = [
@@ -21,59 +21,75 @@ const BACKGROUND_IMAGES: BgItem[] = [
     src: "https://images.unsplash.com/photo-1581091870622-7f3c56d33179?q=80&w=1920&auto=format&fit=crop",
     alt: "High-tech control room with monitors and data visualizations",
   },
-]
+];
 
-const SLIDE_DURATION = 6500 // ms
+const SLIDE_DURATION = 6500; // ms
 
 export default function Hero() {
-  const [index, setIndex] = useState(0)
-  const [reduced, setReduced] = useState(false)
+  const [index, setIndex] = useState(0);
+  const [reduced, setReduced] = useState(false);
+
+  // 🔹 Handle PDF Download
+  const handleDownload = useCallback(() => {
+    const link = document.createElement("a");
+    link.href = "/Ascendio_Profile.pdf"; // Make sure PDF is in public folder
+    link.download = "Ascendio_Profile.pdf";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }, []);
 
   // Respect user motion preferences
   useEffect(() => {
-    if (typeof window === "undefined") return
-    const mql = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const handle = () => setReduced(mql.matches)
-    handle()
-    if (mql.addEventListener) mql.addEventListener("change", handle)
-    else mql.addListener(handle)
+    if (typeof window === "undefined") return;
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handle = () => setReduced(mql.matches);
+    handle();
+    if (mql.addEventListener) mql.addEventListener("change", handle);
+    else mql.addListener(handle);
     return () => {
-      if (mql.removeEventListener) mql.removeEventListener("change", handle)
-      else mql.removeListener(handle)
-    }
-  }, [])
+      if (mql.removeEventListener) mql.removeEventListener("change", handle);
+      else mql.removeListener(handle);
+    };
+  }, []);
 
   // Auto-advance slideshow
   useEffect(() => {
-    if (reduced) return
-    const id = setInterval(() => setIndex((i) => (i + 1) % BACKGROUND_IMAGES.length), SLIDE_DURATION)
-    return () => clearInterval(id)
-  }, [reduced])
+    if (reduced) return;
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % BACKGROUND_IMAGES.length),
+      SLIDE_DURATION
+    );
+    return () => clearInterval(id);
+  }, [reduced]);
 
   // Preload the next image for smoother crossfade
   useEffect(() => {
-    const next = BACKGROUND_IMAGES[(index + 1) % BACKGROUND_IMAGES.length]?.src
-    if (!next) return
-    const img = new Image()
-    img.decoding = "async"
-    img.src = next
-  }, [index])
+    const next =
+      BACKGROUND_IMAGES[(index + 1) % BACKGROUND_IMAGES.length]?.src;
+    if (!next) return;
+    const img = new Image();
+    img.decoding = "async";
+    img.src = next;
+  }, [index]);
 
   // Brand colors derived from a teal/green logo (emerald/teal blend)
-  // These CSS variables drive subtle ambient gradients and accents
   const brandStyle = useMemo(
     () =>
       ({
-        // emerald-500
-        ["--brand-start" as any]: "160 84% 39%",
-        // teal-500
-        ["--brand-end" as any]: "173 80% 40%",
+        ["--brand-start" as any]: "160 84% 39%", // emerald-500
+        ["--brand-end" as any]: "173 80% 40%", // teal-500
       }) as React.CSSProperties,
-    [],
-  )
+    []
+  );
 
   return (
-    <section id="home" aria-label="Hero" className="relative min-h-[100svh] isolate overflow-hidden" style={brandStyle}>
+    <section
+      id="home"
+      aria-label="Hero"
+      className="relative min-h-[100svh] isolate overflow-hidden"
+      style={brandStyle}
+    >
       {/* Ambient brand gradients */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div
@@ -108,7 +124,7 @@ export default function Hero() {
       <main className="relative z-10">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:py-40 text-center">
           <div className="mx-auto max-w-4xl">
-            {/* Logo (replace with your uploaded asset if available) */}
+            {/* Logo */}
             <div className="mb-6 flex justify-center">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
@@ -139,8 +155,8 @@ export default function Hero() {
               transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
               className="mt-5 text-lg md:text-xl text-white/90 mx-auto max-w-2xl drop-shadow"
             >
-              Premium engineering, supply, and project solutions across electrical, mechanical, oil & gas, and
-              industrial infrastructure.
+              Premium engineering, supply, and project solutions across
+              electrical, mechanical, oil & gas, and industrial infrastructure.
             </motion.p>
 
             {/* Feature badges */}
@@ -158,7 +174,9 @@ export default function Hero() {
                   className="flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-md"
                 >
                   <Icon className="h-5 w-5 text-emerald-300" aria-hidden />
-                  <span className="text-sm font-medium text-white">{label}</span>
+                  <span className="text-sm font-medium text-white">
+                    {label}
+                  </span>
                 </motion.div>
               ))}
             </div>
@@ -172,12 +190,15 @@ export default function Hero() {
               >
                 Explore Services
               </motion.button>
+
+              {/* 🔥 Updated Details Button */}
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
+                onClick={handleDownload}
                 className="inline-flex items-center justify-center rounded-full border border-white/50 px-7 py-3 text-base font-semibold text-white/95 backdrop-blur-sm transition-colors hover:bg-white hover:text-gray-900"
               >
-                Get Quote
+                Details
               </motion.button>
             </div>
           </div>
@@ -188,12 +209,16 @@ export default function Hero() {
       <motion.div
         aria-hidden
         animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        transition={{
+          duration: 2.2,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <ChevronDown className="h-8 w-8 text-white/85" />
         <span className="sr-only">{"Scroll down"}</span>
       </motion.div>
     </section>
-  )
+  );
 }

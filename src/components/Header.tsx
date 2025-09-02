@@ -10,6 +10,7 @@ type HSL = { h: number; s: number; l: number }
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Blog", href: "#blog" },
   { name: "Services", href: "#services" },
   { name: "Products", href: "#products" },
   { name: "Contact", href: "#contact" },
@@ -278,7 +279,7 @@ export default function Header() {
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center rounded-full px-6 py-2 font-semibold text-white shadow-md transition-[transform,filter] hover:saturate-125 ring-1 ring-white/10 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]"
             >
-              Get Quote
+              Career
             </motion.a>
           </div>
 
@@ -329,7 +330,7 @@ export default function Header() {
               className="mt-4 w-full inline-flex items-center justify-center rounded-xl py-3 font-semibold text-white transition-[transform,filter] hover:saturate-125 ring-1 ring-white/10 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]"
               onClick={() => setIsOpen(false)}
             >
-              Get Quote
+              Career
             </motion.a>
           </div>
         </motion.div>

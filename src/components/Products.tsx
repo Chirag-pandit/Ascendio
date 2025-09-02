@@ -46,7 +46,7 @@ type Product = {
   brands: string[]
   description: string
   detailedDescription: string
-  price: string
+  
   rating: number
   image: string
   productImage: string
@@ -370,7 +370,7 @@ export default function Products() {
       description: "A flange with a tapered neck that is welded to the pipe for high-pressure applications.",
       detailedDescription:
         "Weld neck flanges provide excellent structural integrity and are ideal for high-pressure, high-temperature applications. The tapered neck reduces stress concentration.",
-      price: "₹850 - ₹25,000",
+      
       rating: 4.8,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/weld-neck-flange--wn--make-this-product-more-reali-oeeHSw15WWQWUIsXG8e19Vn3qfRapP.png",
@@ -388,7 +388,6 @@ export default function Products() {
       description: "A flange that slides over the pipe and is then welded for easy installation.",
       detailedDescription:
         "Slip-on flanges are cost-effective and easy to install, making them popular for low-pressure applications where alignment is not critical.",
-      price: "₹450 - ₹15,000",
       rating: 4.6,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/slip-on-flange--so--make-this-product-more-realist-kjpyTvpwNr6y0y14bgIPUsHIVDxjoV.png",
@@ -406,7 +405,6 @@ export default function Products() {
       description: "A flange used to close the end of a piping system for maintenance or testing.",
       detailedDescription:
         "Blind flanges are solid flanges without a center hole, used to close pipe ends, test systems, or provide access points for future connections.",
-      price: "₹350 - ₹12,000",
       rating: 4.7,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blind-flange--bl--make-this-product-more-realistic-ikaGWmktoR90jV5I1WvAlbhl99MiMr.png",
@@ -424,7 +422,6 @@ export default function Products() {
       description: "High-pressure flanges with groove and metal ring for superior sealing.",
       detailedDescription:
         "RTJ flanges feature a groove and metal ring design that provides excellent sealing for high-pressure, high-temperature applications in critical services.",
-      price: "₹1,200 - ₹35,000",
       rating: 4.9,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ring-type-joint--rtj--flange-make-this-product-mor-My9FTKGJeWKJ6ruqLlTwYG3Y1uNfgo.png",
@@ -445,7 +442,6 @@ export default function Products() {
         "Used in high-voltage transmission lines to support conductors and prevent contact with tower structure.",
       detailedDescription:
         "Disc insulators are designed to support conductors in high-voltage transmission systems while providing electrical insulation and mechanical strength.",
-      price: "₹450 - ₹3,500",
       rating: 4.7,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lightning-insulator-make-this-product-more-realist-vJwO4Ey6rSNQS0BrlpKhooBSwbYQFq.png",
@@ -468,7 +464,6 @@ export default function Products() {
       description: "Used for supporting conductors in medium and low-voltage power lines.",
       detailedDescription:
         "Pin insulators are mounted on crossarms of poles and towers to support overhead conductors in medium voltage distribution systems.",
-      price: "₹125 - ₹850",
       rating: 4.5,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pin-insulator-make-this-product-more-realistics-re-qVyF65lI7Ie4A0OjZmWBPKkT41Sjm1.png",
@@ -486,7 +481,6 @@ export default function Products() {
       description: "Designed to prevent electrical current from passing through the supporting guy wires.",
       detailedDescription:
         "Guy insulators are installed in guy wires to provide electrical isolation while maintaining mechanical support for poles and towers.",
-      price: "₹85 - ₹650",
       rating: 4.4,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/guy-insulator-make-this-product-more-realistics-re-JeBNBZGnfiklLbXub4Fjs96fgNRbQm.png",
@@ -504,7 +498,6 @@ export default function Products() {
       description: "Traditional, durable insulators made from ceramic materials for power transmission.",
       detailedDescription:
         "Ceramic insulators offer excellent electrical properties and durability, commonly used in power transmission and high-voltage applications.",
-      price: "₹200 - ₹2,800",
       rating: 4.6,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ceramic-insulator-make-this-product-more-realistic-d54Ze4jIadxkl0Izy40ftzdg1CHQxE.png",
@@ -522,7 +515,6 @@ export default function Products() {
       description: "Strong and transparent insulators made of glass, used in medium to high voltage systems.",
       detailedDescription:
         "Glass insulators provide excellent visibility for inspection and offer superior mechanical and electrical properties for overhead power systems.",
-      price: "₹180 - ₹2,200",
       rating: 4.5,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glass-insulator-make-this-product-more-realistics--TltbgPJjxtD6rPZzCnTpMS8eLeLA92.png",
@@ -545,7 +537,6 @@ export default function Products() {
       description: "Used to protect electrical equipment from lightning strikes by diverting the current.",
       detailedDescription:
         "Lightning arrestors protect electrical systems and equipment from voltage surges caused by lightning strikes or switching operations.",
-      price: "₹1,500 - ₹25,000",
       rating: 4.8,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -563,7 +554,6 @@ export default function Products() {
       description: "Galvanized iron rods for electrical earthing systems with corrosion protection.",
       detailedDescription:
         "GI earthing rods provide reliable grounding with zinc coating for corrosion protection, suitable for most soil conditions and electrical installations.",
-      price: "₹450 - ₹2,500",
       rating: 4.5,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gi--galvanized-iron--earthing-rods-make-this-produ-ESzDsaLnH2dUZBiAeGAw4XHGKv7SUb.png",
@@ -586,7 +576,6 @@ export default function Products() {
       description: "High-conductivity copper rods for superior electrical earthing performance.",
       detailedDescription:
         "Pure copper earthing rods offer the highest conductivity and corrosion resistance for critical earthing applications requiring low resistance values.",
-      price: "₹850 - ₹8,500",
       rating: 4.7,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-cu--copper--earthing-rods--make-this-product-imag-D7WJqOjOcLmqDX3KpGhe1vpgxAdxph.png",
@@ -604,7 +593,6 @@ export default function Products() {
       description: "Clamps for connecting earthing conductors to rods and structures.",
       detailedDescription:
         "Earthing clamps provide secure mechanical and electrical connections between earthing conductors and electrodes in grounding systems.",
-      price: "₹125 - ₹1,200",
       rating: 4.6,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-earthing-clamps--make-this-product-image-more-rea-Y48diMvBNFq2GJJgcMiTtKnfcHiakz.png",
@@ -622,7 +610,6 @@ export default function Products() {
       description: "Copper conductors for earthing networks and equipotential bonding.",
       detailedDescription:
         "Earthing wires and strips form the conductor network in grounding systems, providing low-resistance paths for fault currents and lightning protection.",
-      price: "₹85 - ₹450 per meter",
       rating: 4.5,
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-earthing-wire---strips--make-this-product-image-m-3q1KpwYxDcvjJLhdeIj4wM48a22XTu.png",
@@ -642,7 +629,6 @@ export default function Products() {
     description: "Seamless pipe fittings for welded piping systems in high-pressure applications.",
     detailedDescription:
       "Buttweld fittings provide smooth bore and excellent flow characteristics for welded piping systems in oil & gas, chemical, and power industries.",
-    price: "₹350 - ₹8,500",
     rating: 4.7,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-buttweld-fittings--make-this-product-image-more-r-fSVRuipt0NvFNvryIptGv2bbY8kGAA.png",
@@ -660,7 +646,6 @@ export default function Products() {
     description: "High-pressure forged fittings for threaded and socket weld connections.",
     detailedDescription:
       "Forged steel fittings for high-pressure applications with threaded and socket weld end connections, ideal for small bore piping.",
-    price: "₹125 - ₹5,500",
     rating: 4.6,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-forged-fittings-make-this-product-image-more-real-i3kxJwBCaTFG2LGJHrU8fb5N9wc0KQ.png",
@@ -680,7 +665,6 @@ export default function Products() {
     description: "Accessories used in construction and maintenance of transmission line towers.",
     detailedDescription:
       "Complete range of tower accessories including brackets, bolts, nuts, and components for transmission line tower construction and maintenance.",
-    price: "₹125 - ₹5,500",
     rating: 4.6,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-transmission-line-tower-accessories--make-this-pr-bdjnqqWINGS98uGzFxk0Dxuw1f0ITg.png",
@@ -703,7 +687,6 @@ export default function Products() {
     description: "Items like conductor clamps, splices, and connectors for maintaining electrical conductor integrity.",
     detailedDescription:
       "Conductor accessories ensure proper connection and support of overhead conductors in transmission and distribution systems.",
-    price: "₹85 - ₹2,500",
     rating: 4.5,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-conductor-accessories--make-this-product-image-mo-WRHXb0vMzcr59WPADtBaLOJKW2ASOm.png",
@@ -721,7 +704,6 @@ export default function Products() {
     description: "Cable glands, cable lugs, cable trays, and cable ties for routing and terminating electrical cables.",
     detailedDescription:
       "Complete range of cable accessories for proper routing, securing, and termination of electrical cables in various applications.",
-    price: "₹25 - ₹1,500",
     rating: 4.4,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-cable-accessories--make-this-product-image-more-r-5uq8MKcjgvI6xSIXFi9b8vpjBj91Mr.png",
@@ -739,7 +721,6 @@ export default function Products() {
     description: "Devices for joining electrical cables or wires together, ensuring secure electrical connection.",
     detailedDescription:
       "Electrical connectors provide reliable connections between conductors, ensuring proper electrical continuity and mechanical strength.",
-    price: "₹15 - ₹850",
     rating: 4.5,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-electrical-connectors--make-this-product-image-mo-MVDTt0U3AeWHg68vS70EepcRV0aKp0.png",
@@ -760,7 +741,6 @@ export default function Products() {
         "High-performance batteries for electric vehicles with longer range, faster charging, and eco-friendly operation.",
       detailedDescription:
         "Advanced lithium-ion batteries for electric cars providing superior performance, longer range, and faster charging compared to traditional batteries. Examples include Tesla, Nissan Leaf, BMW i3.",
-      price: "₹25,000 - ₹1,85,000",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -781,7 +761,6 @@ export default function Products() {
       description: "Specialized batteries for electric auto rickshaws with lower operating costs and zero emissions.",
       detailedDescription:
         "Electric auto rickshaw batteries provide cost-effective operation with zero emissions and reduced noise, ideal for urban transportation in India.",
-      price: "₹8,500 - ₹25,000",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -803,7 +782,6 @@ export default function Products() {
         "Lightweight batteries for electric bikes with longer battery life, faster charging, and high performance.",
       detailedDescription:
         "Compact and lightweight lithium batteries designed for electric bikes and scooters, popular with e-bike brands like Rad Power Bikes, offering excellent performance and durability.",
-      price: "₹8,500 - ₹25,000",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -820,7 +798,6 @@ export default function Products() {
         "Energy storage batteries with efficient storage, long lifespan, faster charging, and compact design.",
       detailedDescription:
         "Solar batteries designed for energy storage applications with deep cycle capability and long service life. Examples include Tesla Powerwall, LG Chem RESU for residential and commercial use.",
-      price: "₹15,000 - ₹85,000",
       rating: 4.3,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -839,7 +816,6 @@ export default function Products() {
         "Steel fasteners coated with zinc to protect from corrosion, common in outdoor and marine environments.",
       detailedDescription:
         "Hot dip galvanized nuts and bolts provide superior corrosion protection for outdoor installations, marine environments, and industrial applications where rust resistance is crucial.",
-      price: "₹25 - ₹850",
       rating: 4.6,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -856,7 +832,6 @@ export default function Products() {
         "Mild steel fasteners used in low to medium-strength applications, cheaper but may rust if exposed to moisture.",
       detailedDescription:
         "Mild steel nuts and bolts are cost-effective fasteners for general applications where high strength is not critical, but require protection from moisture to prevent rusting.",
-      price: "₹15 - ₹450",
       rating: 4.3,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -873,7 +848,6 @@ export default function Products() {
         "Made from stainless steel for improved corrosion resistance, commonly used where durability is necessary.",
       detailedDescription:
         "High-grade stainless steel bolts (SS304/SS316) offering excellent corrosion resistance for critical applications in chemical, food processing, and marine environments.",
-      price: "₹35 - ₹1,250",
       rating: 4.7,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -890,7 +864,6 @@ export default function Products() {
         "Electroplated with zinc or other metals to prevent rust and corrosion, suitable for indoor or moderately corrosive environments.",
       detailedDescription:
         "Electroplated nuts and bolts with a thin layer of zinc or other metals provide rust protection for indoor or moderately corrosive environments at an economical cost.",
-      price: "₹20 - ₹650",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -906,7 +879,6 @@ export default function Products() {
       description: "U-shaped bolts and clamps used for securing pipes, rods, or structural components to surfaces.",
       detailedDescription:
         "U-bolts and U-clamps are designed for securing pipes, cables, and structural components to surfaces with reliable clamping force and easy installation.",
-      price: "₹45 - ₹1,500",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -929,7 +901,6 @@ export default function Products() {
       description: "Household garbage, packaging, and food scraps collection and processing systems.",
       detailedDescription:
         "Comprehensive municipal solid waste management solutions including collection, segregation, processing, and disposal of household garbage, packaging materials, and organic waste.",
-      price: "₹25,000 - ₹5,00,000",
       rating: 4.3,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -955,7 +926,6 @@ export default function Products() {
       description: "Manufacturing residues, scrap metal, and chemical waste treatment and disposal systems.",
       detailedDescription:
         "Specialized industrial waste management for manufacturing residues, scrap metal, chemicals, and other industrial byproducts with proper treatment and disposal methods.",
-      price: "₹50,000 - ₹15,00,000",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -976,7 +946,6 @@ export default function Products() {
       description: "Safe handling and disposal of paints, pesticides, batteries, and medical sharps.",
       detailedDescription:
         "Specialized hazardous waste management for dangerous materials including paints, pesticides, batteries, medical sharps, and other toxic substances requiring special handling.",
-      price: "₹1,00,000 - ₹25,00,000",
       rating: 4.6,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -992,7 +961,6 @@ export default function Products() {
       description: "Specialized disposal of hospital disposables, syringes, and human tissue waste.",
       detailedDescription:
         "Comprehensive biomedical waste management for hospitals, clinics, and healthcare facilities including safe collection, treatment, and disposal of medical waste.",
-      price: "₹15,000 - ₹2,50,000",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1013,7 +981,6 @@ export default function Products() {
       description: "Recycling and disposal of old computers, phones, and electronic appliances.",
       detailedDescription:
         "Electronic waste management and recycling services for computers, mobile phones, appliances, and other electronic devices with resource recovery and safe disposal.",
-      price: "₹5,000 - ₹1,00,000",
       rating: 4.2,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1037,7 +1004,6 @@ export default function Products() {
         "Durable and cost-effective poles for lighting and power distribution, common in rural and suburban areas.",
       detailedDescription:
         "PCC poles are precast to ensure consistency and strength. Widely used for street lighting, telecom towers, and distribution networks thanks to durability and lower lifecycle cost.",
-      price: "₹8,500 - ₹45,000",
       rating: 4.6,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1053,7 +1019,6 @@ export default function Products() {
       description: "High-strength tubular steel poles for high-voltage transmission lines and large-scale lighting.",
       detailedDescription:
         "Steel tubular poles deliver higher load capacity and durability than concrete for demanding applications including highways and high-mast lighting.",
-      price: "₹15,000 - ₹1,25,000",
       rating: 4.7,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1074,7 +1039,6 @@ export default function Products() {
       description: "Tall structures for lighting large outdoor areas like stadiums, airports, and highways.",
       detailedDescription:
         "High mast lighting systems provide uniform illumination over large areas with multiple light fixtures mounted on tall poles.",
-      price: "₹85,000 - ₹5,00,000",
       rating: 4.8,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1097,7 +1061,6 @@ export default function Products() {
       description: "High-output LED lights for factories, warehouses, and industrial facilities.",
       detailedDescription:
         "Industrial LED lights provide exceptional brightness and energy efficiency for manufacturing facilities, warehouses, and industrial spaces.",
-      price: "₹850 - ₹15,500",
       rating: 4.6,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1118,7 +1081,6 @@ export default function Products() {
       description: "Energy-efficient street lighting solutions for roads and public areas.",
       detailedDescription:
         "Street LED lights designed for roadway illumination with optimal light distribution and energy savings.",
-      price: "₹1,200 - ₹8,500",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1134,7 +1096,6 @@ export default function Products() {
       description: "Residential LED lighting solutions for homes and apartments.",
       detailedDescription:
         "Complete range of LED lights for residential applications including bulbs, tubes, panels, and decorative lighting.",
-      price: "₹150 - ₹2,500",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1152,7 +1113,6 @@ export default function Products() {
       description: "Automatic switches for overload and short circuit protection in electrical installations.",
       detailedDescription:
         "MCBs provide protection against overload and short circuit faults in electrical circuits, commonly used in residential and commercial applications.",
-      price: "₹125 - ₹2,500",
       rating: 4.8,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1173,7 +1133,6 @@ export default function Products() {
       description: "Heavy-duty circuit breakers for industrial applications with adjustable trip settings.",
       detailedDescription:
         "MCCBs are used for higher current ratings and provide protection with adjustable trip settings for industrial and commercial applications.",
-      price: "₹2,500 - ₹85,000",
       rating: 4.7,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1194,7 +1153,6 @@ export default function Products() {
       description: "Earth leakage protection devices to prevent electric shock and fire hazards.",
       detailedDescription:
         "RCCBs detect earth leakage currents and disconnect the circuit to prevent electric shock and fire hazards caused by earth faults.",
-      price: "₹850 - ₹12,500",
       rating: 4.6,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1210,7 +1168,6 @@ export default function Products() {
       description: "Metal enclosures for housing circuit breakers and electrical protection devices.",
       detailedDescription:
         "Distribution boards provide organized and safe housing for MCBs, RCCBs, and other electrical components in residential and commercial installations.",
-      price: "₹1,500 - ₹25,000",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1228,7 +1185,6 @@ export default function Products() {
       description: "High-efficiency photovoltaic panels for converting sunlight into electricity.",
       detailedDescription:
         "Monocrystalline and polycrystalline solar panels with high efficiency ratings for residential, commercial, and industrial solar installations.",
-      price: "₹18,500 - ₹85,000",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1244,7 +1200,6 @@ export default function Products() {
       description: "Self-contained LED street lights powered by solar energy for outdoor lighting.",
       detailedDescription:
         "All-in-one solar street lights with integrated LED fixtures, solar panels, and batteries for autonomous outdoor lighting.",
-      price: "₹8,500 - ₹45,000",
       rating: 4.3,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1265,7 +1220,6 @@ export default function Products() {
       description: "Power conversion systems for solar energy applications.",
       detailedDescription:
         "Solar inverters convert DC power from solar panels to AC power for grid connection or battery charging applications.",
-      price: "₹15,000 - ₹2,50,000",
       rating: 4.2,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1283,7 +1237,6 @@ export default function Products() {
       description: "High-performance lithium batteries for electric vehicles with longer range and faster charging.",
       detailedDescription:
         "Advanced lithium-ion batteries for electric cars providing superior performance, longer range, and faster charging compared to traditional batteries.",
-      price: "₹25,000 - ₹1,85,000",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1304,7 +1257,6 @@ export default function Products() {
       description: "Lightweight lithium batteries for electric bikes and scooters with long cycle life.",
       detailedDescription:
         "Compact and lightweight lithium batteries designed specifically for electric bikes and scooters with excellent performance and durability.",
-      price: "₹8,500 - ₹25,000",
       rating: 4.4,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1320,7 +1272,6 @@ export default function Products() {
       description: "Energy storage batteries for solar power systems with deep cycle capability.",
       detailedDescription:
         "Lithium batteries specifically designed for solar energy storage applications with deep cycle capability and long service life.",
-      price: "₹15,000 - ₹85,000",
       rating: 4.3,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1338,7 +1289,6 @@ export default function Products() {
       description: "Electrical testing instruments and safety equipment for maintenance and troubleshooting.",
       detailedDescription:
         "Professional testing instruments including multimeters, insulation testers, earth testers, and clamp meters for electrical safety and maintenance.",
-      price: "₹1,200 - ₹45,000",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1361,7 +1311,6 @@ export default function Products() {
       description: "Professional electrical tools including pliers, screwdrivers, and wire strippers.",
       detailedDescription:
         "Complete range of hand tools for electrical work including insulated tools, wire strippers, crimping tools, and testing equipment.",
-      price: "₹250 - ₹5,500",
       rating: 4.5,
       image: "/placeholder.svg?height=320&width=640",
       productImage: "/placeholder.svg?height=240&width=480",
@@ -1607,9 +1556,7 @@ export default function Products() {
                             <Icon className="h-6 w-6 text-[hsl(var(--brand-primary))] transition-colors group-hover:text-[hsl(var(--brand-secondary))]" />
                           </motion.div>
                         </div>
-                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                          <span className="text-sm font-bold text-gray-800">{product.price}</span>
-                        </div>
+                       
 
                         {/* Rating */}
                         <div className="absolute bottom-4 left-4 flex items-center bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
@@ -1826,9 +1773,7 @@ export default function Products() {
                         <Star className="h-4 w-4 text-yellow-400 fill-current mr-1" />
                         <span className="text-sm font-semibold">{selectedProduct.rating}</span>
                       </div>
-                      <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <span className="text-sm font-semibold">{selectedProduct.price}</span>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>

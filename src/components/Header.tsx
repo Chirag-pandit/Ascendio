@@ -4,16 +4,17 @@ import type React from "react"
 import { useEffect, useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 
 type HSL = { h: number; s: number; l: number }
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Blog", href: "#blog" },
-  { name: "Services", href: "#services" },
-  { name: "Products", href: "#products" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/", type: "route" },
+  { name: "About", href: "#about", type: "scroll" },
+  { name: "Blog", href: "#blog", type: "scroll" },
+  { name: "Services", href: "#services", type: "scroll" },
+  { name: "Products", href: "#products", type: "scroll" },
+  { name: "Contact", href: "#contact", type: "scroll" },
 ]
 
 // Helpers: RGB/HSV/HSL utilities
@@ -172,6 +173,7 @@ async function extractPaletteFromImage(src: string): Promise<{ primary: HSL; sec
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const location = useLocation()
 
   // Brand colors default to emerald/teal; will be replaced by extracted palette
   const [brandPrimary, setBrandPrimary] = useState<string>("160 84% 39%") // emerald-500
@@ -198,6 +200,31 @@ export default function Header() {
       mounted = false
     }
   }, [logoSrc])
+
+  const handleSmoothScroll = (href: string) => {
+    if (location.pathname !== "/") {
+      // If not on home page, navigate to home first, then scroll
+      window.location.href = "/" + href
+      return
+    }
+
+    const targetId = href.substring(1) // Remove the #
+    const targetElement = document.getElementById(targetId)
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  }
+
+  const handleHomeClick = () => {
+    if (location.pathname === "/") {
+      // If already on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+    // If not on home page, Link will handle navigation and ScrollToTop will handle scrolling
+  }
 
   // Provide style variables for brand usage in Tailwind arbitrary values
   const brandStyle = useMemo(
@@ -232,55 +259,76 @@ export default function Header() {
       <nav className="container mx-auto px-6 py-4" role="navigation" aria-label="Main">
         <div className="flex items-center justify-between">
           {/* Logo + Brand */}
-          <motion.a
-            whileHover={{ scale: 1.03 }}
-            className="flex items-center space-x-3"
-            href="#home"
-            aria-label="Go to home"
-          >
-            <div className="relative">
-              <img
-                src={logoSrc || "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"}
-                alt="Brand logo"
-                className="h-10 w-auto"
-                onError={(e) => {
-                  const img = e.currentTarget
-                  img.src = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
-                }}
-              />
-            </div>
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]">
-              {"Ascendio"}
-            </span>
-          </motion.a>
+          <motion.div whileHover={{ scale: 1.03 }} className="flex items-center space-x-3">
+            <Link to="/" aria-label="Go to home" onClick={handleHomeClick}>
+              <div className="relative">
+                <img
+                  src={
+                    logoSrc ||
+                    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png" ||
+                    "/placeholder.svg" ||
+                    "/placeholder.svg" ||
+                    "/placeholder.svg"
+                  }
+                  alt="Brand logo"
+                  className="h-10 w-auto"
+                  onError={(e) => {
+                    const img = e.currentTarget
+                    img.src =
+                      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
+                  }}
+                />
+              </div>
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]">
+                {"Ascendio"}
+              </span>
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
-              <motion.a
+              <motion.div
                 key={item.name}
-                href={item.href}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.06 }}
                 whileHover={{ y: -2 }}
-                className="text-foreground/85 hover:text-foreground font-medium transition-all duration-200 relative group"
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))] transition-all duration-300 group-hover:w-full" />
-              </motion.a>
+                {item.type === "route" ? (
+                  <Link
+                    to={item.href}
+                    onClick={handleHomeClick}
+                    className="text-foreground/85 hover:text-foreground font-medium transition-all duration-200 relative group"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))] transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => handleSmoothScroll(item.href)}
+                    className="text-foreground/85 hover:text-foreground font-medium transition-all duration-200 relative group"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))] transition-all duration-300 group-hover:w-full" />
+                  </button>
+                )}
+              </motion.div>
             ))}
-            <motion.a
-              href="#contact"
+            <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.35 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center rounded-full px-6 py-2 font-semibold text-white shadow-md transition-[transform,filter] hover:saturate-125 ring-1 ring-white/10 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]"
             >
-              Career
-            </motion.a>
+              <Link
+                to="/career"
+                className="inline-flex items-center justify-center rounded-full px-6 py-2 font-semibold text-white shadow-md transition-[transform,filter] hover:saturate-125 ring-1 ring-white/10 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]"
+              >
+                Career
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -308,30 +356,51 @@ export default function Header() {
         >
           <div className="mt-4 rounded-2xl shadow-xl p-6 border border-border/20 backdrop-blur-md bg-background/80">
             {navItems.map((item, index) => (
-              <motion.a
+              <motion.div
                 key={item.name}
-                href={item.href}
                 initial={{ opacity: 0, x: -12 }}
                 animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -12 }}
                 transition={{ delay: index * 0.06 }}
-                className="block py-3 text-foreground/90 hover:text-foreground font-medium transition-colors border-b border-border/10 last:border-b-0"
-                onClick={() => setIsOpen(false)}
               >
-                {item.name}
-              </motion.a>
+                {item.type === "route" ? (
+                  <Link
+                    to={item.href}
+                    className="block py-3 text-foreground/90 hover:text-foreground font-medium transition-colors border-b border-border/10 last:border-b-0"
+                    onClick={() => {
+                      handleHomeClick()
+                      setIsOpen(false)
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => {
+                      handleSmoothScroll(item.href)
+                      setIsOpen(false)
+                    }}
+                    className="block w-full text-left py-3 text-foreground/90 hover:text-foreground font-medium transition-colors border-b border-border/10 last:border-b-0"
+                  >
+                    {item.name}
+                  </button>
+                )}
+              </motion.div>
             ))}
-            <motion.a
-              href="#contact"
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ delay: 0.28 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="mt-4 w-full inline-flex items-center justify-center rounded-xl py-3 font-semibold text-white transition-[transform,filter] hover:saturate-125 ring-1 ring-white/10 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]"
-              onClick={() => setIsOpen(false)}
             >
-              Career
-            </motion.a>
+              <Link
+                to="/career"
+                className="mt-4 w-full inline-flex items-center justify-center rounded-xl py-3 font-semibold text-white transition-[transform,filter] hover:saturate-125 ring-1 ring-white/10 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]"
+                onClick={() => setIsOpen(false)}
+              >
+                Career
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </nav>

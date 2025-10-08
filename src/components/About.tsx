@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Lenis from "@studio-freight/lenis"
-import { Target, Users, Lightbulb, Heart, Award, Globe, Zap, CheckCircle, Building, Calendar } from "lucide-react"
+import { Target, Users, Lightbulb, Heart, Award, Globe, Zap, CheckCircle, Building, Calendar, Shield } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -523,51 +523,94 @@ export default function About() {
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="mb-6"
+                className="mb-8"
               >
                 <span className="inline-flex items-center px-4 py-2 text-white rounded-full text-sm font-semibold mb-4 bg-[linear-gradient(90deg,hsl(var(--brand-primary)),hsl(var(--brand-secondary)))]">
                   <Award className="w-4 h-4 mr-2" />
-                  {"Our Mission"}
+                  {"Our Mission & Vision"}
                 </span>
               </motion.div>
+              
               <motion.h3
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight"
               >
-                {"Setting New Benchmarks in Quality"}
+                {"Driving Excellence Through Innovation & Quality"}
               </motion.h3>
+              
               <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-lg text-gray-700 mb-8 leading-relaxed"
+                className="text-lg text-gray-700 mb-8 leading-relaxed border-l-4 border-[hsl(var(--brand-primary))] pl-4 py-2 bg-[hsl(var(--brand-primary))]/5 rounded-r-lg"
               >
                 {
-                  "We are committed to setting new benchmarks in quality and performance through innovation, reliability, and customer satisfaction. Our expertise spans across electrical, mechanical, oil & gas, industrial infrastructure, and EPC power projects."
+                  "To be the premier engineering solutions provider, setting new benchmarks in quality and performance through cutting-edge innovation, unwavering reliability, and exceptional customer satisfaction across all industrial domains."
                 }
               </motion.p>
-              {/* Achievements List */}
-              <div className="achievements-list space-y-4">
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={index}
-                    className="achievement-item flex items-center space-x-3"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  >
-                    <div className="flex-shrink-0">
-                      <CheckCircle className="w-5 h-5 text-[hsl(var(--brand-primary))]" />
-                    </div>
-                    <span className="text-gray-700 font-medium">{achievement}</span>
-                  </motion.div>
-                ))}
-              </div>
+
+              {/* Core Focus Areas */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="mb-8"
+              >
+                <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-[hsl(var(--brand-primary))]" />
+                  Core Focus Areas
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex items-start space-x-3 p-3 bg-[hsl(var(--brand-primary))]/5 rounded-lg">
+                    <Zap className="w-4 h-4 text-[hsl(var(--brand-primary))] mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">Electrical & Power Systems</span>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-[hsl(var(--brand-primary))]/5 rounded-lg">
+                    <Building className="w-4 h-4 text-[hsl(var(--brand-primary))] mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">Mechanical Engineering</span>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-[hsl(var(--brand-primary))]/5 rounded-lg">
+                    <Globe className="w-4 h-4 text-[hsl(var(--brand-primary))] mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">Oil & Gas Infrastructure</span>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-[hsl(var(--brand-primary))]/5 rounded-lg">
+                    <Users className="w-4 h-4 text-[hsl(var(--brand-primary))] mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">Industrial Projects</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Key Differentiators */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mb-8"
+              >
+                <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                  <Shield className="w-5 h-5 mr-2 text-[hsl(var(--brand-primary))]" />
+                  Why Choose Ascendio?
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-white to-[hsl(var(--brand-primary))]/5 rounded-lg border border-[hsl(var(--brand-primary))]/10">
+                    <CheckCircle className="w-4 h-4 text-[hsl(var(--brand-primary))] flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">ISO Certified Quality Processes</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-white to-[hsl(var(--brand-primary))]/5 rounded-lg border border-[hsl(var(--brand-primary))]/10">
+                    <CheckCircle className="w-4 h-4 text-[hsl(var(--brand-primary))] flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">End-to-End Project Lifecycle Support</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-white to-[hsl(var(--brand-primary))]/5 rounded-lg border border-[hsl(var(--brand-primary))]/10">
+                    <CheckCircle className="w-4 h-4 text-[hsl(var(--brand-primary))] flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">24/7 Technical Support & Maintenance</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Company Info Card with clearer image */}
+            {/* Company Info Card */}
             <div className="company-info">
               <motion.div
                 className="relative rounded-3xl overflow-hidden shadow-2xl"
@@ -577,61 +620,105 @@ export default function About() {
                 <div className="relative h-96">
                   <img
                     src="https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop"
-                    alt="Industrial Equipment"
+                    alt="Industrial Excellence"
                     className="w-full h-full object-cover"
                   />
-                  {/* Lighter brand overlay to keep image visible */}
+                  {/* Professional overlay */}
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(0deg, hsl(${brandPrimary} / 0.45) 0%, hsl(${brandPrimary} / 0.18) 50%, transparent 80%)`,
+                      background: `linear-gradient(0deg, hsl(${brandPrimary} / 0.75) 0%, hsl(${brandPrimary} / 0.45) 50%, transparent 100%)`,
                     }}
                   />
+                  
                   {/* Content Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
                     <motion.div
-                      className="inline-flex items-center justify-center w-16 h-16 bg-white/15 rounded-full mb-6 backdrop-blur-sm self-center ring-1 ring-white/20"
+                      className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6 backdrop-blur-sm self-center ring-2 ring-white/30"
                       animate={{ rotate: [0, 360] }}
                       transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     >
-                      <Globe className="w-8 h-8 text-white" />
+                      <Award className="w-8 h-8 text-white" />
                     </motion.div>
+                    
                     <div className="text-center">
-                      <motion.div
-                        className="text-5xl font-bold mb-4 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)]"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      <motion.h4
+                        className="text-2xl font-bold mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
                       >
-                        {"2020"}
+                        Engineering Excellence Since 2020
+                      </motion.h4>
+                      
+                      <motion.div
+                        className="text-lg mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                      >
+                        Trusted Partner in Industrial Solutions
                       </motion.div>
-                      <div className="text-xl mb-6 drop-shadow">{"Established"}</div>
-                      <div className="space-y-3 text-sm">
+                      
+                      <motion.div
+                        className="space-y-4 text-sm bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                      >
                         <div className="flex items-center justify-center space-x-2">
-                          <Zap className="w-4 h-4 text-[hsl(var(--brand-secondary))]" />
-                          <span>{"CIN: U52599UP2020PTC136596"}</span>
+                          <Building className="w-4 h-4 text-[hsl(var(--brand-secondary))]" />
+                          <span className="font-semibold">CIN: U52599UP2020PTC136596</span>
                         </div>
-                        <div className="border-t border-white/30 pt-3">
-                          <p>{"Greater Noida West, Gautam Buddha Nagar"}</p>
-                          <p>{"Uttar Pradesh – 201301"}</p>
+                        <div className="border-t border-white/30 pt-3 text-center">
+                          <p className="font-medium">Greater Noida West</p>
+                          <p>Gautam Buddha Nagar, Uttar Pradesh – 201301</p>
                         </div>
-                      </div>
+                        <div className="flex justify-center space-x-4 pt-2">
+                          <div className="flex items-center space-x-1">
+                            <Shield className="w-3 h-3 text-green-300" />
+                            <span className="text-xs">ISO Certified</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <Users className="w-3 h-3 text-blue-300" />
+                            <span className="text-xs">Expert Team</span>
+                          </div>
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
 
-                {/* Subtle floating accents (kept, non-intrusive) */}
+                {/* Professional accents */}
                 <motion.div
-                  className="absolute top-4 right-4 w-2 h-2 rounded-full"
-                  style={{ background: `hsl(${brandSecondary})` }}
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0.9, 0.5] }}
+                  className="absolute top-6 right-6 w-3 h-3 rounded-full bg-white/80"
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 />
                 <motion.div
-                  className="absolute top-1/2 left-4 w-3 h-3 rounded-full"
-                  style={{ background: `hsl(${brandPrimary})` }}
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.8, 0.4] }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+                  className="absolute bottom-6 left-6 w-2 h-2 rounded-full bg-[hsl(var(--brand-secondary))]"
+                  animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0.9, 0.6] }}
+                  transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
                 />
+              </motion.div>
+
+              {/* Additional Mission Highlights */}
+              <motion.div
+                className="mt-6 grid grid-cols-2 gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <div className="bg-white rounded-xl p-4 text-center shadow-lg border border-[hsl(var(--brand-primary))]/20">
+                  <Target className="w-6 h-6 mx-auto mb-2 text-[hsl(var(--brand-primary))]" />
+                  <div className="text-sm font-semibold text-gray-800">Quality Focus</div>
+                  <div className="text-xs text-gray-600">ISO Standards</div>
+                </div>
+                <div className="bg-white rounded-xl p-4 text-center shadow-lg border border-[hsl(var(--brand-primary))]/20">
+                  <Lightbulb className="w-6 h-6 mx-auto mb-2 text-[hsl(var(--brand-primary))]" />
+                  <div className="text-sm font-semibold text-gray-800">Innovation</div>
+                  <div className="text-xs text-gray-600">Cutting-edge Solutions</div>
+                </div>
               </motion.div>
             </div>
           </div>

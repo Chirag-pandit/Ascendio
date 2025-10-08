@@ -10,16 +10,16 @@ type BgItem = { src: string; alt: string }
 // Teal/Green brand theme background images
 const BACKGROUND_IMAGES: BgItem[] = [
   {
-    src: "https://images.pexels.com/photos/236722/pexels-photo-236722.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    alt: "Industrial refinery at dusk with metallic structures",
+    src: "/1.png",
+    alt: "Background image 1",
   },
   {
-    src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1920&auto=format&fit=crop",
-    alt: "Engineer working with mechanical parts in a workshop",
+    src: "/2.png",
+    alt: "Background image 2",
   },
   {
-    src: "https://images.unsplash.com/photo-1581091870622-7f3c56d33179?q=80&w=1920&auto=format&fit=crop",
-    alt: "High-tech control room with monitors and data visualizations",
+    src: "/3.png",
+    alt: "Background image 3",
   },
 ]
 

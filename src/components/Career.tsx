@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Upload, Send, User, GraduationCap, Briefcase, Target, FileText } from "lucide-react"
-import { sendJobApplication } from "../api/email"
+
 
 interface FormData {
   fullName: string
@@ -68,17 +68,38 @@ export default function Career() {
     setSubmitStatus("idle")
 
     try {
-      // Create FormData for file upload
-      const submitData = new FormData()
-      Object.entries(formData).forEach(([key, value]) => {
-        if (value !== null) {
-          submitData.append(key, value as any)
-        }
+      const formDataToSubmit = new FormData()
+      
+      // Add all form fields to FormData
+      formDataToSubmit.append('fullName', formData.fullName)
+      formDataToSubmit.append('email', formData.email)
+      formDataToSubmit.append('phone', formData.phone)
+      formDataToSubmit.append('course', formData.course)
+      formDataToSubmit.append('year', formData.year)
+      formDataToSubmit.append('experience', formData.experience)
+      
+      // Handle job role (include otherJobRole if 'Other' is selected)
+      const jobRole = formData.jobRole === 'Other' 
+        ? formData.otherJobRole 
+        : formData.jobRole
+      formDataToSubmit.append('jobRole', jobRole)
+      
+      formDataToSubmit.append('whyJoin', formData.whyJoin)
+      formDataToSubmit.append('skills', formData.skills)
+      
+      // Append resume file if exists
+      if (formData.resume) {
+        formDataToSubmit.append('resume', formData.resume)
+      }
+
+      // Submit to your local backend
+      const response = await fetch('/api/send-application', {
+        method: 'POST',
+        body: formDataToSubmit
+        // Don't set Content-Type header - let the browser set it with the boundary
       })
 
-      const success = await sendJobApplication(formData)
-
-      if (success) {
+      if (response.ok) {
         setSubmitStatus("success")
         // Reset form
         setFormData({
@@ -101,7 +122,9 @@ export default function Career() {
           fileInput.value = ""
         }
       } else {
-        setSubmitStatus("error")
+        const errorData = await response.json().catch(() => ({}))
+        console.error('Form submission failed:', errorData)
+        throw new Error(errorData.message || 'Form submission failed')
       }
     } catch (error) {
       console.error("Submission error:", error)

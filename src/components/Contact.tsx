@@ -21,6 +21,7 @@ import {
   Calendar,
   Award,
   Shield,
+  MessageCircle,
 } from "lucide-react";
 
 interface FormData {
@@ -119,7 +120,7 @@ const Contact: React.FC = () => {
   };
 
   // Contact actions
-  const handleContactAction = (type: "email" | "phone" | "address" | "copy", value: string) => {
+  const handleContactAction = (type: "email" | "phone" | "whatsapp" | "address" | "copy", value: string) => {
     switch (type) {
       case "email":
         window.open(`mailto:${value}`);
@@ -128,6 +129,11 @@ const Contact: React.FC = () => {
       case "phone":
         window.open(`tel:${value}`);
         showNotification("Opening phone dialer...", "info");
+        break;
+      case "whatsapp":
+        const whatsappUrl = `https://wa.me/${value.replace(/\D/g, '')}`;
+        window.open(whatsappUrl, '_blank');
+        showNotification("Opening WhatsApp...", "info");
         break;
       case "address":
         window.open(`https://maps.google.com/?q=${encodeURIComponent(value)}`);
@@ -165,11 +171,27 @@ const Contact: React.FC = () => {
     }
     setIsSubmitting(true);
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      showNotification("Message sent successfully! We'll get back to you soon.", "success");
+      // Create email content
+      const emailSubject = `New Contact Message from ${formData.name}`;
+      const emailBody = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+Company: ${formData.company || 'Not provided'}
+
+Message:
+${formData.message}
+
+Sent from Ascendio Global Contact Form
+      `.trim();
+
+      // Open default email client with pre-filled content
+      window.open(`mailto:ascendio.global@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
+      
+      showNotification("Opening email client with your message...", "success");
       setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-    } catch {
-      showNotification("Failed to send message. Please try again.", "error");
+    } catch (error) {
+      showNotification("Failed to prepare message. Please try again.", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -191,10 +213,11 @@ const Contact: React.FC = () => {
     },
     {
       icon: Phone,
-      title: "Phone",
+      title: "Phone & WhatsApp",
       info: "+91 9999113792",
-      description: "Call us for immediate support",
+      description: "Call us or message on WhatsApp",
       action: () => handleContactAction("phone", "+91 9999113792"),
+      whatsappAction: () => handleContactAction("whatsapp", "+919999113792"),
       copyAction: () => handleContactAction("copy", "+91 9999113792"),
     },
     {
@@ -233,13 +256,13 @@ const Contact: React.FC = () => {
           background: `linear-gradient(135deg, ${theme.background} 0%, ${theme.secondary}30 40%, ${theme.primary}10 100%)`,
         }}
       >
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           {/* Header */}
           <div className="text-center mb-12">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hhhh2.PNG-ZNPrnomxqafuPbE3PtYjskiGBRrvnQ.png"
               alt="Ascendio Global logo"
-              className="mx-auto mb-6 w-28 h-auto"
+              className="mx-auto mb-6 w-24 sm:w-28 h-auto"
               loading="lazy"
             />
             <motion.div
@@ -265,7 +288,7 @@ const Contact: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold text-gray-800 mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4"
             >
               Contact
               <span
@@ -279,33 +302,35 @@ const Contact: React.FC = () => {
                 Ascendio Global
               </span>
             </motion.h1>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Let’s discuss how we can help you achieve your goals. We typically reply within 24 hours.
+            <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto px-4">
+              Let's discuss how we can help you achieve your goals. We typically reply within 24 hours.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Information */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-2">
-                <Globe className="w-6 h-6" style={{ color: theme.primary }} />
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-2">
+                <Globe className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: theme.primary }} />
                 <span>Contact Information</span>
               </h2>
 
               {contactInfo.map((item, index) => {
                 const Icon = item.icon;
                 const isHovered = hoveredCard === index;
+                const isPhoneItem = item.title === "Phone & WhatsApp";
+                
                 return (
                   <motion.div
                     key={index}
                     className="group cursor-pointer"
-                    whileHover={{ x: 8, scale: 1.01 }}
+                    whileHover={{ x: 4, scale: 1.01 }}
                     onHoverStart={() => setHoveredCard(index)}
                     onHoverEnd={() => setHoveredCard(null)}
                     onClick={item.action}
                   >
                     <div
-                      className="flex items-center space-x-6 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border relative overflow-hidden"
+                      className="flex items-start sm:items-center space-x-4 sm:space-x-6 p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border relative overflow-hidden"
                       style={{ backgroundColor: theme.background, borderColor: `${theme.primary}30` }}
                     >
                       <div
@@ -314,22 +339,38 @@ const Contact: React.FC = () => {
                       />
 
                       <motion.div
-                        className="w-14 h-14 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative z-10"
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative z-10 flex-shrink-0"
                         style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
                         whileHover={{ rotate: 3 }}
                       >
-                        <Icon className="h-7 w-7 text-white" />
+                        <Icon className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
                       </motion.div>
 
-                      <div className="flex-1 relative z-10">
-                        <h3 className="font-bold text-gray-800 text-lg mb-1">{item.title}</h3>
-                        <p className="font-semibold mb-1" style={{ color: theme.primary }}>
+                      <div className="flex-1 relative z-10 min-w-0">
+                        <h3 className="font-bold text-gray-800 text-base sm:text-lg mb-1 truncate">{item.title}</h3>
+                        <p className="font-semibold mb-1 text-sm sm:text-base" style={{ color: theme.primary }}>
                           {item.info}
                         </p>
-                        <p className="text-gray-600 text-sm">{item.description}</p>
+                        <p className="text-gray-600 text-xs sm:text-sm">{item.description}</p>
                       </div>
 
-                      <div className="flex space-x-2 relative z-10">
+                      <div className="flex space-x-1 sm:space-x-2 relative z-10 flex-shrink-0">
+                        {isPhoneItem && (
+                          <motion.button
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              item.whatsappAction!();
+                            }}
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-green-500 hover:bg-green-600"
+                            style={{ opacity: isHovered ? 1 : 0.9 }}
+                            aria-label="WhatsApp"
+                          >
+                            <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                          </motion.button>
+                        )}
+                        
                         <motion.button
                           whileHover={{ scale: 1.08 }}
                           whileTap={{ scale: 0.95 }}
@@ -337,21 +378,21 @@ const Contact: React.FC = () => {
                             e.stopPropagation();
                             item.copyAction();
                           }}
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300"
                           style={{ backgroundColor: `${theme.secondary}80`, opacity: isHovered ? 1 : 0 }}
                           aria-label="Copy"
                         >
-                          <Copy className="w-4 h-4" style={{ color: theme.primary }} />
+                          <Copy className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: theme.primary }} />
                         </motion.button>
 
                         <motion.button
                           whileHover={{ scale: 1.08 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300"
                           style={{ backgroundColor: `${theme.primary}20`, opacity: isHovered ? 1 : 0 }}
                           aria-label="Open"
                         >
-                          <ExternalLink className="w-4 h-4" style={{ color: theme.primary }} />
+                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: theme.primary }} />
                         </motion.button>
                       </div>
                     </div>
@@ -359,64 +400,69 @@ const Contact: React.FC = () => {
                 );
               })}
 
-              {/* Business Hours - simple, no background image */}
+              {/* Business Hours */}
               <div
-                className="p-8 rounded-2xl text-white relative overflow-hidden shadow-xl"
+                className="p-6 sm:p-8 rounded-2xl text-white relative overflow-hidden shadow-xl"
                 style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
               >
-                <div className="flex items-center space-x-4 mb-4 relative z-10">
-                  <Clock className="h-8 w-8 drop-shadow-xl" />
-                  <h3 className="font-bold text-xl drop-shadow-xl">Business Hours</h3>
+                <div className="flex items-center space-x-3 sm:space-x-4 mb-4 relative z-10">
+                  <Clock className="h-6 w-6 sm:h-8 sm:w-8 drop-shadow-xl" />
+                  <h3 className="font-bold text-lg sm:text-xl drop-shadow-xl">Business Hours</h3>
                 </div>
                 <div className="space-y-2 text-white relative z-10 drop-shadow-lg">
                   <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <p className="text-sm sm:text-base">Monday - Friday: 9:00 AM - 6:00 PM</p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <p>Saturday: 9:00 AM - 2:00 PM</p>
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <p className="text-sm sm:text-base">Saturday: 9:00 AM - 2:00 PM</p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <p>Sunday: Closed</p>
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <p className="text-sm sm:text-base">Sunday: Closed</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4 mt-6 relative z-10">
+                <div className="flex items-center space-x-4 mt-4 sm:mt-6 relative z-10 flex-wrap gap-2">
                   <div className="flex items-center space-x-1">
-                    <Shield className="w-4 h-4" />
-                    <span className="text-sm">ISO Certified</span>
+                    <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="text-xs sm:text-sm">ISO Certified</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <Award className="w-4 h-4" />
-                    <span className="text-sm">24/7 Support</span>
+                    <Award className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="text-xs sm:text-sm">24/7 Support</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <motion.div initial={{ opacity: 0, x: 12 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+            <motion.div 
+              initial={{ opacity: 0, x: 12 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.5 }}
+              className="w-full"
+            >
               <div
                 id="contact-form"
-                className="rounded-3xl p-8 shadow-xl border"
+                className="rounded-3xl p-6 sm:p-8 shadow-xl border w-full"
                 style={{ backgroundColor: theme.background, borderColor: `${theme.primary}30` }}
               >
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-2">
-                  <MessageSquare className="w-6 h-6" style={{ color: theme.primary }} />
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-2">
+                  <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: theme.primary }} />
                   <span>Send us a Message</span>
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" style={{ color: theme.primary }} />
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5" style={{ color: theme.primary }} />
                       <input
                         type="text"
                         placeholder="Your Name"
                         value={formData.name}
                         onChange={(e) => handleInputChange("name", e.target.value)}
-                        className={`w-full pl-12 pr-4 py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 ${
+                        className={`w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 text-sm sm:text-base ${
                           formErrors.name ? "border-red-400 focus:ring-red-500" : "focus:ring-opacity-50"
                         }`}
                         style={{ borderColor: formErrors.name ? "#f87171" : `${theme.primary}60`, backgroundColor: theme.background }}
@@ -425,21 +471,21 @@ const Contact: React.FC = () => {
                         aria-describedby={formErrors.name ? "name-error" : undefined}
                       />
                       {formErrors.name && (
-                        <p id="name-error" className="text-red-500 text-sm mt-1 flex items-center space-x-1">
-                          <AlertCircle className="w-4 h-4" />
+                        <p id="name-error" className="text-red-500 text-xs sm:text-sm mt-1 flex items-center space-x-1">
+                          <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span>{formErrors.name}</span>
                         </p>
                       )}
                     </div>
 
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" style={{ color: theme.primary }} />
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5" style={{ color: theme.primary }} />
                       <input
                         type="email"
                         placeholder="Your Email"
                         value={formData.email}
                         onChange={(e) => handleInputChange("email", e.target.value)}
-                        className={`w-full pl-12 pr-4 py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 ${
+                        className={`w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 text-sm sm:text-base ${
                           formErrors.email ? "border-red-400 focus:ring-red-500" : "focus:ring-opacity-50"
                         }`}
                         style={{ borderColor: formErrors.email ? "#f87171" : `${theme.primary}60`, backgroundColor: theme.background }}
@@ -448,8 +494,8 @@ const Contact: React.FC = () => {
                         aria-describedby={formErrors.email ? "email-error" : undefined}
                       />
                       {formErrors.email && (
-                        <p id="email-error" className="text-red-500 text-sm mt-1 flex items-center space-x-1">
-                          <AlertCircle className="w-4 h-4" />
+                        <p id="email-error" className="text-red-500 text-xs sm:text-sm mt-1 flex items-center space-x-1">
+                          <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span>{formErrors.email}</span>
                         </p>
                       )}
@@ -457,45 +503,45 @@ const Contact: React.FC = () => {
                   </div>
 
                   <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" style={{ color: theme.primary }} />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5" style={{ color: theme.primary }} />
                     <input
                       type="tel"
-                      placeholder="Your Phone"
+                      placeholder="Your Phone (Optional)"
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
-                      className={`w-full pl-12 pr-4 py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 ${
+                      className={`w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 text-sm sm:text-base ${
                         formErrors.phone ? "border-red-400 focus:ring-red-500" : "focus:ring-opacity-50"
                       }`}
                       style={{ borderColor: formErrors.phone ? "#f87171" : `${theme.primary}60`, backgroundColor: theme.background }}
                     />
                     {formErrors.phone && (
-                      <p className="text-red-500 text-sm mt-1 flex items-center space-x-1">
-                        <AlertCircle className="w-4 h-4" />
+                      <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center space-x-1">
+                        <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                         <span>{formErrors.phone}</span>
                       </p>
                     )}
                   </div>
 
                   <div className="relative">
-                    <Building2 className="absolute left-3 top-4 h-5 w-5" style={{ color: theme.primary }} />
+                    <Building2 className="absolute left-3 top-3 sm:top-4 h-4 w-4 sm:h-5 sm:w-5" style={{ color: theme.primary }} />
                     <input
                       type="text"
                       placeholder="Company Name (Optional)"
                       value={formData.company}
                       onChange={(e) => handleInputChange("company", e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800"
+                      className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all shadow-sm text-gray-800 text-sm sm:text-base"
                       style={{ borderColor: `${theme.primary}60`, backgroundColor: theme.background }}
                     />
                   </div>
 
                   <div className="relative">
-                    <MessageSquare className="absolute left-3 top-4 h-5 w-5" style={{ color: theme.primary }} />
+                    <MessageSquare className="absolute left-3 top-3 sm:top-4 h-4 w-4 sm:h-5 sm:w-5" style={{ color: theme.primary }} />
                     <textarea
                       placeholder="Your Message"
                       rows={4}
                       value={formData.message}
                       onChange={(e) => handleInputChange("message", e.target.value)}
-                      className={`w-full pl-12 pr-4 py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all resize-none shadow-sm text-gray-800 ${
+                      className={`w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 transition-all resize-none shadow-sm text-gray-800 text-sm sm:text-base ${
                         formErrors.message ? "border-red-400 focus:ring-red-500" : "focus:ring-opacity-50"
                       }`}
                       style={{ borderColor: formErrors.message ? "#f87171" : `${theme.primary}60`, backgroundColor: theme.background }}
@@ -504,8 +550,8 @@ const Contact: React.FC = () => {
                       aria-describedby={formErrors.message ? "message-error" : undefined}
                     />
                     {formErrors.message && (
-                      <p id="message-error" className="text-red-500 text-sm mt-1 flex items-center space-x-1">
-                        <AlertCircle className="w-4 h-4" />
+                      <p id="message-error" className="text-red-500 text-xs sm:text-sm mt-1 flex items-center space-x-1">
+                        <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                         <span>{formErrors.message}</span>
                       </p>
                     )}
@@ -516,33 +562,33 @@ const Contact: React.FC = () => {
                     disabled={isSubmitting}
                     whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                    className="w-full text-white py-4 px-8 rounded-xl font-semibold text-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full text-white py-3 sm:py-4 px-8 rounded-xl font-semibold text-base sm:text-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
+                        <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                         <span>Sending...</span>
                       </>
                     ) : (
                       <>
                         <span>Send Message</span>
-                        <Send className="h-5 w-5" />
+                        <Send className="h-4 w-4 sm:h-5 sm:w-5" />
                       </>
                     )}
                   </motion.button>
 
-                  <div className="flex items-center justify-center space-x-6 text-sm text-gray-600 pt-4">
+                  <div className="flex items-center justify-center space-x-4 sm:space-x-6 text-xs sm:text-sm text-gray-600 pt-4 flex-wrap gap-2">
                     <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
                       <span>24h Response</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Shield className="w-4 h-4" style={{ color: theme.primary }} />
+                      <Shield className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: theme.primary }} />
                       <span>Secure</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500" />
                       <span>Free Consultation</span>
                     </div>
                   </div>
@@ -559,7 +605,7 @@ const Contact: React.FC = () => {
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.95 }}
-              className={`fixed bottom-6 right-6 px-6 py-4 rounded-2xl shadow-2xl z-50 max-w-sm ${
+              className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 px-4 py-3 sm:px-6 sm:py-4 rounded-2xl shadow-2xl z-50 max-w-xs sm:max-w-sm ${
                 notification.type === "success"
                   ? "text-white"
                   : notification.type === "error"
@@ -575,11 +621,11 @@ const Contact: React.FC = () => {
               role="status"
               aria-live="polite"
             >
-              <div className="flex items-center space-x-3">
-                {notification.type === "success" && <CheckCircle className="w-5 h-5" />}
-                {notification.type === "error" && <AlertCircle className="w-5 h-5" />}
-                {notification.type === "info" && <Sparkles className="w-5 h-5" />}
-                <span className="font-medium">{notification.message}</span>
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                {notification.type === "success" && <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />}
+                {notification.type === "error" && <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5" />}
+                {notification.type === "info" && <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />}
+                <span className="font-medium text-sm sm:text-base">{notification.message}</span>
               </div>
             </motion.div>
           )}

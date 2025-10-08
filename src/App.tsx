@@ -35,7 +35,7 @@ function HomePage() {
       <Hero />
       <About />
       <Services />
-      <Products />
+      {/* <Products /> */}
       <WhyChooseUs />
       <Blog />
       <Contact />

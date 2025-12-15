@@ -3,6 +3,7 @@
 import type React from "react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { API_BASE_URL } from "../utils/api"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Lenis from "@studio-freight/lenis"
@@ -388,7 +389,7 @@ export default function Products() {
     const fetchProducts = async () => {
       setProductsLoading(true)
       try {
-        const response = await fetch("/api/products")
+        const response = await fetch(`${API_BASE_URL}/api/products`)
         if (response.ok) {
           const data = await response.json()
           // Map API data to Product interface and add icons

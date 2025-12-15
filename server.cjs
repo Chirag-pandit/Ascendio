@@ -5,8 +5,41 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-app.use(cors());
+
+// CORS configuration - Railway pe deploy ke liye
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Development mein localhost allow karein
+    if (!origin || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      callback(null, true);
+      return;
+    }
+    // Production mein Vercel domain allow karein
+    // Apna Vercel URL yahan add karein
+    const allowedOrigins = [
+      'https://your-app.vercel.app',
+      'https://*.vercel.app', // All Vercel subdomains
+      process.env.FRONTEND_URL, // Environment variable se
+    ].filter(Boolean);
+    
+    if (allowedOrigins.some(allowed => origin.includes(allowed.replace('*.', '')))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Temporary - sabko allow (production mein specific karein)
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Server is running' });
+});
 
 // Data file paths
 const BLOG_DATA_FILE = path.join(__dirname, 'data', 'blogs.json');
@@ -429,4 +462,6 @@ app.delete('/api/admin/contacts/:id', (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log('Server running on port 5000'));
+// Railway pe PORT environment variable use hoga, local mein 5000
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
+import { API_BASE_URL } from "../utils/api";
 import {
   Search,
   Calendar,
@@ -128,7 +129,7 @@ const Blog: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/blogs');
+        const response = await fetch(`${API_BASE_URL}/api/blogs`);
         if (response.ok) {
           const data = await response.json();
           // Map API data to BlogPost interface

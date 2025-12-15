@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { API_BASE_URL } from "../utils/api"
 import {
   Plus,
   Trash2,
@@ -107,7 +108,7 @@ const AdminPanel: React.FC = () => {
     setError("")
 
     try {
-      const response = await fetch("/api/admin/login", {
+      const response = await fetch(`${API_BASE_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -139,7 +140,7 @@ const AdminPanel: React.FC = () => {
   // Fetch blogs
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("/api/admin/blogs")
+      const response = await fetch(`${API_BASE_URL}/api/admin/blogs`)
       if (response.ok) {
         const data = await response.json()
         setBlogs(data)
@@ -152,7 +153,7 @@ const AdminPanel: React.FC = () => {
   // Fetch products
   const fetchProducts = async () => {
     try {
-      const response = await fetch("/api/admin/products")
+      const response = await fetch(`${API_BASE_URL}/api/admin/products`)
       if (response.ok) {
         const data = await response.json()
         setProducts(data)
@@ -165,7 +166,7 @@ const AdminPanel: React.FC = () => {
   // Fetch contacts
   const fetchContacts = async () => {
     try {
-      const response = await fetch("/api/admin/contacts")
+      const response = await fetch(`${API_BASE_URL}/api/admin/contacts`)
       if (response.ok) {
         const data = await response.json()
         setContacts(data)
@@ -543,7 +544,7 @@ const BlogsTab: React.FC<{
     if (!editingBlog) return
 
     try {
-      const url = isCreatingBlog ? "/api/admin/blogs" : `/api/admin/blogs/${editingBlog.id}`
+      const url = isCreatingBlog ? `${API_BASE_URL}/api/admin/blogs` : `${API_BASE_URL}/api/admin/blogs/${editingBlog.id}`
       const method = isCreatingBlog ? "POST" : "PUT"
 
       const response = await fetch(url, {
@@ -569,7 +570,7 @@ const BlogsTab: React.FC<{
     if (!confirm("Delete this blog?")) return
 
     try {
-      const response = await fetch(`/api/admin/blogs/${id}`, { method: "DELETE" })
+      const response = await fetch(`${API_BASE_URL}/api/admin/blogs/${id}`, { method: "DELETE" })
       if (response.ok) {
         onSuccess("Blog deleted!")
         onFetch()
@@ -641,7 +642,7 @@ const BlogsTab: React.FC<{
             onDelete={handleDelete}
             onTogglePublish={async () => {
               try {
-                const response = await fetch(`/api/admin/blogs/${blog.id}`, {
+                const response = await fetch(`${API_BASE_URL}/api/admin/blogs/${blog.id}`, {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ ...blog, published: !blog.published }),
@@ -706,7 +707,7 @@ const ProductsTab: React.FC<{
     if (!editingProduct) return
 
     try {
-      const url = isCreatingProduct ? "/api/admin/products" : `/api/admin/products/${editingProduct.id}`
+      const url = isCreatingProduct ? `${API_BASE_URL}/api/admin/products` : `${API_BASE_URL}/api/admin/products/${editingProduct.id}`
       const method = isCreatingProduct ? "POST" : "PUT"
 
       const response = await fetch(url, {
@@ -732,7 +733,7 @@ const ProductsTab: React.FC<{
     if (!confirm("Delete this product?")) return
 
     try {
-      const response = await fetch(`/api/admin/products/${id}`, { method: "DELETE" })
+      const response = await fetch(`${API_BASE_URL}/api/admin/products/${id}`, { method: "DELETE" })
       if (response.ok) {
         onSuccess("Product deleted!")
         onFetch()
@@ -821,7 +822,7 @@ const ContactsTab: React.FC<{
 }> = ({ contacts, searchTerm, setSearchTerm, onFetch, onSuccess, onError }) => {
   const handleMarkRead = async (id: number) => {
     try {
-      const response = await fetch(`/api/admin/contacts/${id}/read`, { method: "PUT" })
+      const response = await fetch(`${API_BASE_URL}/api/admin/contacts/${id}/read`, { method: "PUT" })
       if (response.ok) {
         onSuccess("Marked as read!")
         onFetch()
@@ -835,7 +836,7 @@ const ContactsTab: React.FC<{
     if (!confirm("Delete this contact?")) return
 
     try {
-      const response = await fetch(`/api/admin/contacts/${id}`, { method: "DELETE" })
+      const response = await fetch(`${API_BASE_URL}/api/admin/contacts/${id}`, { method: "DELETE" })
       if (response.ok) {
         onSuccess("Contact deleted!")
         onFetch()

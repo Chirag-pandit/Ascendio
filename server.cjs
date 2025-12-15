@@ -17,8 +17,9 @@ const corsOptions = {
     // Production mein Vercel domain allow karein
     // Apna Vercel URL yahan add karein
     const allowedOrigins = [
-      'https://your-app.vercel.app',
-      'https://*.vercel.app', // All Vercel subdomains
+      'https://ascendio-nine.vercel.app',
+      'https://*.vercel.app',
+      'https://ascendio-production.up.railway.app/admin' // All Vercel subdomains
       process.env.FRONTEND_URL, // Environment variable se
     ].filter(Boolean);
     

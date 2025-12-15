@@ -15,7 +15,11 @@ const getApiUrl = () => {
   
   // Production fallback - Railway URL yahan set karein
   // Railway se milne wala public URL yahan paste karein
+<<<<<<< HEAD
   return 'https://ascendio-production.up.railway.app/admin'
+=======
+  return 'https://ascendio-production.up.railway.app'
+>>>>>>> 7d9d4547d3bf580ea06c7468449479121c000d3f
 }
 
 export const API_BASE_URL = getApiUrl()

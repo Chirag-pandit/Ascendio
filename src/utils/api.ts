@@ -15,7 +15,7 @@ const getApiUrl = () => {
   
   // Production fallback - Railway URL yahan set karein
   // Railway se milne wala public URL yahan paste karein
-  return 'https://your-railway-app.up.railway.app'
+  return 'https://railway.com/project/529ca8d0-47bb-4067-8869-fe16b5b5ca4e/service/32c5dc71-1eb6-4605-bd29-c572ec4b6f54?environmentId=dd15a82d-ec38-4fb5-a01c-1e42d5f62481&id=e584956a-2829-45d9-9bd6-3d1ac855735d'
 }
 
 export const API_BASE_URL = getApiUrl()

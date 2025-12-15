@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const FRONTEND_URL =
-  process.env.FRONTEND_URL || "https://ascendio-nine.vercel.app";
+  process.env.FRONTEND_URL || "https://ascendio-production.up.railway.app";
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";

@@ -13,7 +13,7 @@ const navItems = [
   { name: "About", href: "#about", type: "scroll" },
   { name: "Blog", href: "#blog", type: "scroll" },
   { name: "Services", href: "#services", type: "scroll" },
-  { name: "Products", href: "#products", type: "scroll" },
+  { name: "Products", href: "/products", type: "route" },
   { name: "Contact", href: "#contact", type: "scroll" },
 ]
 

@@ -23,6 +23,7 @@ import {
   Globe,
   CheckCircle,
   AlertCircle,
+  Loader,
 } from "lucide-react";
 
 interface BlogPost {
@@ -52,7 +53,9 @@ const Blog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const postsPerPage = 6;
 
@@ -119,99 +122,59 @@ const Blog: React.FC = () => {
     setTimeout(() => setNotification(null), 3500);
   };
 
-  // Mock blog data
-  const allPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "The Future of Digital Transformation in Enterprise",
-      excerpt: "Explore how digital transformation is reshaping enterprise operations and what businesses need to know to stay competitive in 2024.",
-      content: "Full article content here...",
-      author: "Ascendio Team",
-      date: "2024-12-15",
-      readTime: 8,
-      category: "Technology",
-      tags: ["Digital Transformation", "Enterprise", "Innovation"],
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
-      views: 1234,
-      likes: 89,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Building Scalable Business Solutions",
-      excerpt: "Learn about the key principles and best practices for creating business solutions that grow with your organization.",
-      content: "Full article content here...",
-      author: "Rajesh Kumar",
-      date: "2024-12-10",
-      readTime: 6,
-      category: "Business",
-      tags: ["Scalability", "Business Growth", "Solutions"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-      views: 987,
-      likes: 76,
-      featured: false,
-    },
-    {
-      id: 3,
-      title: "AI Integration in Modern Workflows",
-      excerpt: "Discover how artificial intelligence is revolutionizing workplace efficiency and what it means for your business.",
-      content: "Full article content here...",
-      author: "Priya Sharma",
-      date: "2024-12-08",
-      readTime: 10,
-      category: "Technology",
-      tags: ["AI", "Automation", "Productivity"],
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
-      views: 1567,
-      likes: 123,
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Sustainable Business Practices for 2024",
-      excerpt: "How companies are adopting sustainable practices while maintaining profitability and growth.",
-      content: "Full article content here...",
-      author: "Amit Singh",
-      date: "2024-12-05",
-      readTime: 7,
-      category: "Sustainability",
-      tags: ["Sustainability", "Business", "Environment"],
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop",
-      views: 756,
-      likes: 54,
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Cloud Migration Strategies",
-      excerpt: "A comprehensive guide to planning and executing successful cloud migration for enterprises.",
-      content: "Full article content here...",
-      author: "Neha Gupta",
-      date: "2024-12-02",
-      readTime: 9,
-      category: "Technology",
-      tags: ["Cloud", "Migration", "Infrastructure"],
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
-      views: 892,
-      likes: 67,
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "Customer Experience Excellence",
-      excerpt: "Strategies to enhance customer experience and build lasting relationships in the digital age.",
-      content: "Full article content here...",
-      author: "Vikram Patel",
-      date: "2024-11-28",
-      readTime: 5,
-      category: "Business",
-      tags: ["Customer Experience", "Digital", "Strategy"],
-      image: "https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&h=400&fit=crop",
-      views: 634,
-      likes: 45,
-      featured: false,
-    },
-  ];
+  // Fetch blogs from API
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('/api/blogs');
+        if (response.ok) {
+          const data = await response.json();
+          // Map API data to BlogPost interface
+          const mappedPosts: BlogPost[] = data.map((post: {
+            id: number;
+            title: string;
+            excerpt: string;
+            content?: string;
+            author: string;
+            date: string;
+            readTime?: number;
+            category: string;
+            tags?: string[];
+            image?: string;
+            views?: number;
+            likes?: number;
+            featured?: boolean;
+          }) => ({
+            id: post.id,
+            title: post.title,
+            excerpt: post.excerpt,
+            content: post.content || post.excerpt,
+            author: post.author,
+            date: post.date,
+            readTime: post.readTime || 5,
+            category: post.category,
+            tags: post.tags || [],
+            image: post.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
+            views: post.views || 0,
+            likes: post.likes || 0,
+            featured: post.featured || false,
+          }));
+          setAllPosts(mappedPosts);
+        } else {
+          setError('Failed to load blogs. Please try again later.');
+        }
+      } catch (err) {
+        setError('Failed to connect to server. Make sure the server is running.');
+        console.error('Error fetching blogs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   const categories = ["All", "Technology", "Business", "Sustainability"];
 
@@ -229,7 +192,7 @@ const Blog: React.FC = () => {
   const startIndex = (currentPage - 1) * postsPerPage;
   const paginatedPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
 
-  const handlePostAction = (action: "like" | "share" | "bookmark", postId: number) => {
+  const handlePostAction = (action: "like" | "share" | "bookmark") => {
     switch (action) {
       case "like":
         showNotification("Post liked! 💙", "success");
@@ -362,8 +325,36 @@ const Blog: React.FC = () => {
             </div>
           </motion.div>
 
+          {/* Loading State */}
+          {loading && (
+            <div className="text-center py-20">
+              <Loader className="w-12 h-12 animate-spin mx-auto mb-4" style={{ color: theme.primary }} />
+              <p className="text-gray-600">Loading blogs...</p>
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && !loading && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center py-12"
+            >
+              <AlertCircle className="w-16 h-16 mx-auto mb-4 text-red-500" />
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Error Loading Blogs</h3>
+              <p className="text-gray-600 mb-4">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="px-6 py-2 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+                style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
+              >
+                Retry
+              </button>
+            </motion.div>
+          )}
+
           {/* Featured Posts */}
-          {selectedCategory === "All" && searchTerm === "" && (
+          {!loading && !error && selectedCategory === "All" && searchTerm === "" && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -381,8 +372,6 @@ const Blog: React.FC = () => {
                     key={post.id}
                     className="group cursor-pointer"
                     whileHover={{ y: -8, scale: 1.01 }}
-                    onHoverStart={() => setHoveredCard(post.id)}
-                    onHoverEnd={() => setHoveredCard(null)}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -416,7 +405,7 @@ const Blog: React.FC = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={(e) => {
                               e.stopPropagation();
-                              handlePostAction("like", post.id);
+                              handlePostAction("like");
                             }}
                             className="w-10 h-10 rounded-full backdrop-blur-sm bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors"
                           >
@@ -427,7 +416,7 @@ const Blog: React.FC = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={(e) => {
                               e.stopPropagation();
-                              handlePostAction("share", post.id);
+                              handlePostAction("share");
                             }}
                             className="w-10 h-10 rounded-full backdrop-blur-sm bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors"
                           >
@@ -494,12 +483,13 @@ const Blog: React.FC = () => {
           )}
 
           {/* All Posts Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
+          {!loading && !error && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-12"
+            >
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-bold text-gray-800 flex items-center space-x-2">
                 <TrendingUp className="w-6 h-6" style={{ color: theme.primary }} />
@@ -517,8 +507,6 @@ const Blog: React.FC = () => {
                     key={post.id}
                     className="group cursor-pointer"
                     whileHover={{ y: -5, scale: 1.02 }}
-                    onHoverStart={() => setHoveredCard(post.id)}
-                    onHoverEnd={() => setHoveredCard(null)}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -548,7 +536,7 @@ const Blog: React.FC = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={(e) => {
                               e.stopPropagation();
-                              handlePostAction("bookmark", post.id);
+                              handlePostAction("bookmark");
                             }}
                             className="w-8 h-8 rounded-full backdrop-blur-sm bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors"
                           >
@@ -636,6 +624,7 @@ const Blog: React.FC = () => {
               </motion.div>
             )}
           </motion.div>
+          )}
 
           {/* Pagination */}
           {totalPages > 1 && (

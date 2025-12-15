@@ -171,27 +171,20 @@ const Contact: React.FC = () => {
     }
     setIsSubmitting(true);
     try {
-      // Create email content
-      const emailSubject = `New Contact Message from ${formData.name}`;
-      const emailBody = `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'Not provided'}
-Company: ${formData.company || 'Not provided'}
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-Message:
-${formData.message}
-
-Sent from Ascendio Global Contact Form
-      `.trim();
-
-      // Open default email client with pre-filled content
-      window.open(`mailto:ascendio.global@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
-      
-      showNotification("Opening email client with your message...", "success");
-      setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+      if (response.ok) {
+        showNotification("Message sent successfully! We'll get back to you soon.", "success");
+        setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+      } else {
+        showNotification("Failed to send message. Please try again.", "error");
+      }
     } catch (error) {
-      showNotification("Failed to prepare message. Please try again.", "error");
+      showNotification("Failed to send message. Please try again.", "error");
     } finally {
       setIsSubmitting(false);
     }

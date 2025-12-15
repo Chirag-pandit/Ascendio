@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, Suspense, lazy } from "react"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import Lenis from "@studio-freight/lenis"
 import { gsap } from "gsap"
@@ -9,14 +9,29 @@ import Header from "./components/Header"
 import Hero from "./components/Hero"
 import About from "./components/About"
 import Services from "./components/Services"
-import Products from "./components/Products"
 import WhyChooseUs from "./components/WhyChooseUs"
 import Blog from "./components/Blog"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import Career from "./components/Career"
+import AdminPanel from "./components/AdminPanel"
+
+// Lazy load Products component for better performance
+const Products = lazy(() => import("./components/Products"))
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Loading component for Products page
+function ProductsLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50">
+      <div className="text-center">
+        <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-[hsl(var(--brand-primary))]"></div>
+        <p className="mt-4 text-gray-600 font-medium">Loading Products...</p>
+      </div>
+    </div>
+  )
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -35,10 +50,21 @@ function HomePage() {
       <Hero />
       <About />
       <Services />
-      {/* <Products /> */}
       <WhyChooseUs />
       <Blog />
       <Contact />
+      <Footer />
+    </>
+  )
+}
+
+// Products Page with Footer
+function ProductsPage() {
+  return (
+    <>
+      <Suspense fallback={<ProductsLoading />}>
+        <Products />
+      </Suspense>
       <Footer />
     </>
   )
@@ -49,13 +75,7 @@ function App() {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
+      smoothWheel: true,
     })
 
     function raf(time: number) {
@@ -81,10 +101,26 @@ function App() {
     <Router>
       <div className="min-h-screen bg-neutral-50">
         <ScrollToTop />
-        <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/career" element={<Career />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/" element={
+            <>
+              <Header />
+              <HomePage />
+            </>
+          } />
+          <Route path="/products" element={
+            <>
+              <Header />
+              <ProductsPage />
+            </>
+          } />
+          <Route path="/career" element={
+            <>
+              <Header />
+              <Career />
+            </>
+          } />
         </Routes>
       </div>
     </Router>

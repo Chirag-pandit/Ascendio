@@ -14,7 +14,8 @@ import Blog from "./components/Blog"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import Career from "./components/Career"
-import AdminPanel from "./components/AdminPanel"
+import AdminPanel from "./pages/AdminPanel"
+import WhatsAppFloat from "./components/WhatsAppFloat"
 
 // Lazy load Products component for better performance
 const Products = lazy(() => import("./components/Products"))
@@ -107,18 +108,21 @@ function App() {
             <>
               <Header />
               <HomePage />
+              <WhatsAppFloat />
             </>
           } />
           <Route path="/products" element={
             <>
               <Header />
               <ProductsPage />
+              <WhatsAppFloat />
             </>
           } />
           <Route path="/career" element={
             <>
               <Header />
               <Career />
+              <WhatsAppFloat />
             </>
           } />
         </Routes>

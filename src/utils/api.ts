@@ -13,9 +13,9 @@ const getApiUrl = () => {
     return '' // Empty = same origin, vite proxy handle karega
   }
   
-  // Production fallback - Railway URL yahan set karein
-  // Railway se milne wala public URL yahan paste karein
-  return 'https://ascendio-production.up.railway.app'
+  // Production: use the same origin (for deployment where frontend and backend are together)
+  // or fallback to a default deployment URL
+  return window.location.origin
 }
 
 export const API_BASE_URL = getApiUrl()
